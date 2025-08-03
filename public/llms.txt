@@ -1,0 +1,9 @@
+## Pages
+- [Área do Estudante - sabIA](/studentarea): Área personalizada do estudante com tutoria por IA, acompanhamento de progresso e conteúdo adaptativo.
+- [Área do Professor - sabIA](/teacherarea): Área exclusiva para professores acompanharem o progresso das turmas, receberem insights da IA e personalizarem o ensino.
+- [Área dos Responsáveis - sabIA](/parentsarea): Acompanhe o progresso educacional do seu filho com relatórios detalhados e insights da inteligência artificial.
+- [Biblioteca de Conteúdos - sabIA](/library): Acesse nossa biblioteca completa de conteúdos educacionais organizados por série e matéria, com tutoria personalizada por IA.
+- [Como a IA Funciona? - sabIA](/howaiworks): Entenda como nossa inteligência artificial personaliza o aprendizado e adapta o conteúdo para cada estudante do ensino fundamental.
+- [Login - sabIA](/login): Faça login na plataforma sabIA e acesse sua área personalizada de estudos com inteligência artificial.
+- [Meu Progresso - sabIA](/dashboard): Acompanhe seu progresso de aprendizado, estatísticas detalhadas e recomendações personalizadas da IA.
+- [sabIA - Plataforma de Tutoria com Inteligência Artificial](/home): Plataforma educativa com IA para alunos do 6º ao 9º ano. Tutoria personalizada, conteúdo adaptativo e acompanhamento do progresso.
