@@ -1,13 +1,12 @@
-
-import React from 'react';
-import * as ProgressPrimitive from '@radix-ui/react-slider';
-import { cn } from '@/lib/utils';
+import React from "react";
+import * as ProgressPrimitive from "@radix-ui/react-slider";
+import { cn } from "@/lib/utils";
 
 const Progress = React.forwardRef(({ className, value, ...props }, ref) => (
   <div
     ref={ref}
     className={cn(
-      "relative h-4 w-full overflow-hidden rounded-full bg-secondary",
+      "relative h-4 w-full overflow-hidden rounded-full bg-[#edbf21]",
       className
     )}
     {...props}
