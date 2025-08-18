@@ -161,7 +161,7 @@ const Library = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="rounded-lg p-6 mb-8"
-              style={{ backgroundColor: "#153c4b" }}
+              style={{ backgroundColor: "#57b4b1" }}
             >
               <div className="grid md:grid-cols-4 gap-4">
                 <div className="relative">
