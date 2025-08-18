@@ -187,14 +187,14 @@ const Dashboard = () => {
               className="mb-8"
             >
               <h1
-                className="text-3xl md:text-4xl font-bold mb-4"
+                className="text-3xl md:text-4xl font-bold mt-8 mb-4 text-center"
                 style={{ color: "#153f4b" }}
               >
                 Meu Progresso
               </h1>
               <p
-                className="text-xl md:text-2xl max-w-3xl mx-auto mb-8"
-                style={{ color: "#57b4b1" }}
+                className="text-x1 md:text-2xl max-w-3xl mx-auto mb-8 text-center"
+                style={{ color: "#153f4b" }}
               >
                 Acompanhe sua jornada de aprendizado,{" "}
                 {dashboardData.student.name}
@@ -207,7 +207,7 @@ const Dashboard = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
               >
-                <Card className="glass-effect">
+                <Card className="bg-[#57b4b1] rounded-2xl shadow-lg">
                   <CardContent className="p-6 text-center">
                     <Trophy className="w-8 h-8 text-yellow-400 mx-auto mb-2" />
                     <div
@@ -218,7 +218,7 @@ const Dashboard = () => {
                     </div>
                     <p
                       className="text-xl md:text-2xl max-w-3xl mx-auto mb-8"
-                      style={{ color: "#57b4b1" }}
+                      style={{ color: "#153f4b" }}
                     >
                       Pontos Totais
                     </p>
@@ -231,7 +231,7 @@ const Dashboard = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                <Card className="glass-effect">
+                <Card className="bg-[#57b4b1] rounded-2xl shadow-lg">
                   <CardContent className="p-6 text-center">
                     <Target className="w-8 h-8 text-purple-400 mx-auto mb-2" />
                     <div
@@ -242,7 +242,7 @@ const Dashboard = () => {
                     </div>
                     <p
                       className="text-xl md:text-2xl max-w-3xl mx-auto mb-8"
-                      style={{ color: "#57b4b1" }}
+                      style={{ color: "#153f4b" }}
                     >
                       Experiência
                     </p>
@@ -255,9 +255,12 @@ const Dashboard = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
               >
-                <Card className="glass-effect">
+                <Card className="bg-[#57b4b1] rounded-2xl shadow-lg">
                   <CardContent className="p-6 text-center">
-                    <Clock className="w-8 h-8 text-blue-400 mx-auto mb-2" />
+                    <Clock
+                      className="w-8 h-8 mx-auto mb-2"
+                      style={{ color: "#edbf21" }}
+                    />
                     <div
                       className="text-3xl md:text-4xl font-bold mb-4"
                       style={{ color: "#153f4b" }}
@@ -266,7 +269,7 @@ const Dashboard = () => {
                     </div>
                     <p
                       className="text-xl md:text-2xl max-w-3xl mx-auto mb-8"
-                      style={{ color: "#57b4b1" }}
+                      style={{ color: "#153f4b" }}
                     >
                       Esta Semana
                     </p>
@@ -279,22 +282,20 @@ const Dashboard = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
               >
-                <Card className="glass-effect">
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between mb-2">
-                      <span
-                        className="text-3xl md:text-4xl font-bold mb-4"
-                        style={{ color: "#153f4b" }}
-                      >
-                        Meta Semanal
-                      </span>
-                      <span
-                        className="text-xl md:text-2xl max-w-3xl mx-auto mb-8"
-                        style={{ color: "#57b4b1" }}
-                      >
-                        {dashboardData.student.weeklyProgress}/
-                        {dashboardData.student.weeklyGoal}h
-                      </span>
+                <Card className="bg-[#57b4b1] rounded-2xl shadow-lg h-full">
+                  <CardContent className="p-6 text-center">
+                    <div
+                      className="text-3xl md:text-4xl font-bold mb-4"
+                      style={{ color: "#153f4b" }}
+                    >
+                      Meta Semanal
+                    </div>
+                    <div
+                      className="text-xl md:text-2xl mb-4"
+                      style={{ color: "#153f4b" }}
+                    >
+                      {dashboardData.student.weeklyProgress}/
+                      {dashboardData.student.weeklyGoal}h
                     </div>
                     <Progress
                       value={
@@ -315,9 +316,12 @@ const Dashboard = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
                 >
-                  <Card className="glass-effect">
+                  <Card className="bg-[#57b4b1] rounded-2xl shadow-lg">
                     <CardHeader>
-                      <CardTitle className="text-white flex items-center">
+                      <CardTitle
+                        className="flex items-center"
+                        style={{ color: "#153c4b" }}
+                      >
                         <BarChart3 className="w-5 h-5 mr-2" />
                         Progresso por Matéria
                       </CardTitle>
@@ -359,9 +363,12 @@ const Dashboard = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
                 >
-                  <Card className="glass-effect">
+                  <Card className="bg-[#57b4b1] rounded-2xl shadow-lg">
                     <CardHeader>
-                      <CardTitle className="text-white flex items-center">
+                      <CardTitle
+                        className="flex items-center"
+                        style={{ color: "#153c4b" }}
+                      >
                         <Calendar className="w-5 h-5 mr-2" />
                         Atividade Semanal
                       </CardTitle>
@@ -375,9 +382,7 @@ const Dashboard = () => {
                             </div>
                             <div
                               className={`h-16 rounded-lg flex items-end justify-center p-1 ${
-                                day.completed
-                                  ? "bg-gradient-to-t from-blue-500 to-purple-600"
-                                  : "bg-white/10"
+                                day.completed ? "bg-[#edbf21]" : "bg-white/10"
                               }`}
                             >
                               <div
@@ -402,9 +407,12 @@ const Dashboard = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.7 }}
                 >
-                  <Card className="glass-effect">
+                  <Card className="bg-[#57b4b1] rounded-2xl shadow-lg">
                     <CardHeader>
-                      <CardTitle className="text-white text-lg">
+                      <CardTitle
+                        className="flex items-center"
+                        style={{ color: "#153c4b" }}
+                      >
                         Conquistas
                       </CardTitle>
                     </CardHeader>
@@ -434,9 +442,12 @@ const Dashboard = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.8 }}
                 >
-                  <Card className="glass-effect">
+                  <Card className="bg-[#57b4b1] rounded-2xl shadow-lg">
                     <CardHeader>
-                      <CardTitle className="text-white text-lg">
+                      <CardTitle
+                        className="flex items-center"
+                        style={{ color: "#153c4b" }}
+                      >
                         Recomendações da IA
                       </CardTitle>
                     </CardHeader>
