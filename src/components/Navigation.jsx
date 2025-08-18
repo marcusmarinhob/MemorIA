@@ -33,8 +33,14 @@ const Navigation = () => {
         <Link to="/" className="flex items-center space-x-2">
           <motion.div
             whileHover={{ scale: 1.1 }}
-            className="w-10 h-10 rounded-lg flex items-center justify-center"
-          ></motion.div>
+            className="w-16 h-16 rounded-lg flex items-center justify-center overflow-hidden"
+          >
+            <img
+              src={ImagemSabia}
+              alt="Sabiá"
+              className="w-full h-full object-cover rounded-lg"
+            />
+          </motion.div>
           <span className="text-4xl font-bold">
             <span style={{ color: "#edbf21" }}>Sab</span>
             <span style={{ color: "#153c4b" }}>IA</span>

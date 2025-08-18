@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import ImagemSabia from "../assets/sabia2.jpg";
 import { motion } from "framer-motion";
 import {
   Home,
@@ -29,10 +30,17 @@ const NavigationMobile = () => {
       style={{ backgroundColor: "#ffedb0" }}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <Link to="/" className="flex items-center space-x-2">
-          <span className="text-4xl font-bold">
-            <span style={{ color: "#edbf21" }}>Sab</span>
-            <span style={{ color: "#153c4b" }}>IA</span>
+        <Link to="/" className="flex items-center space-x-4">
+          <span className="flex items-center">
+            <span className="text-4xl font-bold">
+              <span style={{ color: "#edbf21" }}>Sab</span>
+              <span style={{ color: "#153c4b" }}>IA</span>
+            </span>
+            <img
+              src={ImagemSabia}
+              alt="Sabiá"
+              className="w-20 h-12 object-cover rounded-lg ml-4"
+            />
           </span>
         </Link>
 
