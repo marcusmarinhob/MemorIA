@@ -15,7 +15,6 @@ const StudentArea = () => {
   const [studentData, setStudentData] = useState(null);
 
   useEffect(() => {
-    // Simular dados do estudante
     const mockData = {
       name: "Ana Silva",
       grade: "7º ano",
@@ -62,7 +61,6 @@ const StudentArea = () => {
 
       <div className="min-h-screen p-4">
         <div className="max-w-7xl mx-auto">
-          {/* Header */}
           <div className="flex items-center justify-between mb-8">
             <Link to="/" className="inline-flex items-center text-white/80 hover:text-white">
               <ArrowLeft className="w-4 h-4 mr-2" />
@@ -75,7 +73,6 @@ const StudentArea = () => {
             </div>
           </div>
 
-          {/* Stats Cards */}
           <div className="grid md:grid-cols-4 gap-6 mb-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -135,7 +132,6 @@ const StudentArea = () => {
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8">
-            {/* Matérias */}
             <div className="lg:col-span-2">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -178,9 +174,7 @@ const StudentArea = () => {
               </motion.div>
             </div>
 
-            {/* Sidebar */}
             <div className="space-y-6">
-              {/* Atividades Recentes */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -205,7 +199,6 @@ const StudentArea = () => {
                 </Card>
               </motion.div>
 
-              {/* Conquistas */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -235,7 +228,6 @@ const StudentArea = () => {
                 </Card>
               </motion.div>
 
-              {/* Links Rápidos */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
