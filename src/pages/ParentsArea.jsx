@@ -184,7 +184,7 @@ const ParentsArea = () => {
   return (
     <>
       <Helmet>
-        <title>Área dos Responsáveis - sabIA</title>
+        <title>Área dos Responsáveis - SabIA</title>
         <meta
           name="description"
           content="Acompanhe o progresso educacional do seu filho com relatórios detalhados e insights da inteligência artificial."

@@ -1,33 +1,36 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Users, GraduationCap, BarChart3, AlertTriangle } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
+import React from "react";
+import { motion } from "framer-motion";
+import { Users, GraduationCap, BarChart3, AlertTriangle } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 
 const TeacherStats = ({ stats }) => {
   const statItems = [
     {
       icon: Users,
       value: stats.totalStudents,
-      label: 'Total de Alunos',
-      color: 'text-blue-400',
+      label: "Total de Alunos",
+      color: "text-yellow-400",
     },
     {
       icon: GraduationCap,
       value: stats.activeClasses,
-      label: 'Turmas Ativas',
-      color: 'text-purple-400',
+      label: "Turmas Ativas",
+      color: "text-purple-400",
     },
     {
       icon: BarChart3,
-      value: (stats.classes.reduce((acc, cls) => acc + cls.averageGrade, 0) / stats.classes.length).toFixed(1),
-      label: 'Média Geral',
-      color: 'text-green-400',
+      value: (
+        stats.classes.reduce((acc, cls) => acc + cls.averageGrade, 0) /
+        stats.classes.length
+      ).toFixed(1),
+      label: "Média Geral",
+      color: "text-green-400",
     },
     {
       icon: AlertTriangle,
       value: stats.classes.reduce((acc, cls) => acc + cls.needsAttention, 0),
-      label: 'Precisam de Atenção',
-      color: 'text-yellow-400',
+      label: "Precisam de Atenção",
+      color: "text-yellow-400",
     },
   ];
 
@@ -42,10 +45,18 @@ const TeacherStats = ({ stats }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 * (index + 1) }}
           >
-            <Card className="glass-effect">
+            <Card
+              className="glass-effect"
+              style={{ backgroundColor: "#57b4b1" }}
+            >
               <CardContent className="p-6 text-center">
                 <Icon className={`w-8 h-8 ${item.color} mx-auto mb-2`} />
-                <div className="text-2xl font-bold text-white">{item.value}</div>
+                <div
+                  className="text-2xl text-center font-bold mt-8"
+                  style={{ color: "#153c4b" }}
+                >
+                  {item.value}
+                </div>
                 <p className="text-white/70 text-sm">{item.label}</p>
               </CardContent>
             </Card>
