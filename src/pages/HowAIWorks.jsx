@@ -147,7 +147,7 @@ const HowAIWorks = () => {
                 className="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-8 mt-10  floating-animation"
                 style={{ backgroundColor: "#153c4b" }}
               >
-                <Brain className="w-12 h-12 text-white" />{" "}
+                <Brain className="w-12 h-12 text-[#edbf21]" />{" "}
               </div>
 
               <h1

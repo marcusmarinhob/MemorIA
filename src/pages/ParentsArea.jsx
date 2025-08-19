@@ -139,7 +139,7 @@ const ParentsArea = () => {
   if (!parentData) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-white text-xl">Carregando...</div>
+        <div className="text-xl" style={{ color: "#153c4b" }}></div>
       </div>
     );
   }
@@ -202,10 +202,16 @@ const ParentsArea = () => {
               transition={{ duration: 0.8 }}
               className="mb-8"
             >
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">
+              <h1
+                className="text-4xl text-center font-bold mt-8"
+                style={{ color: "#153c4b" }}
+              >
                 Área dos Responsáveis
               </h1>
-              <p className="text-xl text-white/80">
+              <p
+                className="text-2xl text-center font-bold mt-2"
+                style={{ color: "#153c4b" }}
+              >
                 Acompanhe o progresso educacional de {child.name}
               </p>
             </motion.div>
@@ -215,19 +221,26 @@ const ParentsArea = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
               className="glass-effect rounded-lg p-6 mb-8"
+              style={{ backgroundColor: "#57b4b1" }}
             >
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center space-x-4">
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                  <div className="w-16 h-16 bg-[#153c4b] rounded-full flex items-center justify-center">
                     <span className="text-2xl font-bold text-white">
                       {child.name.charAt(0)}
                     </span>
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-white">
+                    <h2
+                      className="text-2xl text-center font-bold mt-2"
+                      style={{ color: "#153c4b" }}
+                    >
                       {child.name}
                     </h2>
-                    <p className="text-white/70">
+                    <p
+                      className="text-1xl text-center font-bold mt-2"
+                      style={{ color: "#153c4b" }}
+                    >
                       {child.grade} • {child.age} anos
                     </p>
                   </div>
@@ -240,8 +253,23 @@ const ParentsArea = () => {
                         "🚧 Esta funcionalidade ainda não está implementada—mas não se preocupe! Você pode solicitá-la no seu próximo prompt! 🚀",
                     })
                   }
+                  Button
                   variant="outline"
-                  className="border-white/30 text-white hover:bg-white/10"
+                  size="md"
+                  className="
+                      bg-[#153c4b] 
+                      border-2 border-[#edbf21] 
+                      text-[#edbf21] 
+                      text-sm sm:text-base
+                      px-6 py-2
+                      font-bold 
+                      rounded-full 
+                      flex items-center justify-center 
+                      hover:scale-105 
+                      transition-transform duration-300
+                      w-auto
+                      mt-2
+                    "
                 >
                   Configurações
                 </Button>
@@ -250,28 +278,40 @@ const ParentsArea = () => {
               <div className="grid md:grid-cols-4 gap-6">
                 <div className="text-center">
                   <Trophy className="w-8 h-8 text-yellow-400 mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-white">
+                  <div
+                    className="text-2xl text-center font-bold mt-2"
+                    style={{ color: "#153c4b" }}
+                  >
                     {child.totalPoints}
                   </div>
                   <p className="text-white/70 text-sm">Pontos</p>
                 </div>
                 <div className="text-center">
                   <BarChart3 className="w-8 h-8 text-purple-400 mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-white">
+                  <div
+                    className="text-2xl text-center font-bold mt-2"
+                    style={{ color: "#153c4b" }}
+                  >
                     Nível {child.level}
                   </div>
                   <p className="text-white/70 text-sm">Experiência</p>
                 </div>
                 <div className="text-center">
-                  <Clock className="w-8 h-8 text-blue-400 mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-white">
+                  <Clock className="w-8 h-8 text-[#edbf21] mx-auto mb-2" />
+                  <div
+                    className="text-2xl text-center font-bold mt-2"
+                    style={{ color: "#153c4b" }}
+                  >
                     {child.weeklyHours}h
                   </div>
                   <p className="text-white/70 text-sm">Esta Semana</p>
                 </div>
                 <div className="text-center">
                   <BookOpen className="w-8 h-8 text-green-400 mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-white">
+                  <div
+                    className="text-2xl text-center font-bold mt-2"
+                    style={{ color: "#153c4b" }}
+                  >
                     {child.averageGrade}
                   </div>
                   <p className="text-white/70 text-sm">Média Geral</p>
@@ -286,9 +326,15 @@ const ParentsArea = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
                 >
-                  <Card className="glass-effect">
+                  <Card
+                    className="glass-effect"
+                    style={{ backgroundColor: "#57b4b1" }}
+                  >
                     <CardHeader>
-                      <CardTitle className="text-white flex items-center">
+                      <CardTitle
+                        className="text-2xl text-center font-bold mt-2 flex items-center"
+                        style={{ color: "#153c4b" }}
+                      >
                         <BarChart3 className="w-5 h-5 mr-2" />
                         Progresso por Matéria
                       </CardTitle>
@@ -313,7 +359,7 @@ const ParentsArea = () => {
                                 </Badge>
                                 <Badge
                                   variant="outline"
-                                  className="border-white/30 text-white"
+                                  className="border-[#edbf21] text-[#edbf21]"
                                 >
                                   {subject.progress}%
                                 </Badge>
@@ -338,9 +384,15 @@ const ParentsArea = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
                 >
-                  <Card className="glass-effect">
+                  <Card
+                    className="glass-effect"
+                    style={{ backgroundColor: "#57b4b1" }}
+                  >
                     <CardHeader>
-                      <CardTitle className="text-white">
+                      <CardTitle
+                        className="text-2xl font-bold mt-8"
+                        style={{ color: "#153c4b" }}
+                      >
                         Insights da IA sobre {child.name}
                       </CardTitle>
                     </CardHeader>
@@ -352,7 +404,10 @@ const ParentsArea = () => {
                             insight.type
                           )}`}
                         >
-                          <h4 className="font-semibold text-white mb-2">
+                          <h4
+                            className="text-1xl font-bold mt-2"
+                            style={{ color: "#153c4b" }}
+                          >
                             {insight.title}
                           </h4>
                           <p className="text-white/80 text-sm">
@@ -371,9 +426,15 @@ const ParentsArea = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.5 }}
                 >
-                  <Card className="glass-effect">
+                  <Card
+                    className="glass-effect"
+                    style={{ backgroundColor: "#57b4b1" }}
+                  >
                     <CardHeader>
-                      <CardTitle className="text-white text-lg">
+                      <CardTitle
+                        className="text-2xl font-bold mt-4"
+                        style={{ color: "#153c4b" }}
+                      >
                         Alertas
                       </CardTitle>
                     </CardHeader>
@@ -402,9 +463,15 @@ const ParentsArea = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.6 }}
                 >
-                  <Card className="glass-effect">
+                  <Card
+                    className="glass-effect"
+                    style={{ backgroundColor: "#57b4b1" }}
+                  >
                     <CardHeader>
-                      <CardTitle className="text-white text-lg">
+                      <CardTitle
+                        className="text-2xl font-bold mt-4"
+                        style={{ color: "#153c4b" }}
+                      >
                         Conquistas Recentes
                       </CardTitle>
                     </CardHeader>
@@ -439,9 +506,15 @@ const ParentsArea = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.7 }}
                 >
-                  <Card className="glass-effect">
+                  <Card
+                    className="glass-effect"
+                    style={{ backgroundColor: "#57b4b1" }}
+                  >
                     <CardHeader>
-                      <CardTitle className="text-white text-lg">
+                      <CardTitle
+                        className="text-2xl font-bold mt-4"
+                        style={{ color: "#153c4b" }}
+                      >
                         Ações Rápidas
                       </CardTitle>
                     </CardHeader>
