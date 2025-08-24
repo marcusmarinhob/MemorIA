@@ -165,8 +165,8 @@ const HowAIWorks = () => {
               </p>
               <Button
                 size="lg"
-                className="bg-[#153c4b] border-2 border-[#edbf21] text-[#edbf21] text-2xl sm:text-3xl px-8 sm:px-16 py-4 sm:py-6 font-bold rounded-full flex items-center justify-center 
-             hover:bg-[#edbf21] hover:text-black hover:scale-105 transition-colors transition-transform duration-300 mx-auto"
+                className="bg-[#153c4b] border-2 border-[#edbd2100] text-[#ffffff] text-2xl sm:text-2xl px-8 sm:px-16 py-4 sm:py-6 font-bold rounded-full flex items-center justify-center 
+             hover:bg-[#153c4b] hover:text-[#ffffff] hover:scale-105 transition-colors transition-transform duration-300 mx-auto"
                 onClick={() =>
                   toast({
                     title: "Demonstração",
