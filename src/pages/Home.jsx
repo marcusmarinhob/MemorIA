@@ -81,21 +81,21 @@ const Home = () => {
       </div>
 
       {/* ================= SEÇÃO HERO (COMEÇAR AGORA) ================= */}
-      <section className="pt-24 pb-16 px-4 text-center relative">
+      <section className="pt-10 pb-16 px-4 text-center relative">
         <motion.div
           initial={{ opacity: 1, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="space-y-8"
+          className="space-y-10"
         >
-          <img
+          {/*<img
             alt="Mascote SabIA"
             className="w-32 h-32 mx-auto floating-animation rounded-full shadow-lg"
             src={ImagemSabia}
-          />
+          />*/}
 
-          <h1 className="text-5xl md:text-7xl font-bold text-[#edbf21]">
-            Aprenda com o <br /> SabIA
+          <h1 className="text-5xl mt-40 md:text-8xl font-bold text-[#edbf21]">
+            Aprenda com a <br /> SabIA
           </h1>
 
           <p className="text-xl md:text-2xl text-[#153c4b] max-w-2xl mx-auto">
@@ -142,7 +142,7 @@ const Home = () => {
                   key={index}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  transition={{ duration: 0.3 }}
                   whileHover={{ scale: 1.05 }}
                   className="text-center p-8 glass-effect rounded-2xl shadow-lg"
                 >
@@ -163,38 +163,56 @@ const Home = () => {
       {/* ================= SEÇÃO ESTATÍSTICAS ================= */}
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            className="bg-[#153c4b] rounded-2xl p-8"
-          >
-            <div className="grid md:grid-cols-3 gap-8 text-center">
+          
+          {/* Título e texto */}
+          <div className="mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#edbf21] mb-4">Sobre nós</h2>
+            <p className="text-gray-600 max-w-3xl">
+              Acreditamos que cada estudante tem um potencial único e, por isso, utilizando o poder da inteligência artificial, desenvolvemos soluções que se adaptam ao ritmo, às necessidades e aos interesses de cada estudante, garantindo uma experiência de aprendizagem mais eficaz e motivadora.
+            </p>
+          </div>
+
+          {/* Cards */}
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <div className="relative rounded-2xl overflow-hidden shadow-lg">
+              <img src="src\assets\Aula-Personalizada.png" alt="Aprendizado personalizado" className="w-full h-64 object-cover"/>
+              <span className="absolute bottom-3 left-3 bg-[#153c4b] text-white px-3 py-1 rounded-full text-sm">Aprendizado personalizado</span>
+            </div>
+            <div className="relative rounded-2xl overflow-hidden shadow-lg">
+              <img src="src\assets\20250825_1527_Organização Completa_remix_01k3h7msj1fv2bhgm805142mh4.png" alt="Conteúdo completo e organizado" className="w-full h-64 object-cover"/>
+              <span className="absolute bottom-3 left-3 bg-[#153c4b] text-white px-3 py-1 rounded-full text-sm">Conteúdo completo e organizado</span>
+            </div>
+            <div className="relative rounded-2xl overflow-hidden shadow-lg">
+              <img src="src\assets\passaro Tutor Conselheiro.png" alt="Acompanhamento para pais e professores" className="w-full h-64 object-cover"/>
+              <span className="absolute bottom-3 left-3 bg-[#153c4b] text-white px-3 py-1 rounded-full text-sm">Acompanhamento para pais e professores</span>
+            </div>
+          </div>
+
+          {/* Bloco destacado com métricas */}
+          <div className="text-[#edbf21] bg-[#153c4b] rounded-2xl p-8 mb-12 text-center">
+            <div className="grid md:grid-cols-3 gap-6">
               <div>
-                <div className="text-4xl md:text-5xl font-bold text-[#edbf21] mb-2">
-                  10k+
-                </div>
-                <p className="text-[#edbf21]/80">Estudantes Ativos</p>
+                <div className="text-4xl md:text-5xl font-bold mb-2">+10k</div>
+                <p className="text-lg">Estudantes ativos</p>
               </div>
               <div>
-                <div className="text-4xl md:text-5xl font-bold text-[#edbf21] mb-2">
-                  95%
-                </div>
-                <p className="text-[#edbf21]/80">Melhoria nas Notas</p>
+                <div className="text-4xl md:text-5xl font-bold mb-2">95%</div>
+                <p className="text-lg">Melhoria nas notas</p>
               </div>
               <div>
-                <div className="text-4xl md:text-5xl font-bold text-[#edbf21] mb-2">
-                  24/7
-                </div>
-                <p className="text-[#edbf21]/80">Suporte da IA</p>
+                <div className="text-4xl md:text-5xl font-bold mb-2">24/7</div>
+                <p className="text-lg">Suporte da IA</p>
               </div>
             </div>
-          </motion.div>
+          </div>
+
         </div>
       </section>
 
+
+
       {/* ================= TESTEMUNHOS ================= */}
-      <section className="py-16 px-4">
+      <section className="py-16 px-4 bg-gradient-to-b from-[#e6f7f6] to-white">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -202,7 +220,7 @@ const Home = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-[#57b4b1] mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#edbf21] mb-6">
               O que nossos usuários dizem
             </h2>
           </motion.div>
@@ -215,7 +233,7 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card className="bg-[#153c4b] h-full">
+                <Card className="h-full rounded-2xl shadow-lg border border-white/10 bg-[#153c4b]">
                   <CardContent className="p-6 text-center">
                     <div className="flex mb-4 justify-center">
                       {[...Array(5)].map((_, i) => (
@@ -225,14 +243,14 @@ const Home = () => {
                         />
                       ))}
                     </div>
-                    <p className="text-[#edbf21]/80 mb-4 italic">
+                    <p className="text-gray-200 mb-4 italic">
                       "{testimonial.text}"
                     </p>
                     <div>
                       <p className="font-semibold text-[#edbf21]">
                         {testimonial.name}
                       </p>
-                      <p className="text-sm text-[#edbf21]/60">
+                      <p className="text-sm text-gray-400">
                         {testimonial.grade}
                       </p>
                     </div>
@@ -244,6 +262,9 @@ const Home = () => {
         </div>
       </section>
 
+
+
+
       {/* ================= CALL TO ACTION FINAL ================= */}
       <section className="py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
@@ -253,7 +274,7 @@ const Home = () => {
             transition={{ duration: 0.8 }}
             className="glass-effect rounded-2xl p-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-[#57b4b1] mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#153c4b] mb-6">
               Pronto para revolucionar seus estudos?
             </h2>
             <p className="text-xl text-[#153c4b] mb-8">
@@ -265,7 +286,7 @@ const Home = () => {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="bg-[#153c4b] border-2 border-[#edbf21] text-[#edbf21] text-xl sm:text-3xl px-12 sm:px-20 py-6 sm:py-8 font-bold rounded-full flex items-center justify-center w-full sm:w-auto hover:scale-105 transition-transform duration-300"
+                  className="bg-[#edbf21] border-2 border-[#edbd2100] text-[#ffffff] text-xl sm:text-3xl px-12 sm:px-20 py-6 sm:py-8 font-bold rounded-full flex items-center justify-center w-full sm:w-auto hover:scale-105 hover:text-[#ffffff] transition-transform duration-300"
                 >
                   Começar Gratuitamente
                   <ArrowRight className="w-6 h-6 ml-3" />

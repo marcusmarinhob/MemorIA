@@ -62,7 +62,7 @@ const Navigation = () => {
                 <Link key={item.path} to={item.path}>
                   <motion.div
                     whileHover={{ scale: 1.05 }}
-                    className={`flex items-center space-x-2 px-4 py-2 rounded-full transition-all duration-300 ${
+                    className={`flex items-center space-x-2 px-4 py-2 rounded-full transition-all duration-200 ${
                       isActive 
                         ? "bg-[#153c4b] text-white shadow-md" 
                         : "text-[#153c4b] hover:bg-gray-100"
@@ -79,7 +79,7 @@ const Navigation = () => {
           {/* Login Button */}
           <Link to="/login">
             <Button 
-              className="bg-[#153c4b] text-white px-6 py-3 font-semibold rounded-full flex items-center justify-center hover:bg-[#1a4a5c] hover:scale-105 transition-all duration-300 shadow-md border-0"
+              className="bg-[#153c4b] text-white px-6 py-3 font-semibold rounded-full flex items-center justify-center hover:bg-[#1a4a5c] hover:scale-105 transition-all duration-200 shadow-md border-0"
             >
               <LogIn className="w-4 h-4 mr-2" />
               Entrar
@@ -106,7 +106,7 @@ const Navigation = () => {
                 <Link key={item.path} to={item.path}>
                   <motion.div
                     whileHover={{ scale: 1.02 }}
-                    className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 ${
+                    className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                       isActive 
                         ? "bg-[#153c4b] text-white shadow-md" 
                         : "text-[#153c4b] hover:bg-gray-100"
