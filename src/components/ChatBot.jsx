@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, Send, X, Bot } from "lucide-react";
+import { Send, X, Maximize, Minimize } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { toast } from "@/components/ui/use-toast";
 import Chat from "../assets/chat.jpg";
 import ImagemSabia from "../assets/sabia.jpeg";
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -65,18 +65,20 @@ const ChatBot = () => {
 
   return (
     <>
-      <motion.div
-        className="fixed bottom-6 right-6 z-50"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        onClick={() => setIsOpen(true)}
-      >
-        <img
-          src={Chat}
-          alt="Chat sabIA"
-          className="w-20 h-20 object-cover rounded-full shadow-lg pulse-glow"
-        />
-      </motion.div>
+      {!isOpen && (
+        <motion.div
+          className="fixed bottom-6 right-6 z-50"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => setIsOpen(true)}
+        >
+          <img
+            src={Chat}
+            alt="Chat sabIA"
+            className="w-20 h-20 object-cover rounded-full shadow-lg pulse-glow"
+          />
+        </motion.div>
+      )}
 
       <AnimatePresence>
         {isOpen && (
@@ -84,16 +86,24 @@ const ChatBot = () => {
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="fixed bottom-24 right-6 z-50 w-80 h-96"
+            className={`fixed bottom-[40px] z-50
+              inset-x-0 mx-auto
+              sm:left-auto sm:translate-x-0 sm:right-6
+              w-full max-w-[90vw]
+              ${
+                isExpanded
+                  ? "h-[80vh] sm:w-[500px] sm:h-[560px]"
+                  : "h-[50vh] sm:w-80 sm:h-96"
+              }`}
           >
             <Card
-              className="h-full flex flex-col"
+              className="h-full flex flex-col rounded-2xl shadow-xl"
               style={{ backgroundColor: "#153c4b" }}
             >
               <div className="flex items-center justify-between p-4 border-b border-white/20">
                 <div className="flex items-center space-x-2">
                   <div
-                    className="w-8 h-8 rounded-full flex items-center justify-center"
+                    className="w-10 h-10 rounded-full flex items-center justify-center shadow-md"
                     style={{ backgroundColor: "#edbf21" }}
                   >
                     <img
@@ -103,7 +113,7 @@ const ChatBot = () => {
                     />
                   </div>
                   <div>
-                    <span className="font-semibold">
+                    <span className="font-semibold text-lg">
                       <span style={{ color: "#edbf21" }}>Sab</span>
                       <span style={{ color: "#57b4b1" }}>IA</span>
                     </span>
@@ -112,14 +122,35 @@ const ChatBot = () => {
                     </p>
                   </div>
                 </div>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setIsOpen(false)}
-                  className="hover:text-yellow-400"
-                >
-                  <X className="w-4 h-4" style={{ color: "#edbf21" }} />
-                </Button>
+                <div className="flex space-x-1">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setIsExpanded(!isExpanded)}
+                    className="hover:text-yellow-400 transition-colors duration-300"
+                  >
+                    {isExpanded ? (
+                      <Minimize
+                        className="w-4 h-4"
+                        style={{ color: "#edbf21" }}
+                      />
+                    ) : (
+                      <Maximize
+                        className="w-4 h-4"
+                        style={{ color: "#edbf21" }}
+                      />
+                    )}
+                  </Button>
+
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setIsOpen(false)}
+                    className="hover:text-yellow-400 transition-colors duration-300"
+                  >
+                    <X className="w-4 h-4" style={{ color: "#edbf21" }} />
+                  </Button>
+                </div>
               </div>
 
               <div className="flex-1 overflow-y-auto p-4 space-y-3">
