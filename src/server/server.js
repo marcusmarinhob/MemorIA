@@ -10,7 +10,8 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "*",
+    //origin: "http://localhost:5173",
   })
 );
 
@@ -45,4 +46,5 @@ Problema: ${problema}
   }
 });
 
-app.listen(3001, () => console.log("Servidor rodando na porta 3001"));
+export default app;
+//app.listen(3001, () => console.log("Servidor rodando na porta 3001"));
