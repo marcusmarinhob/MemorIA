@@ -109,7 +109,6 @@ const Home = () => {
               </p>
               <div className="flex flex-col items-center gap-4 mt-8 relative">
                 <div className="flex flex-col items-center gap-4 w-full">
-                  {/* Botão Começar Agora com imagem ao lado */}
                   <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 w-full">
                     <Link to="/login" className="w-full sm:w-auto">
                       <Button
@@ -128,7 +127,6 @@ const Home = () => {
                     />
                   </div>
 
-                  {/* Botão Como Funciona com imagem ao lado */}
                   <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 w-full">
                     <Link to="/how-ai-works" className="w-full sm:w-auto">
                       <Button
