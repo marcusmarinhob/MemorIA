@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, X, Maximize, Minimize } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,8 +8,6 @@ import Chat from "../assets/chat.jpg";
 import ImagemSabia from "../assets/sabia.jpeg";
 
 const ChatBot = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -18,7 +16,15 @@ const ChatBot = () => {
       timestamp: new Date(),
     },
   ]);
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const [inputValue, setInputValue] = useState("");
+
+  useEffect(() => {
+    const chatContainer = document.getElementById("chat-container");
+    if (chatContainer) chatContainer.scrollTop = chatContainer.scrollHeight;
+  }, [messages]);
 
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
@@ -30,8 +36,8 @@ const ChatBot = () => {
       timestamp: new Date(),
     };
 
-    setMessages((prev) => [...prev, newMessage]);
-    const userInput = inputValue;
+    const updatedMessages = [...messages, newMessage];
+    setMessages(updatedMessages);
     setInputValue("");
 
     try {
@@ -39,12 +45,13 @@ const ChatBot = () => {
         //const res = await fetch("http://localhost:3001/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ problema: userInput }),
+        body: JSON.stringify({ conversa: updatedMessages }),
       });
 
       const data = await res.json();
+
       const botResponse = {
-        id: messages.length + 2,
+        id: updatedMessages.length + 1,
         textLines:
           data.ok && data.resposta
             ? data.resposta.split("\n").filter(Boolean)
@@ -52,6 +59,7 @@ const ChatBot = () => {
         isBot: true,
         timestamp: new Date(),
       };
+
       setMessages((prev) => [...prev, botResponse]);
     } catch (err) {
       const botResponse = {
@@ -87,20 +95,18 @@ const ChatBot = () => {
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className={`fixed bottom-[40px] z-50
-              inset-x-0 mx-auto
-              sm:left-auto sm:translate-x-0 sm:right-6
-              w-full max-w-[90vw]
-              ${
-                isExpanded
-                  ? "h-[80vh] sm:w-[500px] sm:h-[560px]"
-                  : "h-[50vh] sm:w-80 sm:h-96"
-              }`}
+            className={`fixed bottom-[40px] z-50 inset-x-0 mx-auto sm:left-auto sm:translate-x-0 sm:right-6 w-full max-w-[90vw] ${
+              isExpanded
+                ? "h-[80vh] sm:w-[500px] sm:h-[560px]"
+                : "h-[50vh] sm:w-80 sm:h-96"
+            }`}
           >
             <Card
-              className="h-full flex flex-col rounded-2xl shadow-xl"
+              id="chat-container"
+              className="h-full flex flex-col rounded-2xl shadow-xl overflow-y-auto"
               style={{ backgroundColor: "#153c4b" }}
             >
+              {/* Cabeçalho */}
               <div className="flex items-center justify-between p-4 border-b border-white/20">
                 <div className="flex items-center space-x-2">
                   <div
@@ -142,7 +148,6 @@ const ChatBot = () => {
                       />
                     )}
                   </Button>
-
                   <Button
                     variant="ghost"
                     size="sm"
@@ -154,7 +159,8 @@ const ChatBot = () => {
                 </div>
               </div>
 
-              <div className="flex-1 overflow-y-auto p-4 space-y-3">
+              {/* Mensagens */}
+              <div className="flex-1 p-4 space-y-3">
                 {messages.map((message) => (
                   <motion.div
                     key={message.id}
@@ -185,6 +191,7 @@ const ChatBot = () => {
                 ))}
               </div>
 
+              {/* Input */}
               <div className="p-4 border-t border-white/20">
                 <div className="flex space-x-2">
                   <Input

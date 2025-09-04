@@ -16,23 +16,34 @@ app.use(
 );
 
 app.post("/api/chat", async (req, res) => {
-  const { problema } = req.body;
-  if (!problema)
-    return res.status(400).json({ ok: false, error: "Envie o problema" });
+  const { conversa } = req.body;
+
+  if (!conversa || !Array.isArray(conversa) || conversa.length === 0)
+    return res.status(400).json({ ok: false, error: "Envie a conversa" });
+
+  const historicoLimitado = conversa.slice(-10);
 
   const prompt = `
 Você é o SabIA, um tutor de inteligência artificial para estudantes do ensino fundamental (6º ao 9º ano). 
-Você **NUNCA deve fornecer a resposta final completa**. Seu objetivo é ajudar o aluno a raciocinar sozinho.  
+Você **NUNCA deve fornecer a resposta final completa**. Seu objetivo é ajudar o aluno a raciocinar sozinho.
 
-Faça o seguinte:
+Regras OBRIGATÓRIAS de formato e conteúdo:
+Responda APENAS com passos.
+Cada passo deve estar em uma linha separada.
+Gere entre 3 e 6 passos (preferencialmente 4). Não gere mais nem menos.
+O ÚLTIMO passo deve ser UMA PERGUNTA numerada para o aluno responder.
+Não escreva saudações, explicações ou qualquer outro texto fora da enumeração.
+Não use Markdown, negrito, itálico, listas com hífen, links ou blocos de código.
+Cada passo deve ser curto, claro e orientar uma ação ou reflexão do aluno.
+Use exemplos do dia a dia quando relevante.
 
-- Explique o problema em palavras simples, usando exemplos do dia a dia ou analogias;
-- Faça perguntas que levem o aluno a pensar e encontrar a solução sozinho;
-- Dê dicas graduais, passo a passo, mas nunca resolva o problema;
-- Use uma linguagem amigável e adequada para crianças e adolescentes de 11 a 15 anos;
-- Responda sempre em português do Brasil.
-
-Problema: ${problema}
+Histórico da conversa (apenas para contexto, não repita o histórico nas respostas; responda apenas com os passos numerados):
+${historicoLimitado
+  .map(
+    (m) =>
+      `${m.isBot ? "SabIA:" : "Aluno:"} ${m.text || m.textLines?.join("\n")}`
+  )
+  .join("\n")}
 `;
 
   try {
