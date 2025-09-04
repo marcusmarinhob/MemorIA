@@ -21,7 +21,7 @@ app.post("/api/chat", async (req, res) => {
     return res.status(400).json({ ok: false, error: "Envie o problema" });
 
   const prompt = `
-Você é SabIA, um tutor de inteligência artificial para estudantes do ensino fundamental (6º ao 9º ano). 
+Você é o SabIA, um tutor de inteligência artificial para estudantes do ensino fundamental (6º ao 9º ano). 
 Você **NUNCA deve fornecer a resposta final completa**. Seu objetivo é ajudar o aluno a raciocinar sozinho.  
 
 Faça o seguinte:
@@ -47,4 +47,4 @@ Problema: ${problema}
 });
 
 export default app;
-//app.listen(3001, () => console.log("Servidor rodando na porta 3001"));
+app.listen(3001, () => console.log("Servidor rodando na porta 3001"));
