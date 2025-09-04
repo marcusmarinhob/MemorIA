@@ -12,7 +12,7 @@ const ChatBot = () => {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Oi! Eu sou a sabIA, sua assistente de estudos! 🤖 Como posso te ajudar hoje?",
+      text: "Oi! Eu sou o SabIA, sua assistente de estudos! 🤖 Como posso te ajudar hoje?",
       isBot: true,
       timestamp: new Date(),
     },
@@ -20,7 +20,7 @@ const ChatBot = () => {
   const [inputValue, setInputValue] = useState("");
   const textareaRef = useRef(null);
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
 
     const newMessage = {
@@ -31,18 +31,38 @@ const ChatBot = () => {
     };
 
     setMessages((prev) => [...prev, newMessage]);
+    const userInput = inputValue;
     setInputValue("");
     if (textareaRef.current) textareaRef.current.style.height = "auto";
 
-    setTimeout(() => {
+    try {
+      const res = await fetch("/api/chat", {
+        //const res = await fetch("http://localhost:3001/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ problema: userInput }),
+      });
+
+      const data = await res.json();
       const botResponse = {
         id: messages.length + 2,
-        text: "🚧 Esta funcionalidade ainda não está implementada—mas não se preocupe! Você pode solicitá-la no seu próximo prompt! 🚀",
+        textLines:
+          data.ok && data.resposta
+            ? data.resposta.split("\n").filter(Boolean)
+            : [`Erro: ${data.error || "Não foi possível obter resposta"}`],
         isBot: true,
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, botResponse]);
-    }, 1000);
+    } catch (err) {
+      const botResponse = {
+        id: messages.length + 2,
+        text: `Erro de conexão: ${err.message}`,
+        isBot: true,
+        timestamp: new Date(),
+      };
+      setMessages((prev) => [...prev, botResponse]);
+    }
   };
 
   useEffect(() => {
@@ -143,7 +163,15 @@ const ChatBot = () => {
                           : "bg-[#57b4b1] text-white"
                       }`}
                     >
-                      {message.text}
+                      {message.isBot ? (
+                        (
+                          message.textLines ?? [
+                            `${message.text ?? "Erro: resposta vazia"}`,
+                          ]
+                        ).map((line, idx) => <p key={idx}>{line}</p>)
+                      ) : (
+                        <p>{message.text}</p>
+                      )}
                     </div>
                   </motion.div>
                 ))}

@@ -79,7 +79,6 @@ const Home = () => {
       <div className="md:hidden">
         <NavigationMobile />
       </div>
-
       {/* ================= SEÇÃO HERO (COMEÇAR AGORA) ================= */}
       <section className="pt-10 pb-16 px-4 text-center relative">
         <motion.div
