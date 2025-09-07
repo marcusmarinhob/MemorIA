@@ -149,9 +149,9 @@ const ParentsArea = () => {
   const getTrendIcon = (trend) => {
     switch (trend) {
       case "up":
-        return <TrendingUp className="w-4 h-4 text-green-400" />;
+        return <TrendingUp className="pl-1 w-4 h-4 text-green-400" />;
       case "down":
-        return <TrendingUp className="w-4 h-4 text-red-400 rotate-180" />;
+        return <TrendingUp className="pr-1 w-4 h-4 text-red-400 rotate-180" />;
       default:
         return <div className="w-4 h-4 bg-gray-400 rounded-full" />;
     }
@@ -216,31 +216,25 @@ const ParentsArea = () => {
               </p>
             </motion.div>
 
+            {/* Card principal */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="glass-effect rounded-lg p-6 mb-8"
-              style={{ backgroundColor: "#57b4b1" }}
+              className="rounded-2xl p-6 mb-8 bg-[#153c4b]"
             >
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center space-x-4">
-                  <div className="w-16 h-16 bg-[#153c4b] rounded-full flex items-center justify-center">
-                    <span className="text-2xl font-bold text-white">
+                  <div className="w-16 h-16 bg-[#edbf21] rounded-full flex items-center justify-center">
+                    <span className="text-2xl font-bold text-[#153c4b]">
                       {child.name.charAt(0)}
                     </span>
                   </div>
                   <div>
-                    <h2
-                      className="text-2xl text-center font-bold mt-2"
-                      style={{ color: "#153c4b" }}
-                    >
+                    <h2 className="text-2xl font-bold mt-2 text-[#edbf21]">
                       {child.name}
                     </h2>
-                    <p
-                      className="text-1xl text-center font-bold mt-2"
-                      style={{ color: "#153c4b" }}
-                    >
+                    <p className="text-lg font-bold mt-1 text-white">
                       {child.grade} • {child.age} anos
                     </p>
                   </div>
@@ -250,68 +244,42 @@ const ParentsArea = () => {
                     toast({
                       title: "Configurações",
                       description:
-                        "🚧 Esta funcionalidade ainda não está implementada—mas não se preocupe! Você pode solicitá-la no seu próximo prompt! 🚀",
+                        "🚧 Esta funcionalidade ainda não está implementada.",
                     })
                   }
-                  Button
                   variant="outline"
                   size="md"
-                  className="
-                      bg-[#153c4b] 
-                      border-2 border-[#edbf21] 
-                      text-[#edbf21] 
-                      text-sm sm:text-base
-                      px-6 py-2
-                      font-bold 
-                      rounded-full 
-                      flex items-center justify-center 
-                      hover:scale-105 
-                      transition-transform duration-300
-                      w-auto
-                      mt-2
-                    "
+                  className="bg-[#edbf21] border-2 border-[#153c4b] text-[#153c4b] px-6 py-2 font-bold rounded-full hover:scale-105 transition-transform duration-300"
                 >
                   Configurações
                 </Button>
               </div>
 
-              <div className="grid md:grid-cols-4 gap-6">
-                <div className="text-center">
+              <div className="grid md:grid-cols-4 gap-6 text-center text-white">
+                <div>
                   <Trophy className="w-8 h-8 text-yellow-400 mx-auto mb-2" />
-                  <div
-                    className="text-2xl text-center font-bold mt-2"
-                    style={{ color: "#153c4b" }}
-                  >
+                  <div className="text-2xl font-bold mt-2 text-[#edbf21]">
                     {child.totalPoints}
                   </div>
                   <p className="text-white/70 text-sm">Pontos</p>
                 </div>
-                <div className="text-center">
+                <div>
                   <BarChart3 className="w-8 h-8 text-purple-400 mx-auto mb-2" />
-                  <div
-                    className="text-2xl text-center font-bold mt-2"
-                    style={{ color: "#153c4b" }}
-                  >
+                  <div className="text-2xl font-bold mt-2 text-[#edbf21]">
                     Nível {child.level}
                   </div>
                   <p className="text-white/70 text-sm">Experiência</p>
                 </div>
-                <div className="text-center">
+                <div>
                   <Clock className="w-8 h-8 text-[#edbf21] mx-auto mb-2" />
-                  <div
-                    className="text-2xl text-center font-bold mt-2"
-                    style={{ color: "#153c4b" }}
-                  >
+                  <div className="text-2xl font-bold mt-2 text-[#edbf21]">
                     {child.weeklyHours}h
                   </div>
                   <p className="text-white/70 text-sm">Esta Semana</p>
                 </div>
-                <div className="text-center">
+                <div>
                   <BookOpen className="w-8 h-8 text-green-400 mx-auto mb-2" />
-                  <div
-                    className="text-2xl text-center font-bold mt-2"
-                    style={{ color: "#153c4b" }}
-                  >
+                  <div className="text-2xl font-bold mt-2 text-[#edbf21]">
                     {child.averageGrade}
                   </div>
                   <p className="text-white/70 text-sm">Média Geral</p>
@@ -319,22 +287,18 @@ const ParentsArea = () => {
               </div>
             </motion.div>
 
+            {/* Cards secundários */}
             <div className="grid lg:grid-cols-3 gap-8">
               <div className="lg:col-span-2 space-y-6">
+                {/* Progresso por matéria */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
                 >
-                  <Card
-                    className="glass-effect"
-                    style={{ backgroundColor: "#57b4b1" }}
-                  >
+                  <Card className="rounded-2xl bg-[#153c4b]">
                     <CardHeader>
-                      <CardTitle
-                        className="text-2xl text-center font-bold mt-2 flex items-center"
-                        style={{ color: "#153c4b" }}
-                      >
+                      <CardTitle className="text-2xl font-bold mt-2 text-[#edbf21] flex items-center">
                         <BarChart3 className="w-5 h-5 mr-2" />
                         Progresso por Matéria
                       </CardTitle>
@@ -344,13 +308,11 @@ const ParentsArea = () => {
                         (subject, index) => (
                           <div
                             key={index}
-                            className="p-4 bg-white/5 rounded-lg"
+                            className="p-4 bg-[#1f4f68] rounded-2xl"
                           >
                             <div className="flex items-center justify-between mb-2">
-                              <div className="flex items-center space-x-3">
-                                <span className="font-semibold text-white">
-                                  {subject.name}
-                                </span>
+                              <div className="flex items-center space-x-3 text-white font-semibold">
+                                {subject.name}
                                 {getTrendIcon(subject.trend)}
                               </div>
                               <div className="flex items-center space-x-2">
@@ -365,11 +327,8 @@ const ParentsArea = () => {
                                 </Badge>
                               </div>
                             </div>
-                            <Progress
-                              value={subject.progress}
-                              className="mb-2"
-                            />
-                            <p className="text-xs text-white/60">
+                            <Progress value={subject.progress} className="mb-2" />
+                            <p className="text-white/60 text-xs">
                               Última atividade: {subject.lastActivity}
                             </p>
                           </div>
@@ -379,20 +338,15 @@ const ParentsArea = () => {
                   </Card>
                 </motion.div>
 
+                {/* Insights da IA */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
                 >
-                  <Card
-                    className="glass-effect"
-                    style={{ backgroundColor: "#57b4b1" }}
-                  >
+                  <Card className="rounded-2xl bg-[#153c4b]">
                     <CardHeader>
-                      <CardTitle
-                        className="text-2xl font-bold mt-8"
-                        style={{ color: "#153c4b" }}
-                      >
+                      <CardTitle className="text-2xl font-bold mt-2 text-[#edbf21]">
                         Insights da IA sobre {child.name}
                       </CardTitle>
                     </CardHeader>
@@ -400,14 +354,11 @@ const ParentsArea = () => {
                       {parentData.aiInsights.map((insight, index) => (
                         <div
                           key={index}
-                          className={`p-4 rounded-lg border ${getInsightColor(
+                          className={`p-4 rounded-2xl border ${getInsightColor(
                             insight.type
                           )}`}
                         >
-                          <h4
-                            className="text-1xl font-bold mt-2"
-                            style={{ color: "#153c4b" }}
-                          >
+                          <h4 className="text-lg font-bold text-[#edbf21]">
                             {insight.title}
                           </h4>
                           <p className="text-white/80 text-sm">
@@ -421,36 +372,30 @@ const ParentsArea = () => {
               </div>
 
               <div className="space-y-6">
+                {/* Alertas */}
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.5 }}
                 >
-                  <Card
-                    className="glass-effect"
-                    style={{ backgroundColor: "#57b4b1" }}
-                  >
+                  <Card className="rounded-2xl bg-[#153c4b]">
                     <CardHeader>
-                      <CardTitle
-                        className="text-2xl font-bold mt-4"
-                        style={{ color: "#153c4b" }}
-                      >
+                      <CardTitle className="text-2xl font-bold mt-2 text-[#edbf21]">
                         Alertas
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-3">
                       {parentData.childProgress.alerts.map((alert, index) => (
-                        <div key={index} className="p-3 bg-white/5 rounded-lg">
-                          <div className="flex items-start space-x-2">
-                            {getAlertIcon(alert.type)}
-                            <div className="flex-1">
-                              <p className="text-sm text-white">
-                                {alert.message}
-                              </p>
-                              <Badge className="mt-1 text-xs" variant="outline">
-                                {alert.priority}
-                              </Badge>
-                            </div>
+                        <div
+                          key={index}
+                          className="p-3 bg-[#1f4f68] rounded-2xl flex items-start space-x-2"
+                        >
+                          {getAlertIcon(alert.type)}
+                          <div className="flex-1">
+                            <p className="text-white text-sm">{alert.message}</p>
+                            <Badge className="mt-1 text-xs" variant="outline">
+                              {alert.priority}
+                            </Badge>
                           </div>
                         </div>
                       ))}
@@ -458,20 +403,15 @@ const ParentsArea = () => {
                   </Card>
                 </motion.div>
 
+                {/* Conquistas Recentes */}
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.6 }}
                 >
-                  <Card
-                    className="glass-effect"
-                    style={{ backgroundColor: "#57b4b1" }}
-                  >
+                  <Card className="rounded-2xl bg-[#153c4b]">
                     <CardHeader>
-                      <CardTitle
-                        className="text-2xl font-bold mt-4"
-                        style={{ color: "#153c4b" }}
-                      >
+                      <CardTitle className="text-2xl font-bold mt-2 text-[#edbf21]">
                         Conquistas Recentes
                       </CardTitle>
                     </CardHeader>
@@ -480,7 +420,7 @@ const ParentsArea = () => {
                         (achievement, index) => (
                           <div
                             key={index}
-                            className="p-3 bg-white/5 rounded-lg"
+                            className="p-3 bg-[#1f4f68] rounded-2xl"
                           >
                             <div className="flex items-center space-x-2 mb-1">
                               <Trophy className="w-4 h-4 text-yellow-400" />
@@ -491,9 +431,7 @@ const ParentsArea = () => {
                             <p className="text-xs text-white/70 mb-1">
                               {achievement.description}
                             </p>
-                            <p className="text-xs text-white/50">
-                              {achievement.date}
-                            </p>
+                            <p className="text-xs text-white/50">{achievement.date}</p>
                           </div>
                         )
                       )}
@@ -501,20 +439,15 @@ const ParentsArea = () => {
                   </Card>
                 </motion.div>
 
+                {/* Ações Rápidas */}
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.7 }}
                 >
-                  <Card
-                    className="glass-effect"
-                    style={{ backgroundColor: "#57b4b1" }}
-                  >
+                  <Card className="rounded-2xl bg-[#153c4b]">
                     <CardHeader>
-                      <CardTitle
-                        className="text-2xl font-bold mt-4"
-                        style={{ color: "#153c4b" }}
-                      >
+                      <CardTitle className="text-2xl font-bold mt-2 text-[#edbf21]">
                         Ações Rápidas
                       </CardTitle>
                     </CardHeader>
@@ -526,7 +459,7 @@ const ParentsArea = () => {
                           toast({
                             title: "Relatório Semanal",
                             description:
-                              "🚧 Esta funcionalidade ainda não está implementada—mas não se preocupe! Você pode solicitá-la no seu próximo prompt! 🚀",
+                              "🚧 Funcionalidade não implementada.",
                           })
                         }
                       >
@@ -540,7 +473,7 @@ const ParentsArea = () => {
                           toast({
                             title: "Configurar Metas",
                             description:
-                              "🚧 Esta funcionalidade ainda não está implementada—mas não se preocupe! Você pode solicitá-la no seu próximo prompt! 🚀",
+                              "🚧 Funcionalidade não implementada.",
                           })
                         }
                       >
@@ -554,7 +487,7 @@ const ParentsArea = () => {
                           toast({
                             title: "Conversar com Professor",
                             description:
-                              "🚧 Esta funcionalidade ainda não está implementada—mas não se preocupe! Você pode solicitá-la no seu próximo prompt! 🚀",
+                              "🚧 Funcionalidade não implementada.",
                           })
                         }
                       >
