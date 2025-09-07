@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import {
   BookOpen,
-  ChevronDown, 
+  ChevronDown,
   Search,
   Filter,
   Play,
@@ -17,7 +17,6 @@ import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/Navigation";
 import ChatBot from "@/components/ChatBot";
 import { toast } from "@/components/ui/use-toast";
-import { text } from "stream/consumers";
 
 const Library = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -138,10 +137,10 @@ const Library = () => {
         />
       </Helmet>
 
-      <div className>
+      <div className="min-h-screen bg-gradient-to-b from-[#e6f7f6] to-white">
         <Navigation />
 
-        <div className="pt-32 pb-16 px-6 max-w-7xl mx-auto">
+        <div className="pt-32 pb-18 px-6 max-w-7xl mx-auto">
           {/* Título */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -159,6 +158,7 @@ const Library = () => {
           </motion.div>
 
           {/* Filtros */}
+          {/* Filtros */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -167,66 +167,54 @@ const Library = () => {
           >
             <div className="grid md:grid-cols-4 gap-4">
               {/* Busca */}
-              <div className="h-full flex items-center">
-                <div className="relative w-full">
-                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white pointer-events-none" />
-                  <Input
-                    placeholder="Buscar conteúdo..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-12 pr-4 py-7 rounded-full bg-white/20 text-white placeholder-white border-none shadow-none"
-                  />
-                </div>
+              <div className="relative h-12 flex items-center">
+                <Search className="absolute left-4 w-5 h-5 text-[#153c4b]" />
+                <Input
+                  placeholder="Buscar conteúdo..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-12 pr-4 h-12 rounded-full bg-[#edbf21] text-[#153c4b] placeholder-[#153c4b] border-none shadow-sm focus:ring-2 focus:ring-yellow-400"          
+                />
               </div>
 
               {/* Série */}
-              <div className="h-full flex items-center">
-                <div className="relative w-full">
-                  <select
-                    value={selectedGrade}
-                    onChange={(e) => setSelectedGrade(e.target.value)}
-                    className="w-full px-4 py-4 pr-10 rounded-full bg-white/20 text-white appearance-none border-none shadow-none"
-                  >
-                    <option value="all" className="bg-[#153c4b] text-white">Todas as séries</option>
-                    {grades.map((grade) => (
-                      <option key={grade} value={grade} className="bg-[#153c4b] text-white">
-                        {grade}
-                      </option>
-                    ))}
-                  </select>
-                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white pointer-events-none" />
-                </div>
+              <div className="relative h-12 flex items-center">
+                <select
+                  value={selectedGrade}
+                  onChange={(e) => setSelectedGrade(e.target.value)}
+                  className="w-full px-4 h-12 rounded-full bg-[#edbf21] text-[#153c4b] appearance-none border-none shadow-sm focus:ring-2 focus:ring-yellow-400"
+                >
+                  <option value="all">Todas as séries</option>
+                  {grades.map((grade) => (
+                    <option key={grade} value={grade}>
+                      {grade}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#153c4b] pointer-events-none" />
               </div>
 
               {/* Matéria */}
-              <div className="h-full flex items-center">
-                <div className="relative w-full">
-                  <select
-                    value={selectedSubject}
-                    onChange={(e) => setSelectedSubject(e.target.value)}
-                    className="w-full px-4 py-4 pr-10 rounded-full bg-white/20 text-white appearance-none border-none shadow-none focus:ring-2 focus:ring-[#edbf21]"
-                  >
-                    <option value="all" className="bg-[#153c4b] text-white">Todas as matérias</option>
-                    {subjects.map((subject) => (
-                      <option key={subject} value={subject} className="bg-[#153c4b] text-white">
-                        {subject}
-                      </option>
-                    ))}
-                  </select>
-                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white pointer-events-none" />
-                </div>
+              <div className="relative h-12 flex items-center">
+                <select
+                  value={selectedSubject}
+                  onChange={(e) => setSelectedSubject(e.target.value)}
+                  className="w-full px-4 h-12 rounded-full bg-[#edbf21] text-[#153c4b] appearance-none border-none shadow-sm focus:ring-2 focus:ring-yellow-400"
+                >
+                  <option value="all">Todas as matérias</option>
+                  {subjects.map((subject) => (
+                    <option key={subject} value={subject}>
+                      {subject}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#153c4b] pointer-events-none" />
               </div>
 
               {/* Botão filtros */}
-              <div className="h-full flex items-center">
+              <div className="h-12 flex items-center">
                 <Button
-                  // Removemos o variant para evitar sobrescrita de estilos
-                  className="w-full px-4 py-4 text-white font-bold rounded-full transition-transform duration-300 flex items-center justify-center hover:scale-105"
-                  style={{
-                    backgroundColor: "rgba(255,255,255,0.2)", // fundo semitransparente
-                    border: "none", // remove borda
-                    color: "white", // força texto branco sempre
-                  }}
+                  className="w-full h-12 bg-[#edbf21] text-[#153c4b] font-bold rounded-full hover:bg-[#edbf21] hover:scale-105 transition-all duration-300 flex items-center justify-center"
                   onClick={() =>
                     toast({
                       title: "Filtros Avançados",
@@ -235,14 +223,12 @@ const Library = () => {
                     })
                   }
                 >
-                  <Filter className="w-5 h-5 mr-2 text-white" />
+                  <Filter className="w-5 h-5 mr-2 text-[#153c4b]" />
                   Filtros
                 </Button>
               </div>
-
             </div>
           </motion.div>
-
 
 
 
