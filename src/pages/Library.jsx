@@ -43,7 +43,7 @@ const Library = () => {
       difficulty: "Fácil",
       rating: 4.8,
       description: "Aprenda a trabalhar com frações e converter para decimais",
-      image: "https://images.unsplash.com/photo-1595872018818-97555653a011",
+      image: "https://images.unsplash.com/photo-1740062446976-94a8837e0dde?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
       id: 2,
@@ -54,7 +54,7 @@ const Library = () => {
       difficulty: "Médio",
       rating: 4.6,
       description: "Entenda os termos essenciais da oração",
-      image: "https://images.unsplash.com/photo-1581090700227-4c4f50b4f4b6",
+      image: "https://plus.unsplash.com/premium_photo-1666739032615-ecbd14dfb543?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
       id: 3,
@@ -65,7 +65,7 @@ const Library = () => {
       difficulty: "Médio",
       rating: 4.9,
       description: "Como funciona a digestão no corpo humano",
-      image: "https://images.unsplash.com/photo-1603791452906-b0fefb83f9b2",
+      image: "https://plus.unsplash.com/premium_photo-1723108858066-66b1bd834675?q=80&w=798&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
       id: 4,
@@ -76,7 +76,7 @@ const Library = () => {
       difficulty: "Médio",
       rating: 4.7,
       description: "A colonização portuguesa no Brasil",
-      image: "https://images.unsplash.com/photo-1505664063607-efd88c5817c7",
+      image: "https://plus.unsplash.com/premium_photo-1682125784386-d6571f1ac86a?q=80&w=908&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
       id: 5,
@@ -87,7 +87,7 @@ const Library = () => {
       difficulty: "Médio",
       rating: 4.5,
       description: "Resolva equações de primeiro grau passo a passo",
-      image: "https://images.unsplash.com/photo-1509223197845-458d87318791",
+      image: "https://images.unsplash.com/photo-1509228468518-180dd4864904?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
       id: 6,
@@ -98,7 +98,7 @@ const Library = () => {
       difficulty: "Fácil",
       rating: 4.4,
       description: "Os diferentes tipos de clima e vegetação do Brasil",
-      image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+      image: "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
   ];
 
@@ -137,10 +137,10 @@ const Library = () => {
         />
       </Helmet>
 
-      <div className="min-h-screen bg-gradient-to-b from-[#e6f7f6] to-white">
+      <div className="min-h-screen ">
         <Navigation />
 
-        <div className="pt-32 pb-18 px-6 max-w-7xl mx-auto">
+        <div className="pt-40 pb-18 px-6 max-w-7xl mx-auto">
           {/* Título */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -158,7 +158,6 @@ const Library = () => {
           </motion.div>
 
           {/* Filtros */}
-          {/* Filtros */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -168,12 +167,12 @@ const Library = () => {
             <div className="grid md:grid-cols-4 gap-4">
               {/* Busca */}
               <div className="relative h-12 flex items-center">
-                <Search className="absolute left-4 w-5 h-5 text-[#153c4b]" />
+                <Search className="absolute left-4 w-5 h-5 text-white" />
                 <Input
                   placeholder="Buscar conteúdo..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-4 h-12 rounded-full bg-[#edbf21] text-[#153c4b] placeholder-[#153c4b] border-none shadow-sm focus:ring-2 focus:ring-yellow-400"          
+                  className="w-full pl-12 pr-4 h-12 rounded-full bg-[#edbf21] text-white border-none shadow-sm focus:ring-2 focus:ring-yellow-400"          
                 />
               </div>
 
@@ -182,7 +181,7 @@ const Library = () => {
                 <select
                   value={selectedGrade}
                   onChange={(e) => setSelectedGrade(e.target.value)}
-                  className="w-full px-4 h-12 rounded-full bg-[#edbf21] text-[#153c4b] appearance-none border-none shadow-sm focus:ring-2 focus:ring-yellow-400"
+                  className="w-full px-4 h-12 rounded-full bg-[#edbf21] text-white appearance-none border-none shadow-sm focus:ring-2 focus:ring-yellow-400"
                 >
                   <option value="all">Todas as séries</option>
                   {grades.map((grade) => (
@@ -191,7 +190,7 @@ const Library = () => {
                     </option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#153c4b] pointer-events-none" />
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white pointer-events-none" />
               </div>
 
               {/* Matéria */}
@@ -199,7 +198,7 @@ const Library = () => {
                 <select
                   value={selectedSubject}
                   onChange={(e) => setSelectedSubject(e.target.value)}
-                  className="w-full px-4 h-12 rounded-full bg-[#edbf21] text-[#153c4b] appearance-none border-none shadow-sm focus:ring-2 focus:ring-yellow-400"
+                  className="w-full px-4 h-12 rounded-full bg-[#edbf21] text-white appearance-none border-none shadow-sm focus:ring-2 focus:ring-yellow-400"
                 >
                   <option value="all">Todas as matérias</option>
                   {subjects.map((subject) => (
@@ -208,13 +207,13 @@ const Library = () => {
                     </option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#153c4b] pointer-events-none" />
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white pointer-events-none" />
               </div>
 
               {/* Botão filtros */}
               <div className="h-12 flex items-center">
                 <Button
-                  className="w-full h-12 bg-[#edbf21] text-[#153c4b] font-bold rounded-full hover:bg-[#edbf21] hover:scale-105 transition-all duration-300 flex items-center justify-center"
+                  className="w-full h-12 bg-[#edbf21] text-white font-bold rounded-full hover:bg-[#edbf21] hover:scale-105 transition-all duration-300 flex items-center justify-center"
                   onClick={() =>
                     toast({
                       title: "Filtros Avançados",
@@ -223,7 +222,7 @@ const Library = () => {
                     })
                   }
                 >
-                  <Filter className="w-5 h-5 mr-2 text-[#153c4b]" />
+                  <Filter className="w-5 h-5 mr-2 text-white" />
                   Filtros
                 </Button>
               </div>
@@ -242,7 +241,7 @@ const Library = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ scale: 1.02 }}
               >
-                <Card className="h-full flex flex-col overflow-hidden rounded-2xl shadow-lg bg-white/90">
+                <Card className="h-full flex flex-col overflow-hidden rounded-2xl shadow-lg glass-effect">
                   <div className="relative">
                     <img
                       alt={item.description}
@@ -253,13 +252,13 @@ const Library = () => {
                       <Badge
                         className={`${getDifficultyColor(
                           item.difficulty
-                        )} text-white`}
+                        )} text-white hover:bg-[getDifficultyColor]`}
                       >
                         {item.difficulty}
                       </Badge>
                     </div>
                     <div className="absolute top-4 right-4">
-                      <Badge className="bg-black/50 text-white">
+                      <Badge className="bg-black/50 text-white hover:bg-white/50 hover:text-black">
                         {item.grade}
                       </Badge>
                     </div>
@@ -269,7 +268,7 @@ const Library = () => {
                     <div className="flex items-center justify-between mb-2">
                       <Badge
                         variant="outline"
-                        className="border-[#edbf21] text-[#edbf21]"
+                        className="border-[#153c4b] text-[#153c4b]"
                       >
                         {item.subject}
                       </Badge>
@@ -291,7 +290,7 @@ const Library = () => {
                     </div>
                     <Button
                       size="lg"
-                      className="w-full rounded-full bg-[#153c4b] border-2 border-[#edbf21] text-[#edbf21] font-bold text-lg hover:scale-105 transition-transform duration-300"
+                      className="w-full rounded-full bg-[#153c4b] text-[#edbf21] font-bold text-lg hover:bg-[#153c4b] hover:scale-105 transition-transform duration-300"
                       onClick={() =>
                         toast({
                           title: "Estudar Conteúdo",
