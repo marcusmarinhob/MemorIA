@@ -255,7 +255,7 @@ const ParentsArea = () => {
                 </Button>
               </div>
 
-              <div className="grid md:grid-cols-4 gap-6 text-center text-white">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-white">
                 <div>
                   <Trophy className="w-8 h-8 text-yellow-400 mx-auto mb-2" />
                   <div className="text-2xl font-bold mt-2 text-[#edbf21]">

@@ -145,7 +145,7 @@ const TeacherArea = () => {
             >
               <h1
                 className="text-4xl text-center font-bold mt-8"
-                style={{ color: "#153c4b" }}
+                style={{ color: "#edbf21" }}
               >
                 Área do Professor
               </h1>
@@ -156,7 +156,7 @@ const TeacherArea = () => {
                 Bem-vindo, {teacherData.teacher.name} -{" "}
                 {teacherData.teacher.subject}
               </p>
-              <p className="text-center text-[#57b4b1]">
+              <p className="text-center text-[#153c4b]">
                 {teacherData.teacher.school}
               </p>
             </motion.div>

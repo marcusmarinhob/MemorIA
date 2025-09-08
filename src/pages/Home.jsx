@@ -19,7 +19,6 @@ import ImagemSabia from "../assets/sabia.jpeg";
 import IconeEsquerdo from "../assets/icone-esquerdo.jpeg";
 import IconeDireito from "../assets/icone-direito.jpeg";
 import ImagemLateral from "../assets/livros.jpeg";
-import NavigationMobile from "../components/NavigationMobile";
 
 const Home = () => {
   const features = [
@@ -73,12 +72,10 @@ const Home = () => {
         />
       </Helmet>
 
-      <div className="hidden md:block">
-        <Navigation />
-      </div>
-      <div className="md:hidden">
-        <NavigationMobile />
-      </div>
+      
+      <Navigation />
+  
+
       {/* ================= SEÇÃO HERO (COMEÇAR AGORA) ================= */}
       <section className="pt-10 pb-16 px-4 text-center relative">
         <motion.div
@@ -93,7 +90,7 @@ const Home = () => {
             src={ImagemSabia}
           />*/}
 
-          <h1 className="text-5xl mt-40 md:text-8xl font-bold text-[#edbf21]">
+          <h1 className="text-5xl mt-32 md:text-8xl font-bold text-[#edbf21]">
             Aprenda com a <br /> SabIA
           </h1>
 
@@ -117,7 +114,7 @@ const Home = () => {
       </section>
 
       {/* ================= SEÇÃO POR QUE ESCOLHER ================= */}
-      <section className="py-24 px-6 bg-gradient-to-b from-[#e6f7f6] to-white">
+      <section className="py-20 px-6 bg-gradient-to-b from-[#e6f7f6] to-white">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

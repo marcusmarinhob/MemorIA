@@ -25,20 +25,23 @@ const AISuggestions = ({ suggestions }) => (
     animate={{ opacity: 1, x: 0 }}
     transition={{ delay: 0.7 }}
   >
-    <Card className="glass-effect" style={{ backgroundColor: "#57b4b1" }}>
+    <Card
+      className="glass-effect rounded-2xl"
+      style={{ backgroundColor: "#153c4b" }}
+    >
       <CardHeader>
-        <CardTitle
-          className="text-3xl text-center font-bold mt-2"
-          style={{ color: "#153c4b" }}
-        >
+        <CardTitle className="text-2xl text-center font-bold text-white">
           Sugestões da IA
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-3">
         {suggestions.map((suggestion, index) => (
-          <div key={index} className="p-3 bg-white/5 rounded-lg">
+          <div
+            key={index}
+            className="p-3 bg-white/10 rounded-xl border border-white/10"
+          >
             <div className="flex items-center justify-between mb-2">
-              <span className="font-medium text-sm text-[#153c4b]">
+              <span className="font-medium text-sm text-white">
                 {suggestion.title}
               </span>
               <Badge
@@ -63,24 +66,27 @@ const RecentActivity = ({ activity }) => (
     animate={{ opacity: 1, x: 0 }}
     transition={{ delay: 0.8 }}
   >
-    <Card className="glass-effect" style={{ backgroundColor: "#57b4b1" }}>
+    <Card
+      className="glass-effect rounded-2xl"
+      style={{ backgroundColor: "#153c4b" }}
+    >
       <CardHeader>
-        <CardTitle
-          className="text-3xl text-center font-bold mt-2"
-          style={{ color: "#153c4b" }}
-        >
+        <CardTitle className="text-2xl text-center font-bold text-white">
           Atividade Recente
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-3">
         {activity.map((item, index) => (
-          <div key={index} className="p-3 bg-white/5 rounded-lg">
+          <div
+            key={index}
+            className="p-3 bg-white/10 rounded-xl border border-white/10"
+          >
             <div className="flex items-center justify-between mb-1">
-              <span className="font-medium text-sm text-[#153c4b]">
+              <span className="font-medium text-sm text-white">
                 {item.student}
               </span>
               {item.score && (
-                <Badge variant="secondary" className="text-xs">
+                <Badge variant="secondary" className="bg-yellow-500 text-white">
                   {item.score}%
                 </Badge>
               )}
@@ -100,12 +106,12 @@ const QuickActions = () => (
     animate={{ opacity: 1, x: 0 }}
     transition={{ delay: 0.9 }}
   >
-    <Card className="glass-effect" style={{ backgroundColor: "#57b4b1" }}>
+    <Card
+      className="glass-effect rounded-2xl"
+      style={{ backgroundColor: "#153c4b" }}
+    >
       <CardHeader>
-        <CardTitle
-          className="text-2xl text-center font-bold mt-2"
-          style={{ color: "#153c4b" }}
-        >
+        <CardTitle className="text-2xl text-center font-bold text-white">
           Ações Rápidas
         </CardTitle>
       </CardHeader>
@@ -121,7 +127,7 @@ const QuickActions = () => (
             })
           }
         >
-          <BookOpen className="w-4 h-4 mr-2" />
+          <BookOpen className="w-4 h-4 mr-2 text-yellow-400" />
           Criar Atividade
         </Button>
         <Button
@@ -135,7 +141,7 @@ const QuickActions = () => (
             })
           }
         >
-          <BarChart3 className="w-4 h-4 mr-2" />
+          <BarChart3 className="w-4 h-4 mr-2 text-green-400" />
           Relatório Geral
         </Button>
         <Button
@@ -149,7 +155,7 @@ const QuickActions = () => (
             })
           }
         >
-          <Users className="w-4 h-4 mr-2" />
+          <Users className="w-4 h-4 mr-2 text-purple-400" />
           Configurações
         </Button>
       </CardContent>

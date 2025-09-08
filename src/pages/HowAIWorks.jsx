@@ -393,7 +393,7 @@ const HowAIWorks = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
-              className="text-center"
+              className="text-center px-4"
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#153c4b]">
                 Pronto para experimentar o SabIA?
