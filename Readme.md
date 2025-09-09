@@ -7,6 +7,7 @@ Plataforma educacional que utiliza IA para oferecer tutoria personalizada para e
 ## Tecnologias
 
 ### Frontend
+
 - React 18.2.0
 - Vite 4.0.3
 - React Router DOM 6.16.0
@@ -16,12 +17,14 @@ Plataforma educacional que utiliza IA para oferecer tutoria personalizada para e
 - Lucide React 0.285.0
 
 ### Backend
+
 - Express.js 5.1.0
 - Google Gemini AI (gemini-2.0-flash)
 - CORS 2.8.5
 - dotenv 17.2.1
 
 ### Ferramentas de Desenvolvimento
+
 - ESLint 8.57.1
 - PostCSS 8.4.31
 - Autoprefixer 10.4.16
@@ -36,18 +39,21 @@ Plataforma educacional que utiliza IA para oferecer tutoria personalizada para e
 ## Instalação
 
 1. Clone o repositório:
+
 ```bash
 git clone <repository-url>
 cd SabIA
 ```
 
 2. Instale as dependências:
+
 ```bash
 npm install
 ```
 
 3. Configure as variáveis de ambiente:
-Crie um arquivo `.env` na raiz do projeto:
+   Crie um arquivo `.env` na raiz do projeto:
+
 ```env
 GEMINI_API_KEY=sua_chave_da_api_gemini
 ```
@@ -55,6 +61,7 @@ GEMINI_API_KEY=sua_chave_da_api_gemini
 ## Desenvolvimento
 
 ### Executar o projeto localmente:
+
 ```bash
 npm run dev
 ```
@@ -62,6 +69,7 @@ npm run dev
 O servidor de desenvolvimento será iniciado em `http://localhost:5173`
 
 ### Scripts disponíveis:
+
 - `npm run dev` - Inicia o servidor de desenvolvimento
 - `npm run build` - Gera build de produção
 - `npm run preview` - Visualiza o build de produção
@@ -90,16 +98,19 @@ src/
 ## Funcionalidades
 
 ### Chatbot Inteligente (SabIA)
+
 - Tutor de IA que guia o aprendizado sem fornecer respostas prontas
 - Integração com Google Gemini AI
 - Interface responsiva e expansível
 
 ### Áreas Específicas
+
 - **Estudantes**: Dashboard personalizado, gamificação, progresso por matéria
 - **Professores**: Gestão de turmas, análise de desempenho, sugestões da IA
 - **Responsáveis**: Monitoramento do progresso dos filhos, relatórios
 
 ### Recursos Adicionais
+
 - Biblioteca de conteúdos educacionais
 - Sistema de autenticação
 - Interface responsiva (desktop/mobile)
@@ -117,6 +128,7 @@ src/
 ### Deploy Manual
 
 1. Gere o build de produção:
+
 ```bash
 npm run build
 ```
@@ -132,12 +144,15 @@ npm run build
 ## API do Google Gemini
 
 ### Configuração
+
 1. Acesse o [Google AI Studio](https://makersuite.google.com/app/apikey)
 2. Gere uma chave de API
 3. Adicione a chave no arquivo `.env`
 
 ### Uso
+
 A API é utilizada através do serviço em `src/server/service/geminiApi.js`:
+
 - Modelo: gemini-2.0-flash
 - Temperatura: 0.7
 - Prompt engineering focado em pedagogia construtivista
@@ -145,14 +160,18 @@ A API é utilizada através do serviço em `src/server/service/geminiApi.js`:
 ## Configurações
 
 ### Tailwind CSS
+
 Configuração personalizada em `tailwind.config.js` com:
+
 - Tema customizado
 - Cores do projeto
 - Animações personalizadas
 - Componentes Radix UI integrados
 
 ### Vite
+
 Configuração em `vite.config.js` com:
+
 - Plugins de desenvolvimento personalizados
 - Alias de importação (@/)
 - Configurações de CORS
