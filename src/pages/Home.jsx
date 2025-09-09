@@ -19,6 +19,9 @@ import ImagemSabia from "../assets/sabia.jpeg";
 import IconeEsquerdo from "../assets/icone-esquerdo.jpeg";
 import IconeDireito from "../assets/icone-direito.jpeg";
 import ImagemLateral from "../assets/livros.jpeg";
+import ImagemAprendizado from "../assets/Aula-Personalizada.png";
+import ImagemTutor from "../assets/tutor.png";
+import ImagemOrganizacao from "../assets/organizacao.png";
 
 const Home = () => {
   const features = [
@@ -176,7 +179,7 @@ const Home = () => {
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             <div className="relative rounded-2xl overflow-hidden shadow-lg">
               <img
-                src="src\assets\Aula-Personalizada.png"
+                src={ImagemAprendizado}
                 alt="Aprendizado personalizado"
                 className="w-full h-64 object-cover"
               />
@@ -186,7 +189,7 @@ const Home = () => {
             </div>
             <div className="relative rounded-2xl overflow-hidden shadow-lg">
               <img
-                src="src\assets\organizacao.png"
+                src={ImagemOrganizacao}
                 alt="Conteúdo completo e organizado"
                 className="w-full h-64 object-cover"
               />
@@ -196,7 +199,7 @@ const Home = () => {
             </div>
             <div className="relative rounded-2xl overflow-hidden shadow-lg">
               <img
-                src="src\assets\tutor.png"
+                src={ImagemTutor}
                 alt="Acompanhamento para pais e professores"
                 className="w-full h-64 object-cover"
               />
