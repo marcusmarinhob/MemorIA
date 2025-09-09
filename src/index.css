@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
 
 :root {
   --primary: 220 100% 60%;
@@ -31,7 +32,7 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "Urbanist", sans-serif;
   background-image: url(../src/assets/logo.jpeg);
   background-size: 100% 100%;
   background-attachment: fixed;

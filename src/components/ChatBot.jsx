@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, X, Maximize, Minimize } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import Chat from "../assets/chat.jpg";
 import ImagemSabia from "../assets/sabia.jpeg";
@@ -20,6 +19,7 @@ const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const textareaRef = useRef(null);
 
   useEffect(() => {
     const chatContainer = document.getElementById("chat-container");
@@ -39,6 +39,7 @@ const ChatBot = () => {
     const updatedMessages = [...messages, newMessage];
     setMessages(updatedMessages);
     setInputValue("");
+    if (textareaRef.current) textareaRef.current.style.height = "auto";
 
     try {
       const res = await fetch("/api/chat", {
@@ -72,6 +73,13 @@ const ChatBot = () => {
     }
   };
 
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
+    }
+  }, [inputValue]);
+
   return (
     <>
       {!isOpen && (
@@ -95,6 +103,7 @@ const ChatBot = () => {
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
+
             className={`fixed bottom-[40px] z-50 inset-x-0 mx-auto sm:left-auto sm:translate-x-0 sm:right-6 w-full max-w-[90vw] ${
               isExpanded
                 ? "h-[80vh] sm:w-[500px] sm:h-[560px]"
@@ -136,17 +145,7 @@ const ChatBot = () => {
                     onClick={() => setIsExpanded(!isExpanded)}
                     className="hover:text-yellow-400 transition-colors duration-300"
                   >
-                    {isExpanded ? (
-                      <Minimize
-                        className="w-4 h-4"
-                        style={{ color: "#edbf21" }}
-                      />
-                    ) : (
-                      <Maximize
-                        className="w-4 h-4"
-                        style={{ color: "#edbf21" }}
-                      />
-                    )}
+                    {isExpanded ? <Minimize className="w-4 h-4" /> : <Maximize className="w-4 h-4" />}
                   </Button>
                   <Button
                     variant="ghost"
@@ -166,12 +165,10 @@ const ChatBot = () => {
                     key={message.id}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className={`flex ${
-                      message.isBot ? "justify-start" : "justify-end"
-                    }`}
+                    className={`flex ${message.isBot ? "justify-start" : "justify-end"}`}
                   >
                     <div
-                      className={`max-w-[80%] p-3 rounded-lg text-sm ${
+                      className={`max-w-[80%] p-3 rounded-xl text-sm ${
                         message.isBot
                           ? "bg-white/20 text-white"
                           : "bg-[#57b4b1] text-white"
@@ -193,18 +190,25 @@ const ChatBot = () => {
 
               {/* Input */}
               <div className="p-4 border-t border-white/20">
-                <div className="flex space-x-2">
-                  <Input
+                <div className="flex space-x-2 w-full">
+                  <textarea
+                    ref={textareaRef}
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+                    onKeyPress={(e) => {
+                      if (e.key === "Enter" && !e.shiftKey) {
+                        e.preventDefault();
+                        handleSendMessage();
+                      }
+                    }}
                     placeholder="Digite sua dúvida..."
-                    className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
+                    className="bg-white/10 border-white/20 text-white placeholder:text-white/50 rounded-full px-4 py-2 resize-none overflow-hidden flex-1"
+                    rows={1}
                   />
                   <Button
                     onClick={handleSendMessage}
                     size="sm"
-                    className="bg-[#57b4b1] text-[#edbf21] hover:bg-[#edbf21] hover:text-[#57b4b1] transition-colors duration-300"
+                    className="bg-[#57b4b1] text-[#edbf21] hover:bg-[#edbf21] hover:text-[#57b4b1] transition-colors duration-300 rounded-full px-4 py-2"
                   >
                     <Send className="w-4 h-4" />
                   </Button>

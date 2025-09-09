@@ -14,32 +14,29 @@ const ClassList = ({ classes }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.5 }}
     >
-      <Card className="glass-effect" style={{ backgroundColor: "#57b4b1" }}>
+      <Card className="glass-effect" style={{ backgroundColor: "#153c4b" }}>
         <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle
-            className="text-3xl text-center font-bold mt-2"
-            style={{ color: "#153c4b" }}
-          >
-            <Users className="w-5 h-5 mr-2" />
+          <CardTitle className="text-3xl font-bold flex items-center gap-2 text-white">
+            <Users className="w-6 h-6 text-[#edbf21]" />
             Suas Turmas
           </CardTitle>
           <Button
             variant="outline"
             size="md"
             className="
-                                bg-[#153c4b] 
-                                border-2 border-[#edbf21] 
-                                text-[#edbf21] 
-                                text-sm sm:text-base
-                                px-6 py-2
-                                font-bold 
-                                rounded-full 
-                                flex items-center justify-center 
-                                hover:scale-105 
-                                transition-transform duration-300
-                                w-auto
-                                mt-2
-                              "
+              bg-[#edbf21] 
+              border-2 border-[#edbf21] 
+              text-[#153c4b] 
+              text-sm sm:text-base
+              px-6 py-2
+              font-bold 
+              rounded-full 
+              flex items-center justify-center 
+              hover:scale-105 hover:bg-[#f5d64f] 
+              transition-transform duration-300
+              w-auto
+              mt-2
+            "
             onClick={() =>
               toast({
                 title: "Nova Turma",
@@ -52,15 +49,13 @@ const ClassList = ({ classes }) => {
             Nova Turma
           </Button>
         </CardHeader>
+
         <CardContent className="space-y-4">
           {classes.map((classData, index) => (
-            <div key={index} className="p-4 bg-white/5 rounded-lg">
+            <div key={index} className="p-4 bg-white/10 rounded-lg">
               <div className="flex items-center justify-between mb-3">
                 <div>
-                  <h3
-                    className="font-semibold text-lg"
-                    style={{ color: "#153c4b" }}
-                  >
+                  <h3 className="font-semibold text-lg text-white">
                     {classData.name}
                   </h3>
                   <p className="text-white/70 text-sm">
@@ -68,11 +63,14 @@ const ClassList = ({ classes }) => {
                   </p>
                 </div>
                 <div className="flex space-x-2">
-                  <Badge variant="secondary">
+                  <Badge
+                    variant="outline"
+                    className="border-[#edbf21] text-[#edbf21] bg-transparent"
+                  >
                     Média: {classData.averageGrade}
                   </Badge>
                   {classData.needsAttention > 0 && (
-                    <Badge className="bg-yellow-500 text-white">
+                    <Badge className="bg-yellow-500 text-[#153c4b] font-semibold">
                       {classData.needsAttention} atenção
                     </Badge>
                   )}
@@ -83,20 +81,20 @@ const ClassList = ({ classes }) => {
                 <div>
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-white/70 text-sm">Engajamento</span>
-                    <span className="text-white text-sm">
+                    <span className="text-white font-medium text-sm">
                       {classData.engagement}%
                     </span>
                   </div>
-                  <Progress value={classData.engagement} />
+                  <Progress value={classData.engagement} className="bg-white/20" />
                 </div>
                 <div>
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-white/70 text-sm">Conclusão</span>
-                    <span className="text-white text-sm">
+                    <span className="text-white font-medium text-sm">
                       {classData.completionRate}%
                     </span>
                   </div>
-                  <Progress value={classData.completionRate} />
+                  <Progress value={classData.completionRate} className="bg-white/20" />
                 </div>
               </div>
 
@@ -105,19 +103,19 @@ const ClassList = ({ classes }) => {
                   variant="outline"
                   size="md"
                   className="
-                                      bg-[#153c4b] 
-                                      border-2 border-[#edbf21] 
-                                      text-[#edbf21] 
-                                      text-sm sm:text-base
-                                      px-6 py-2
-                                      font-bold 
-                                      rounded-full 
-                                      flex items-center justify-center 
-                                      hover:scale-105 
-                                      transition-transform duration-300
-                                      w-auto
-                                      mt-2
-                                    "
+                    bg-[#edbf21] 
+                    border-2 border-[#edbf21] 
+                    text-[#153c4b] 
+                    text-sm sm:text-base
+                    px-6 py-2
+                    font-bold 
+                    rounded-full 
+                    flex items-center justify-center 
+                    hover:scale-105 hover:bg-[#f5d64f]
+                    transition-transform duration-300
+                    w-auto
+                    mt-2
+                  "
                   onClick={() =>
                     toast({
                       title: "Ver Detalhes",
@@ -132,19 +130,19 @@ const ClassList = ({ classes }) => {
                   variant="outline"
                   size="md"
                   className="
-                                      bg-[#153c4b] 
-                                      border-2 border-[#edbf21] 
-                                      text-[#edbf21] 
-                                      text-sm sm:text-base
-                                      px-6 py-2
-                                      font-bold 
-                                      rounded-full 
-                                      flex items-center justify-center 
-                                      hover:scale-105 
-                                      transition-transform duration-300
-                                      w-auto
-                                      mt-2
-                                    "
+                    bg-[#edbf21] 
+                    border-2 border-[#edbf21] 
+                    text-[#153c4b] 
+                    text-sm sm:text-base
+                    px-6 py-2
+                    font-bold 
+                    rounded-full 
+                    flex items-center justify-center 
+                    hover:scale-105 hover:bg-[#f5d64f]
+                    transition-transform duration-300
+                    w-auto
+                    mt-2
+                  "
                   onClick={() =>
                     toast({
                       title: "Relatório",

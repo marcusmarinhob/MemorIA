@@ -18,18 +18,32 @@ const TopicPerformance = ({ topics }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.6 }}
     >
-      <Card className="glass-effect" style={{ backgroundColor: "#57b4b1" }}>
+      <Card
+        className="glass-effect rounded-2xl"
+        style={{ backgroundColor: "#153c4b" }} // 🔹 fundo azul escuro
+      >
         <CardHeader>
-          <CardTitle className="text-[#153c4b] flex items-center">
-            <BarChart3 className="w-5 h-5 mr-2" />
+          <CardTitle className="flex items-center text-white">
+            <div className="bg-white/10 rounded-full p-2 mr-2">
+              <BarChart3 className="w-5 h-5 text-yellow-400" />
+            </div>
             Performance por Tópico
           </CardTitle>
         </CardHeader>
+
         <CardContent className="space-y-4">
           {topics.map((topic, index) => (
-            <div key={index} className="p-4 bg-white/5 rounded-lg">
+            <div
+              key={index}
+              className="p-4 bg-white/10 rounded-xl border border-white/10"
+            >
               <div className="flex items-center justify-between mb-2">
-                <span className="font-semibold text-white">{topic.topic}</span>
+                {/* Nome do tópico */}
+                <span className="font-semibold text-white">
+                  {topic.topic}
+                </span>
+
+                {/* Dificuldade + badge */}
                 <div className="flex items-center space-x-2">
                   <span
                     className={`text-sm font-medium ${getDifficultyColor(
@@ -40,12 +54,14 @@ const TopicPerformance = ({ topics }) => {
                   </span>
                   <Badge
                     variant="outline"
-                    className="border-[#153c4b] text-[#153c4b]"
+                    className="border-yellow-400 text-yellow-400 bg-white/5"
                   >
                     {topic.studentsStruggling} com dificuldade
                   </Badge>
                 </div>
               </div>
+
+              {/* Barra de progresso */}
               <Progress value={100 - topic.difficulty} />
             </div>
           ))}

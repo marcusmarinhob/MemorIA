@@ -7,7 +7,6 @@ import {
   Target,
   Zap,
   BookOpen,
-  Users,
   ArrowRight,
   Play,
 } from "lucide-react";
@@ -96,7 +95,7 @@ const HowAIWorks = () => {
         "Acompanhe seu progresso",
       ],
       icon: "🎓",
-      color: "from-blue-500 to-purple-600",
+      color: "#153c4b",
     },
     {
       title: "Para Responsáveis",
@@ -107,7 +106,7 @@ const HowAIWorks = () => {
         "Acompanhe as conquistas",
       ],
       icon: "👨‍👩‍👧‍👦",
-      color: "from-green-500 to-blue-500",
+      color: "#153c4b",
     },
     {
       title: "Para Professores",
@@ -118,7 +117,7 @@ const HowAIWorks = () => {
         "Personalize o ensino",
       ],
       icon: "👩‍🏫",
-      color: "from-purple-500 to-pink-500",
+      color: "#153c4b",
     },
   ];
 
@@ -132,41 +131,36 @@ const HowAIWorks = () => {
         />
       </Helmet>
 
-      <div className="min-h-screen">
+      <div className="min-h-screen ">
         <Navigation />
 
-        <div className="pt-24 pb-16 px-4">
-          <div className="max-w-7xl mx-auto">
+        <div className="pt-24 pb-16 ">
+          <div className=" mx-auto">
+            {/* Header */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-center mb-16"
+              className="text-center mb-16  p-8 rounded-2xl"
             >
               <div
-                className="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-8 mt-10  floating-animation"
+                className="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-8 mt-10 floating-animation"
                 style={{ backgroundColor: "#153c4b" }}
               >
-                <Brain className="w-12 h-12 text-[#edbf21]" />{" "}
+                <Brain className="w-12 h-12 text-[#edbf21]" />
               </div>
 
-              <h1
-                className="text-4xl md:text-6xl font-bold mb-6"
-                style={{ color: "#153c4b" }}
-              >
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 text-[#edbf21]">
                 Como a IA Funciona?
               </h1>
-              <p
-                className="text-xl md:text-2xl max-w-3xl mx-auto mb-8"
-                style={{ color: "#57b4b1" }}
-              >
+              <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8 text-[#153c4b]/50">
                 Descubra como nossa inteligência artificial torna o aprendizado
                 mais fácil, divertido e personalizado para você!
               </p>
               <Button
                 size="lg"
-                className="bg-[#153c4b] border-2 border-[#edbf21] text-[#edbf21] text-2xl sm:text-3xl px-8 sm:px-16 py-4 sm:py-6 font-bold rounded-full flex items-center justify-center 
-             hover:bg-[#edbf21] hover:text-black hover:scale-105 transition-colors transition-transform duration-300 mx-auto"
+                className="bg-[#153c4b]  text-[#edbf21] text-2xl sm:text-2xl px-8 sm:px-16 py-4 sm:py-6 font-bold rounded-full flex items-center justify-center 
+             hover:bg-[#edbf21] hover:text-[#153c4b] hover:scale-105 transition duration-300 mx-auto"
                 onClick={() =>
                   toast({
                     title: "Demonstração",
@@ -180,90 +174,78 @@ const HowAIWorks = () => {
               </Button>
             </motion.div>
 
-            <section className="mb-20">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-12"
-              >
-                <h2
-                  className="text-3xl md:text-4xl font-bold mb-4"
-                  style={{ color: "#153c4b" }}
-                >
-                  Como funciona em 4 passos simples
-                </h2>
-                <p
-                  className="text-xl md:text-2xl max-w-3xl mx-auto mb-8"
-                  style={{ color: "#57b4b1" }}
-                >
-                  Veja como é fácil aprender com o SabIA
-                </p>
-              </motion.div>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {steps.map((step, index) => {
-                  const Icon = step.icon;
-                  return (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      <Card
-                        className="h-full text-center"
-                        style={{ backgroundColor: "#57b4b1" }}
+            {/* Steps */}
+            <section className="py-12 px-6 bg-gradient-to-b from-[#e6f7f6] to-white relative">
+              {/* Conteúdo centralizado */}
+              <div className="max-w-7xl mx-auto">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="text-center mb-12 relative z-10"
+                >
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#153c4b]">
+                    Como funciona em 4 passos simples
+                  </h2>
+                  <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8 text-[#153c4b]/50">
+                    Veja como é fácil aprender com o SabIA
+                  </p>
+                </motion.div>
+
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
+                  {steps.map((step, index) => {
+                    const Icon = step.icon;
+                    return (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: index * 0.1 }}
+                        whileHover={{ scale: 1.05 }}
                       >
-                        <CardContent className="p-6">
-                          <div
-                            className={`w-16 h-16 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center mx-auto mb-4`}
-                          >
-                            <Icon className="w-8 h-8 text-white" />
-                          </div>
-                          <div className="text-3xl font-bold gradient-text mb-2">
-                            {step.number}
-                          </div>
-                          <h3
-                            className="text-lg font-semibold mb-3"
-                            style={{ color: "#153c4b" }}
-                          >
-                            {step.title}
-                          </h3>
-                          <p className="text-white/70 text-sm">
-                            {step.description}
-                          </p>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
-                  );
-                })}
+                        <Card className="h-full rounded-2xl shadow-xl bg-white/20 backdrop-blur-lg border border-white/30 text-center">
+                          <CardContent className="p-6">
+                            <div
+                              className={`w-16 h-16 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center mx-auto mb-4`}
+                            >
+                              <Icon className="w-8 h-8 text-white" />
+                            </div>
+                            <div className="text-3xl font-bold text-[#edbf21] mb-2">
+                              {step.number}
+                            </div>
+                            <h3 className="text-lg font-semibold mb-3 text-[#153c4b]">
+                              {step.title}
+                            </h3>
+                            <p className="text-[#153c4b]/50 text-sm">{step.description}</p>
+                          </CardContent>
+                        </Card>
+                      </motion.div>
+                    );
+                  })}
+                </div>
               </div>
             </section>
 
-            <section className="mb-20 p-8">
+
+            {/* Features */}
+            {/* Features */}
+            <section className="px-[7%] mb-20 p-8 rounded-2xl">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 className="text-center mb-12"
               >
-                <h2
-                  className="text-3xl md:text-4xl font-bold mb-4"
-                  style={{ color: "#153c4b" }}
-                >
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#153c4b]">
                   O que torna nossa IA especial?
                 </h2>
-                <p
-                  className="text-xl md:text-2xl max-w-3xl mx-auto mb-8"
-                  style={{ color: "#57b4b1" }}
-                >
+                <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8 text-[#153c4b]/50">
                   Características que fazem a diferença no seu aprendizado
                 </p>
               </motion.div>
 
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
                 {features.map((feature, index) => {
                   const Icon = feature.icon;
                   return (
@@ -273,41 +255,20 @@ const HowAIWorks = () => {
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.6, delay: index * 0.1 }}
                     >
-                      <Card
-                        className="h-full"
-                        style={{ backgroundColor: "#57b4b1" }}
-                      >
+                      <Card className="h-full rounded-2xl shadow-xl bg-[#153c4b] border border-white/20">
                         <CardHeader>
                           <div className="flex items-center space-x-3">
-                            <div
-                              className="w-12 h-12 rounded-lg flex items-center justify-center"
-                              style={{ backgroundColor: "#153c4b" }}
-                            >
+                            {/* Ícone dentro de círculo branco */}
+                            <div className="w-12 h-12 rounded-full flex items-center justify-center bg-white">
                               <Icon className="w-6 h-6 text-[#edbf21]" />
                             </div>
-                            <CardTitle style={{ color: "#153c4b" }}>
-                              {feature.title}
-                            </CardTitle>
+                            <CardTitle className="text-[#edbf21]">{feature.title}</CardTitle>
                           </div>
                         </CardHeader>
                         <CardContent>
-                          <p
-                            style={{ color: "rgba(255, 255, 255, 0.8)" }}
-                            className="mb-4"
-                          >
-                            {feature.description}
-                          </p>
-                          <div
-                            className="p-3 rounded-lg border-l-4"
-                            style={{
-                              backgroundColor: "rgba(255,255,255,0.05)",
-                              borderColor: "#153c4b",
-                            }}
-                          >
-                            <p
-                              style={{ color: "rgba(255, 255, 255, 0.7)" }}
-                              className="text-sm italic"
-                            >
+                          <p className="text-white mb-4">{feature.description}</p>
+                          <div className="p-3 rounded-lg border-l-4 border-[#edbf21] bg-white/10">
+                            <p className="text-white text-sm italic">
                               <strong>Exemplo:</strong> {feature.example}
                             </p>
                           </div>
@@ -319,23 +280,19 @@ const HowAIWorks = () => {
               </div>
             </section>
 
-            <section className="mb-20">
+
+            {/* Benefits */}
+            <section className="px-[7%] mb-20">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 className="text-center mb-12"
               >
-                <h2
-                  className="text-3xl md:text-4xl font-bold mb-4"
-                  style={{ color: "#153f4b" }}
-                >
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#153c4b]">
                   Benefícios para toda a comunidade escolar
                 </h2>
-                <p
-                  className="text-xl md:text-2xl max-w-3xl mx-auto mb-8"
-                  style={{ color: "#57b4b1" }}
-                >
+                <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8 text-[#153c4b]/50">
                   O SabIA ajuda estudantes, responsáveis e professores
                 </p>
               </motion.div>
@@ -348,18 +305,16 @@ const HowAIWorks = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                   >
-                    <Card
-                      className="h-full"
-                      style={{ backgroundColor: "#57b4b1" }}
-                    >
+                    <Card className="h-full rounded-2xl shadow-xl bg-white/20 backdrop-blur-lg border border-white/30">
                       <CardHeader className="text-center">
                         <div
-                          className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4`}
-                          style={{ backgroundColor: benefit.color }}
+                          className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-[#153c4b]"
                         >
-                          <span className="text-2xl">{benefit.icon}</span>
+                          <span className="text-2xl text-[#edbf21]">
+                            {benefit.icon}
+                          </span>
                         </div>
-                        <CardTitle style={{ color: "#153c4b" }}>
+                        <CardTitle className="text-[#153c4b]">
                           {benefit.title}
                         </CardTitle>
                       </CardHeader>
@@ -368,12 +323,9 @@ const HowAIWorks = () => {
                           {benefit.points.map((point, pointIndex) => (
                             <li
                               key={pointIndex}
-                              className="flex items-center text-white/80"
+                              className="flex items-center text-[#153c4b]/70"
                             >
-                              <div
-                                className="w-2 h-2 rounded-full mr-3"
-                                style={{ backgroundColor: "#edbf21" }}
-                              ></div>
+                              <div className="w-2 h-2 rounded-full mr-3 bg-[#edbf21]" />
                               {point}
                             </li>
                           ))}
@@ -385,137 +337,75 @@ const HowAIWorks = () => {
               </div>
             </section>
 
+           {/* Segurança */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="glass-effect rounded-2xl p-8 mb-16"
+              className="bg-[#153c4b] p-8 mb-16"
             >
               <div className="text-center mb-8">
-                <h2
-                  className="text-3xl md:text-4xl font-bold mb-4"
-                  style={{ color: "#153f4b" }}
-                >
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#edbf21]">
                   Segurança e Privacidade
                 </h2>
-                <p
-                  className="text-xl md:text-2xl max-w-3xl mx-auto mb-8"
-                  style={{ color: "#57b4b1" }}
-                >
+                <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8 text-white/70">
                   Seus dados estão protegidos e o conteúdo é sempre apropriado
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-3 gap-6">
-                <div
-                  className="text-center"
-                  style={{
-                    backgroundColor: "#57b4b1",
-                    padding: "1.5rem",
-                    borderRadius: "0.5rem",
-                  }}
-                >
+              <div className="grid px-[5%] md:grid-cols-3 gap-6">
+                {[
+                  {
+                    icon: "🔒",
+                    title: "Dados Protegidos",
+                    text: "Suas informações pessoais são criptografadas e seguras",
+                  },
+                  {
+                    icon: "✅",
+                    title: "Conteúdo Verificado",
+                    text: "Todo material é revisado por especialistas em educação",
+                  },
+                  {
+                    icon: "👨‍👩‍👧‍👦",
+                    title: "Apropriado para Idade",
+                    text: "Conteúdo adequado para estudantes do ensino fundamental",
+                  },
+                ].map((item, i) => (
                   <div
-                    className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3"
-                    style={{ backgroundColor: "#153f4b" }}
+                    key={i}
+                    className="text-center rounded-2xl p-6 bg-[#edbf21]"
                   >
-                    <span className="text-white text-xl">🔒</span>
+                    <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 bg-[#153c4b]">
+                      <span className="text-xl text-white">{item.icon}</span>
+                    </div>
+                    <h3 className="text-xl font-bold mb-4 text-[#153c4b]">
+                      {item.title}
+                    </h3>
+                    <p className="text-[#153c4b]">{item.text}</p>
                   </div>
-                  <h3
-                    className="text-3xl md:text-4xl font-bold mb-4"
-                    style={{ color: "#153f4b" }}
-                  >
-                    Dados Protegidos
-                  </h3>
-                  <p
-                    className="text-xl md:text-2xl max-w-3xl mx-auto mb-8"
-                    style={{ color: "#ffffff" }}
-                  >
-                    Suas informações pessoais são criptografadas e seguras
-                  </p>
-                </div>
-
-                <div
-                  className="text-center"
-                  style={{
-                    backgroundColor: "#57b4b1",
-                    padding: "1.5rem",
-                    borderRadius: "0.5rem",
-                  }}
-                >
-                  <div
-                    className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3"
-                    style={{ backgroundColor: "#153f4b" }}
-                  >
-                    <span className="text-white text-xl">✅</span>
-                  </div>
-                  <h3
-                    className="text-3xl md:text-4xl font-bold mb-4"
-                    style={{ color: "#153f4b" }}
-                  >
-                    Conteúdo Verificado
-                  </h3>
-                  <p
-                    className="text-xl md:text-2xl max-w-3xl mx-auto mb-8"
-                    style={{ color: "#ffffff" }}
-                  >
-                    Todo material é revisado por especialistas em educação
-                  </p>
-                </div>
-
-                <div
-                  className="text-center"
-                  style={{
-                    backgroundColor: "#57b4b1",
-                    padding: "1.5rem",
-                    borderRadius: "0.5rem",
-                  }}
-                >
-                  <div
-                    className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3"
-                    style={{ backgroundColor: "#153f4b" }}
-                  >
-                    <span className="text-white text-xl">👨‍👩‍👧‍👦</span>
-                  </div>
-                  <h3
-                    className="text-3xl md:text-4xl font-bold mb-4"
-                    style={{ color: "#153f4b" }}
-                  >
-                    Apropriado para Idade
-                  </h3>
-                  <p
-                    className="text-xl md:text-2xl max-w-3xl mx-auto mb-8"
-                    style={{ color: "#ffffff" }}
-                  >
-                    Conteúdo adequado para estudantes do ensino fundamental
-                  </p>
-                </div>
+                ))}
               </div>
             </motion.div>
 
+
+            {/* CTA Final */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
-              className="text-center"
+              className="text-center px-4"
             >
-              <h2
-                className="text-3xl md:text-4xl font-bold mb-4"
-                style={{ color: "#153c4b" }}
-              >
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#153c4b]">
                 Pronto para experimentar o SabIA?
               </h2>
-              <p
-                className="text-xl md:text-2xl max-w-3xl mx-auto mb-8"
-                style={{ color: "#57b4b1" }}
-              >
+              <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8 text-[#153c4b]/50">
                 Comece agora e descubra como a inteligência artificial pode
                 transformar seus estudos!
               </p>
               <Button
                 size="lg"
-                className="bg-[#153c4b] border-2 border-[#edbf21] text-[#edbf21] text-2xl sm:text-3xl px-8 sm:px-16 py-4 sm:py-6 font-bold rounded-full flex items-center justify-center 
-             hover:bg-[#edbf21] hover:text-black hover:scale-105 transition-colors transition-transform duration-300 mx-auto"
+                className="bg-[#edbf21] text-[#153c4b] text-2xl sm:text-2xl px-8 sm:px-16 py-4 sm:py-6 font-bold rounded-full flex items-center justify-center 
+             hover:bg-[#153c4b] hover:text-[#edbf21] hover:scale-105 transition duration-300 mx-auto"
                 onClick={() =>
                   toast({
                     title: "Demonstração",

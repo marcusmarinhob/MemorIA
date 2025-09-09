@@ -9,7 +9,7 @@ const TeacherStats = ({ stats }) => {
       icon: Users,
       value: stats.totalStudents,
       label: "Total de Alunos",
-      color: "text-yellow-400",
+      color: "text-yellow-400", // ícone destacado
     },
     {
       icon: GraduationCap,
@@ -30,7 +30,7 @@ const TeacherStats = ({ stats }) => {
       icon: AlertTriangle,
       value: stats.classes.reduce((acc, cls) => acc + cls.needsAttention, 0),
       label: "Precisam de Atenção",
-      color: "text-yellow-400",
+      color: "text-red-400",
     },
   ];
 
@@ -46,18 +46,20 @@ const TeacherStats = ({ stats }) => {
             transition={{ delay: 0.1 * (index + 1) }}
           >
             <Card
-              className="glass-effect"
-              style={{ backgroundColor: "#57b4b1" }}
+              className="glass-effect rounded-2xl"
+              style={{ backgroundColor: "#153c4b" }} // 🔹 azul aplicado
             >
               <CardContent className="p-6 text-center">
-                <Icon className={`w-8 h-8 ${item.color} mx-auto mb-2`} />
-                <div
-                  className="text-2xl text-center font-bold mt-8"
-                  style={{ color: "#153c4b" }}
-                >
+                <div className="flex items-center justify-center mb-4">
+                  <div className="bg-white/10 rounded-full p-3">
+                    <Icon className={`w-8 h-8 ${item.color}`} />
+                  </div>
+                </div>
+
+                <div className="text-2xl font-bold text-white mb-2">
                   {item.value}
                 </div>
-                <p className="text-white/70 text-sm">{item.label}</p>
+                <p className="text-white/80 text-sm">{item.label}</p>
               </CardContent>
             </Card>
           </motion.div>
