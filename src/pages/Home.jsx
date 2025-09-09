@@ -72,9 +72,7 @@ const Home = () => {
         />
       </Helmet>
 
-      
       <Navigation />
-  
 
       {/* ================= SEÇÃO HERO (COMEÇAR AGORA) ================= */}
       <section className="pt-10 pb-16 px-4 text-center relative">
@@ -126,7 +124,8 @@ const Home = () => {
               Por que escolher o SabIA?
             </h2>
             <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-              Nossa inteligência artificial foi desenvolvida especialmente para estudantes.
+              Nossa inteligência artificial foi desenvolvida especialmente para
+              estudantes.
             </p>
           </motion.div>
 
@@ -159,28 +158,51 @@ const Home = () => {
       {/* ================= SEÇÃO ESTATÍSTICAS ================= */}
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          
           {/* Título e texto */}
           <div className="mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-[#edbf21] mb-4">Sobre nós</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-[#edbf21] mb-4">
+              Sobre nós
+            </h2>
             <p className="text-gray-600 max-w-3xl">
-              Acreditamos que cada estudante tem um potencial único e, por isso, utilizando o poder da inteligência artificial, desenvolvemos soluções que se adaptam ao ritmo, às necessidades e aos interesses de cada estudante, garantindo uma experiência de aprendizagem mais eficaz e motivadora.
+              Acreditamos que cada estudante tem um potencial único e, por isso,
+              utilizando o poder da inteligência artificial, desenvolvemos
+              soluções que se adaptam ao ritmo, às necessidades e aos interesses
+              de cada estudante, garantindo uma experiência de aprendizagem mais
+              eficaz e motivadora.
             </p>
           </div>
 
           {/* Cards */}
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             <div className="relative rounded-2xl overflow-hidden shadow-lg">
-              <img src="src\assets\Aula-Personalizada.png" alt="Aprendizado personalizado" className="w-full h-64 object-cover"/>
-              <span className="absolute bottom-3 left-3 bg-[#153c4b] text-white px-3 py-1 rounded-full text-sm">Aprendizado personalizado</span>
+              <img
+                src="src\assets\Aula-Personalizada.png"
+                alt="Aprendizado personalizado"
+                className="w-full h-64 object-cover"
+              />
+              <span className="absolute bottom-3 left-3 bg-[#153c4b] text-white px-3 py-1 rounded-full text-sm">
+                Aprendizado personalizado
+              </span>
             </div>
             <div className="relative rounded-2xl overflow-hidden shadow-lg">
-              <img src="src\assets\20250825_1527_Organização Completa_remix_01k3h7msj1fv2bhgm805142mh4.png" alt="Conteúdo completo e organizado" className="w-full h-64 object-cover"/>
-              <span className="absolute bottom-3 left-3 bg-[#153c4b] text-white px-3 py-1 rounded-full text-sm">Conteúdo completo e organizado</span>
+              <img
+                src="src\assets\organizacao.png"
+                alt="Conteúdo completo e organizado"
+                className="w-full h-64 object-cover"
+              />
+              <span className="absolute bottom-3 left-3 bg-[#153c4b] text-white px-3 py-1 rounded-full text-sm">
+                Conteúdo completo e organizado
+              </span>
             </div>
             <div className="relative rounded-2xl overflow-hidden shadow-lg">
-              <img src="src\assets\passaro Tutor Conselheiro.png" alt="Acompanhamento para pais e professores" className="w-full h-64 object-cover"/>
-              <span className="absolute bottom-3 left-3 bg-[#153c4b] text-white px-3 py-1 rounded-full text-sm">Acompanhamento para pais e professores</span>
+              <img
+                src="src\assets\tutor.png"
+                alt="Acompanhamento para pais e professores"
+                className="w-full h-64 object-cover"
+              />
+              <span className="absolute bottom-3 left-3 bg-[#153c4b] text-white px-3 py-1 rounded-full text-sm">
+                Acompanhamento para pais e professores
+              </span>
             </div>
           </div>
 
@@ -201,11 +223,8 @@ const Home = () => {
               </div>
             </div>
           </div>
-
         </div>
       </section>
-
-
 
       {/* ================= TESTEMUNHOS ================= */}
       <section className="py-16 px-4 bg-gradient-to-b from-[#e6f7f6] to-white">
@@ -257,9 +276,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-
-
 
       {/* ================= CALL TO ACTION FINAL ================= */}
       <section className="py-16 px-4">
