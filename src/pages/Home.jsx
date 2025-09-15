@@ -92,7 +92,7 @@ const Home = () => {
           />*/}
 
           <h1 className="text-5xl mt-32 md:text-8xl font-bold text-[#edbf21]">
-            Aprenda com a <br /> SabIA
+            Aprenda com o <br /> SabIA
           </h1>
 
           <p className="text-xl md:text-2xl text-[#153c4b] max-w-2xl mx-auto">
