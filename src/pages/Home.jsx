@@ -104,7 +104,7 @@ const Home = () => {
             <Link to="/login">
               <Button
                 size="lg"
-                className="px-12 py-6 text-2xl font-bold rounded-full text-white bg-[#153c4b] border-2 border-[#edbd2100] hover:scale-105 hover:bg-[#153c4b]/90 transition-transform duration-300"
+                className="px-12 py-6 text-2xl font-bold rounded-full text-[#edbf21] bg-[#153c4b] border-2 border-[#edbd2100] hover:scale-105 hover:bg-[#153c4b]/90 transition-transform duration-300"
               >
                 Começar Agora
                 <Power className="w-6 h-6 ml-2" />
