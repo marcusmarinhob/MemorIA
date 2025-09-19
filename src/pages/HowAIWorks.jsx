@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import {
@@ -15,8 +15,10 @@ import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import ChatBot from "@/components/ChatBot";
 import { toast } from "@/components/ui/use-toast";
+import Apresentacao from "../Videos/apresentacao.mp4";
 
 const HowAIWorks = () => {
+  const [showVideo, setShowVideo] = useState(false);
   const steps = [
     {
       number: "01",
@@ -161,19 +163,31 @@ const HowAIWorks = () => {
                 size="lg"
                 className="bg-[#153c4b]  text-[#edbf21] text-2xl sm:text-2xl px-8 sm:px-16 py-4 sm:py-6 font-bold rounded-full flex items-center justify-center 
              hover:bg-[#edbf21] hover:text-[#153c4b] hover:scale-105 transition duration-300 mx-auto"
-                onClick={() =>
-                  toast({
-                    title: "Demonstração",
-                    description:
-                      "🚧 Esta funcionalidade ainda não está implementada—mas não se preocupe! Você pode solicitá-la no seu próximo prompt! 🚀",
-                  })
-                }
+                onClick={() => setShowVideo(true)}
               >
                 <Play className="w-5 h-5 mr-2" />
                 Ver Demonstração
               </Button>
             </motion.div>
 
+            {showVideo && (
+              <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
+                <div className="relative w-11/12 md:w-3/4 lg:w-1/2">
+                  <video
+                    src={Apresentacao}
+                    controls
+                    autoPlay
+                    className="w-full rounded-2xl shadow-lg"
+                  />
+                  <button
+                    onClick={() => setShowVideo(false)}
+                    className="absolute top-2 right-2 bg-white text-black rounded-full px-3 py-1 shadow hover:bg-gray-200"
+                  >
+                    ✕
+                  </button>
+                </div>
+              </div>
+            )}
 
             {/* Steps */}
             <section className="py-12 px-6 bg-gradient-to-b from-[#e6f7f6] to-white relative">
@@ -217,7 +231,9 @@ const HowAIWorks = () => {
                             <h3 className="text-lg font-semibold mb-3 text-[#153c4b]">
                               {step.title}
                             </h3>
-                            <p className="text-[#153c4b]/50 text-sm">{step.description}</p>
+                            <p className="text-[#153c4b]/50 text-sm">
+                              {step.description}
+                            </p>
                           </CardContent>
                         </Card>
                       </motion.div>
@@ -226,7 +242,6 @@ const HowAIWorks = () => {
                 </div>
               </div>
             </section>
-
 
             {/* Features */}
             {/* Features */}
@@ -262,11 +277,15 @@ const HowAIWorks = () => {
                             <div className="w-12 h-12 rounded-full flex items-center justify-center bg-white">
                               <Icon className="w-6 h-6 text-[#edbf21]" />
                             </div>
-                            <CardTitle className="text-[#edbf21]">{feature.title}</CardTitle>
+                            <CardTitle className="text-[#edbf21]">
+                              {feature.title}
+                            </CardTitle>
                           </div>
                         </CardHeader>
                         <CardContent>
-                          <p className="text-white mb-4">{feature.description}</p>
+                          <p className="text-white mb-4">
+                            {feature.description}
+                          </p>
                           <div className="p-3 rounded-lg border-l-4 border-[#edbf21] bg-white/10">
                             <p className="text-white text-sm italic">
                               <strong>Exemplo:</strong> {feature.example}
@@ -279,7 +298,6 @@ const HowAIWorks = () => {
                 })}
               </div>
             </section>
-
 
             {/* Benefits */}
             <section className="px-[7%] mb-20">
@@ -307,9 +325,7 @@ const HowAIWorks = () => {
                   >
                     <Card className="h-full rounded-2xl shadow-xl bg-white/20 backdrop-blur-lg border border-white/30">
                       <CardHeader className="text-center">
-                        <div
-                          className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-[#153c4b]"
-                        >
+                        <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-[#153c4b]">
                           <span className="text-2xl text-[#edbf21]">
                             {benefit.icon}
                           </span>
@@ -337,7 +353,7 @@ const HowAIWorks = () => {
               </div>
             </section>
 
-           {/* Segurança */}
+            {/* Segurança */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -386,7 +402,6 @@ const HowAIWorks = () => {
                 ))}
               </div>
             </motion.div>
-
 
             {/* CTA Final */}
             <motion.div
