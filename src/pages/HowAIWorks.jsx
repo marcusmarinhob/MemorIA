@@ -138,7 +138,6 @@ const HowAIWorks = () => {
 
         <div className="pt-24 pb-16 ">
           <div className=" mx-auto">
-            {/* Header */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -189,9 +188,7 @@ const HowAIWorks = () => {
               </div>
             )}
 
-            {/* Steps */}
             <section className="py-12 px-6 bg-gradient-to-b from-[#e6f7f6] to-white relative">
-              {/* Conteúdo centralizado */}
               <div className="max-w-7xl mx-auto">
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
@@ -243,8 +240,6 @@ const HowAIWorks = () => {
               </div>
             </section>
 
-            {/* Features */}
-            {/* Features */}
             <section className="px-[7%] mb-20 p-8 rounded-2xl">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -273,7 +268,6 @@ const HowAIWorks = () => {
                       <Card className="h-full rounded-2xl shadow-xl bg-[#153c4b] border border-white/20">
                         <CardHeader>
                           <div className="flex items-center space-x-3">
-                            {/* Ícone dentro de círculo branco */}
                             <div className="w-12 h-12 rounded-full flex items-center justify-center bg-white">
                               <Icon className="w-6 h-6 text-[#edbf21]" />
                             </div>
@@ -299,7 +293,6 @@ const HowAIWorks = () => {
               </div>
             </section>
 
-            {/* Benefits */}
             <section className="px-[7%] mb-20">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -353,7 +346,6 @@ const HowAIWorks = () => {
               </div>
             </section>
 
-            {/* Segurança */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -403,7 +395,6 @@ const HowAIWorks = () => {
               </div>
             </motion.div>
 
-            {/* CTA Final */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}

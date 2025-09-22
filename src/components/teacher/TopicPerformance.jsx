@@ -20,7 +20,7 @@ const TopicPerformance = ({ topics }) => {
     >
       <Card
         className="glass-effect rounded-2xl"
-        style={{ backgroundColor: "#153c4b" }} // 🔹 fundo azul escuro
+        style={{ backgroundColor: "#153c4b" }} 
       >
         <CardHeader>
           <CardTitle className="flex items-center text-white">

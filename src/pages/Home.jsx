@@ -77,7 +77,6 @@ const Home = () => {
 
       <Navigation />
 
-      {/* ================= SEÇÃO HERO (COMEÇAR AGORA) ================= */}
       <section className="pt-10 pb-16 px-4 text-center relative">
         <motion.div
           initial={{ opacity: 1, y: 30 }}
@@ -85,11 +84,6 @@ const Home = () => {
           transition={{ duration: 0.8 }}
           className="space-y-10"
         >
-          {/*<img
-            alt="Mascote SabIA"
-            className="w-32 h-32 mx-auto floating-animation rounded-full shadow-lg"
-            src={ImagemSabia}
-          />*/}
 
           <h1 className="text-5xl mt-32 md:text-8xl font-bold text-[#edbf21]">
             Aprenda com o <br /> SabIA
@@ -114,7 +108,6 @@ const Home = () => {
         </motion.div>
       </section>
 
-      {/* ================= SEÇÃO POR QUE ESCOLHER ================= */}
       <section className="py-20 px-6 bg-gradient-to-b from-[#e6f7f6] to-white">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -158,10 +151,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ================= SEÇÃO ESTATÍSTICAS ================= */}
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          {/* Título e texto */}
           <div className="mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-[#edbf21] mb-4">
               Sobre nós
@@ -175,7 +166,6 @@ const Home = () => {
             </p>
           </div>
 
-          {/* Cards */}
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             <div className="relative rounded-2xl overflow-hidden shadow-lg">
               <img
@@ -209,7 +199,6 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Bloco destacado com métricas */}
           <div className="text-[#edbf21] bg-[#153c4b] rounded-2xl p-8 mb-12 text-center">
             <div className="grid md:grid-cols-3 gap-6">
               <div>
@@ -229,7 +218,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ================= TESTEMUNHOS ================= */}
       <section className="py-16 px-4 bg-gradient-to-b from-[#e6f7f6] to-white">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -280,7 +268,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ================= CALL TO ACTION FINAL ================= */}
       <section className="py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div

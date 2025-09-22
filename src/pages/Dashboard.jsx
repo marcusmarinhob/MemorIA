@@ -125,7 +125,6 @@ const Dashboard = () => {
               </p>
             </motion.div>
 
-            {/* Cards principais */}
             <div className="grid md:grid-cols-4 gap-6 mb-8">
               {[
                 { icon: <Trophy className="w-8 h-8 text-yellow-400 mx-auto mb-2" />, title: dashboardData.student.totalPoints, subtitle: "Pontos Totais" },
@@ -146,10 +145,8 @@ const Dashboard = () => {
               ))}
             </div>
 
-            {/* Grid principal */}
             <div className="grid lg:grid-cols-3 gap-8">
               <div className="lg:col-span-2 space-y-6">
-                {/* Progresso por Matéria */}
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
                   <Card className="bg-[#153c4b] rounded-2xl shadow-lg text-white">
                     <CardHeader>
@@ -179,7 +176,6 @@ const Dashboard = () => {
                   </Card>
                 </motion.div>
 
-                {/* Atividade Semanal */}
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
                   <Card className="bg-[#153c4b] rounded-2xl shadow-lg text-white">
                     <CardHeader>
@@ -204,7 +200,6 @@ const Dashboard = () => {
               </div>
 
               <div className="space-y-6">
-                {/* Conquistas */}
                 <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.7 }}>
                   <Card className="bg-[#153c4b] rounded-2xl shadow-lg text-white">
                     <CardHeader>
@@ -225,7 +220,6 @@ const Dashboard = () => {
                   </Card>
                 </motion.div>
 
-                {/* Recomendações da IA */}
                 <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.8 }}>
                   <Card className="bg-[#153c4b] rounded-2xl shadow-lg text-white">
                     <CardHeader>

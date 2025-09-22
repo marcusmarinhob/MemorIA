@@ -216,7 +216,6 @@ const ParentsArea = () => {
               </p>
             </motion.div>
 
-            {/* Card principal */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -287,10 +286,8 @@ const ParentsArea = () => {
               </div>
             </motion.div>
 
-            {/* Cards secundários */}
             <div className="grid lg:grid-cols-3 gap-8">
               <div className="lg:col-span-2 space-y-6">
-                {/* Progresso por matéria */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -338,7 +335,6 @@ const ParentsArea = () => {
                   </Card>
                 </motion.div>
 
-                {/* Insights da IA */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -372,7 +368,6 @@ const ParentsArea = () => {
               </div>
 
               <div className="space-y-6">
-                {/* Alertas */}
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -403,7 +398,6 @@ const ParentsArea = () => {
                   </Card>
                 </motion.div>
 
-                {/* Conquistas Recentes */}
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -439,7 +433,6 @@ const ParentsArea = () => {
                   </Card>
                 </motion.div>
 
-                {/* Ações Rápidas */}
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}

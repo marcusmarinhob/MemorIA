@@ -9,7 +9,7 @@ const TeacherStats = ({ stats }) => {
       icon: Users,
       value: stats.totalStudents,
       label: "Total de Alunos",
-      color: "text-yellow-400", // ícone destacado
+      color: "text-yellow-400", 
     },
     {
       icon: GraduationCap,
@@ -47,7 +47,7 @@ const TeacherStats = ({ stats }) => {
           >
             <Card
               className="glass-effect rounded-2xl"
-              style={{ backgroundColor: "#153c4b" }} // 🔹 azul aplicado
+              style={{ backgroundColor: "#153c4b" }} 
             >
               <CardContent className="p-6 text-center">
                 <div className="flex items-center justify-center mb-4">

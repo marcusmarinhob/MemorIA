@@ -65,7 +65,6 @@ const Login = () => {
         />
       </Helmet>
 
-      {/* Fundo principal */}
       <div className="min-h-screen flex items-center justify-center px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -73,7 +72,6 @@ const Login = () => {
           transition={{ duration: 0.8 }}
           className="w-full max-w-md"
         >
-          {/* Voltar */}
           <Link
             to="/"
             className="inline-flex items-center mb-8 text-[#153c4b] hover:underline"
@@ -82,7 +80,6 @@ const Login = () => {
             Voltar ao início
           </Link>
 
-          {/* Card com glass effect */}
           <Card className="rounded-2xl shadow-xl bg-white/20 backdrop-blur-lg border border-white/30">
             <CardHeader className="text-center">
               <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-[#153c4b]">
@@ -95,7 +92,6 @@ const Login = () => {
             </CardHeader>
 
             <CardContent className="space-y-6">
-              {/* Tipo de usuário */}
               <div>
                 <label className="text-sm font-medium mb-3 block text-[#153c4b]">
                   Eu sou:
@@ -118,7 +114,6 @@ const Login = () => {
                 </div>
               </div>
 
-              {/* Formulário */}
               <form onSubmit={handleLogin} className="space-y-4">
                 <div>
                   <label className="text-sm font-medium mb-2 block text-[#153c4b]">
@@ -151,8 +146,6 @@ const Login = () => {
                     />
                   </div>
                 </div>
-
-                {/* Botão Entrar */}
                 <Button
                   size="lg"
                   className="w-full h-12 rounded-full bg-[#153c4b]  text-[#edbf21] font-bold text-lg hover:bg-[#153c4b] hover:scale-105 transition-transform duration-300"
@@ -161,7 +154,6 @@ const Login = () => {
                 </Button>
               </form>
 
-              {/* Cadastro */}
               <div className="text-center">
                 <p className="text-sm text-[#153c4b]">
                   Não tem uma conta?{" "}

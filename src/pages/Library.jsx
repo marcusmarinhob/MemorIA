@@ -141,7 +141,6 @@ const Library = () => {
         <Navigation />
 
         <div className="pt-40 pb-18 px-6 max-w-7xl mx-auto">
-          {/* Título */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -157,7 +156,6 @@ const Library = () => {
             </p>
           </motion.div>
 
-          {/* Filtros */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -165,7 +163,6 @@ const Library = () => {
             className="rounded-2xl p-6 mb-12 bg-[#153c4b] shadow-lg"
           >
             <div className="grid md:grid-cols-4 gap-4">
-              {/* Busca */}
               <div className="relative h-12 flex items-center">
                 <Search className="absolute left-4 w-5 h-5 text-white" />
                 <Input
@@ -176,7 +173,6 @@ const Library = () => {
                 />
               </div>
 
-              {/* Série */}
               <div className="relative h-12 flex items-center">
                 <select
                   value={selectedGrade}
@@ -193,7 +189,6 @@ const Library = () => {
                 <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white pointer-events-none" />
               </div>
 
-              {/* Matéria */}
               <div className="relative h-12 flex items-center">
                 <select
                   value={selectedSubject}
@@ -210,7 +205,6 @@ const Library = () => {
                 <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white pointer-events-none" />
               </div>
 
-              {/* Botão filtros */}
               <div className="h-12 flex items-center">
                 <Button
                   className="w-full h-12 bg-[#edbf21] text-white font-bold rounded-full hover:bg-[#edbf21] hover:scale-105 transition-all duration-300 flex items-center justify-center"
@@ -229,9 +223,6 @@ const Library = () => {
             </div>
           </motion.div>
 
-
-
-          {/* Cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredContent.map((item, index) => (
               <motion.div
@@ -308,7 +299,6 @@ const Library = () => {
             ))}
           </div>
 
-          {/* Estado vazio */}
           {filteredContent.length === 0 && (
             <motion.div
               initial={{ opacity: 0 }}

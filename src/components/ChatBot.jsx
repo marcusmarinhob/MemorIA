@@ -115,7 +115,6 @@ const ChatBot = () => {
               className="h-full flex flex-col rounded-2xl shadow-xl overflow-y-auto"
               style={{ backgroundColor: "#153c4b" }}
             >
-              {/* Cabeçalho */}
               <div className="flex items-center justify-between p-4 border-b border-white/20">
                 <div className="flex items-center space-x-2">
                   <div
@@ -158,7 +157,6 @@ const ChatBot = () => {
                 </div>
               </div>
 
-              {/* Mensagens */}
               <div className="flex-1 p-4 space-y-3">
                 {messages.map((message) => (
                   <motion.div
@@ -188,7 +186,6 @@ const ChatBot = () => {
                 ))}
               </div>
 
-              {/* Input */}
               <div className="p-4 border-t border-white/20">
                 <div className="flex space-x-2 w-full">
                   <textarea

@@ -26,7 +26,6 @@ const Navigation = () => {
             border: "1px solid rgba(255, 255, 255, 0.2)",
           }}
         >
-          {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
             <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden shadow-md">
               <img
@@ -41,7 +40,6 @@ const Navigation = () => {
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => {
               const Icon = item.icon;
@@ -63,7 +61,6 @@ const Navigation = () => {
             })}
           </div>
 
-          {/* Desktop Login Button */}
           <div className="hidden md:block">
             <Link to="/login">
               <Button className="bg-[#153c4b] text-white px-6 py-3 font-semibold rounded-full flex items-center justify-center hover:bg-[#1a4a5c] hover:scale-105 transition-all duration-200 shadow-md border-0">
@@ -73,7 +70,6 @@ const Navigation = () => {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
           <div className="md:hidden">
             <Button
               variant="ghost"
@@ -86,21 +82,17 @@ const Navigation = () => {
         </div>
       </div>
 
-      {/* Mobile Glass Drawer */}
       {isOpen && (
         <div className="fixed inset-0 z-10 flex items-center justify-center">
-          {/* Background overlay */}
           <div
             className="absolute inset-0 bg-black/10"
             onClick={() => setIsOpen(false)}
           ></div>
 
-          {/* Centered drawer */}
           <div
             className="relative w-80 p-6 rounded-2xl glass-effect flex flex-col space-y-4 z-50"
             style={{ backgroundColor: "rgba(255,255,255,0.85)" }}
           >
-            {/* Navigation items */}
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = location.pathname === item.path;
@@ -124,7 +116,6 @@ const Navigation = () => {
               );
             })}
 
-            {/* Login button */}
             <Link to="/login" onClick={() => setIsOpen(false)}>
               <Button className="bg-[#153c4b] text-white w-full flex items-center justify-center px-4 py-3 rounded-full hover:bg-[#1a4a5c] transition-all duration-200">
                 <LogIn className="w-4 h-4 mr-2" /> Entrar

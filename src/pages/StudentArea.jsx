@@ -83,7 +83,6 @@ const StudentArea = () => {
             </div>
           </div>
 
-          {/* Top Cards */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 text-center">
             {[
               { icon: Trophy, value: studentData.points, label: "Pontos", color: "yellow-400" },
@@ -106,10 +105,8 @@ const StudentArea = () => {
             ))}
           </div>
 
-          {/* Conteúdo Principal */}
           <div className="grid lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2 space-y-6">
-              {/* Matérias */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -156,7 +153,6 @@ const StudentArea = () => {
             </div>
 
             <div className="space-y-6">
-              {/* Atividades Recentes */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -190,7 +186,6 @@ const StudentArea = () => {
                 </Card>
               </motion.div>
 
-              {/* Conquistas */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -220,8 +215,6 @@ const StudentArea = () => {
                 </Card>
               </motion.div>
 
-              {/* Links Rápidos */}
-              {/* Links Rápidos */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
