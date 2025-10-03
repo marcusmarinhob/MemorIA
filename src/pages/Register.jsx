@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "@/components/ui/use-toast";
 
-const Login = () => {
+const Register = () => {
   const [userType, setUserType] = useState("student");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,7 +30,7 @@ const Login = () => {
     localStorage.setItem("userEmail", email);
 
     toast({
-      title: "Login realizado!",
+      title: "Cadastro realizado!",
       description: "Bem-vindo(a) ao SabIA! 🎉",
     });
 
@@ -58,7 +58,7 @@ const Login = () => {
   return (
     <>
       <Helmet>
-        <title>Login - SabIA</title>
+        <title>Cadastro - SabIA</title>
         <meta
           name="description"
           content="Faça login na plataforma sabIA e acesse sua área personalizada de estudos com inteligência artificial."
@@ -86,7 +86,7 @@ const Login = () => {
                 <Brain className="w-8 h-8 text-[#edbf21]" />
               </div>
               <CardTitle className="text-2xl font-bold text-[#153c4b]">
-                Entrar no SabIA
+                Cadastre-se no SabIA
               </CardTitle>
               <p className="text-[#153c4b]">Acesse sua área personalizada</p>
             </CardHeader>
@@ -146,21 +146,36 @@ const Login = () => {
                     />
                   </div>
                 </div>
+                <div>
+                  <label className="text-sm font-medium mb-2 block text-[#153c4b]">
+                    Confirme a Senha
+                  </label>
+                  <div className="relative">
+                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#153c4b]" />
+                    <Input
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="••••••••"
+                      className="pl-10 h-12 rounded-full bg-white/40 text-[#153c4b] placeholder:text-[#153c4b]/70 border-none focus:ring-2 focus:ring-yellow-400"
+                    />
+                  </div>
+                </div>
                 <Button
                   size="lg"
                   className="w-full h-12 rounded-full bg-[#153c4b]  text-[#edbf21] font-bold text-lg hover:bg-[#153c4b] hover:scale-105 transition-transform duration-300"
                 >
-                  Entrar
+                  Cadastrar
                 </Button>
               </form>
 
               <div className="text-center">
                 <p className="text-sm text-[#153c4b]">
-                  Não tem uma conta?{" "}
-                  <Link to="/register" className="w-full">
-                  <button className="font-medium text-[#153c4b] hover:underline" >
-                    Cadastre-se aqui
-                  </button>
+                  Já tem uma conta?{" "}
+                  <Link to="/login" lassName="w-full">
+                    <button className="font-medium text-[#153c4b] hover:underline">
+                      Entrar
+                    </button>
                   </Link>
                 </p>
               </div>
@@ -172,4 +187,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

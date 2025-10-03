@@ -9,6 +9,7 @@ import ParentsArea from "@/pages/ParentsArea.jsx";
 import HowAIWorks from "@/pages/HowAIWorks.jsx";
 import TeacherArea from "@/pages/TeacherArea.jsx";
 import Login from "@/pages/Login.jsx";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/parents" element={<ParentsArea />} />
           <Route path="/how-ai-works" element={<HowAIWorks />} />
           <Route path="/teacher" element={<TeacherArea />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
         <Toaster />
       </div>
