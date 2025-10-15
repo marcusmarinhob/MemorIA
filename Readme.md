@@ -15,6 +15,7 @@ Plataforma educacional que utiliza IA para oferecer tutoria personalizada para e
 - Framer Motion 10.16.4
 - Radix UI Components
 - Lucide React 0.285.0
+- Firebase 12.4.0
 
 ### Backend
 
@@ -190,6 +191,7 @@ Configuração em `vite.config.js` com:
 3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`)
 4. Push para a branch (`git push origin feature/nova-feature`)
 5. Abra um Pull Request
+
 
 
 
