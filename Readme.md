@@ -89,6 +89,11 @@ src/
 │   └── Navigation.jsx  # Navegação
 ├── pages/              # Páginas da aplicação
 │   ├── Home.jsx        # Página inicial
+|   ├── Dashboard.jsx   # Área de meu progresso
+|   ├── HowAiWorks.jsx  # Área de como funciona a IA
+|   ├── Library.jsx     # Área do firebase, firestore e auth
+|   ├── Login.jsx       # Área de login
+|   ├── Register.jsx    # Área de cadastro
 │   ├── StudentArea.jsx # Área do estudante
 │   ├── TeacherArea.jsx # Área do professor
 │   └── ParentsArea.jsx # Área dos responsáveis
@@ -96,10 +101,10 @@ src/
 │   ├── server.js       # Servidor principal
 │   └── service/        # Serviços (API Gemini)
 ├── assets/             # Imagens e recursos
-└── lib/             # Utilitários
-    └── auth.js
-    └── firebase.js
-    └── firestore.js     
+└── lib/                # Utilitários
+    └── auth.js         # Autenticação
+    └── firebase.js     # Configuração do firebase
+    └── firestore.js    # Banco de dados login e cadastro
 ```
 
 ## Funcionalidades
@@ -191,6 +196,7 @@ Configuração em `vite.config.js` com:
 3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`)
 4. Push para a branch (`git push origin feature/nova-feature`)
 5. Abra um Pull Request
+
 
 
 
