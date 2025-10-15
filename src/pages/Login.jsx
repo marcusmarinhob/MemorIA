@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "@/components/ui/use-toast";
+import { loginUsuario, USER_TYPES } from "../lib/auth";
+import { atualizarDadosUsuario, buscarDadosUsuario } from "../lib/firestore";
 
 const Login = () => {
   const [userType, setUserType] = useState("student");
@@ -14,7 +16,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     if (!email || !password) {
@@ -26,29 +28,122 @@ const Login = () => {
       return;
     }
 
-    localStorage.setItem("userType", userType);
-    localStorage.setItem("userEmail", email);
+    try {
+      const resultadoLogin = await loginUsuario(email, password);
 
-    toast({
-      title: "Login realizado!",
-      description: "Bem-vindo(a) ao SabIA! 🎉",
-    });
+      if (!resultadoLogin.success) {
+        let titulo = "Erro no login!";
+        let descricao = resultadoLogin.error;
 
-    switch (userType) {
-      case "student":
-        navigate("/student");
-        break;
-      case "parent":
-        navigate("/parents");
-        break;
-      case "teacher":
-        navigate("/teacher");
-        break;
-      default:
-        navigate("/student");
+        if (resultadoLogin.code === "auth/user-not-found") {
+          titulo = "Email não cadastrado";
+          descricao =
+            "Este email não está cadastrado no sistema. Verifique o email ou cadastre-se.";
+        } else if (resultadoLogin.code === "auth/wrong-password") {
+          titulo = "Senha incorreta";
+          descricao =
+            "A senha está incorreta. Tente novamente ou recupere sua senha.";
+        } else if (resultadoLogin.code === "auth/invalid-email") {
+          titulo = "Email inválido";
+          descricao =
+            "O formato do email é inválido. Verifique e tente novamente.";
+        } else if (resultadoLogin.code === "auth/network-request-failed") {
+          titulo = "Problema de conexão";
+          descricao =
+            "Erro de conexão. Verifique sua internet e tente novamente.";
+        }
+
+        toast({
+          title: titulo,
+          description: descricao,
+          variant: "destructive",
+        });
+        return;
+      }
+
+      const uid = resultadoLogin.user.uid;
+      const resultadoFirestore = await buscarDadosUsuario(uid);
+
+      if (!resultadoFirestore.success) {
+        toast({
+          title: "Erro",
+          description: "Não foi possível recuperar os dados do usuário",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      const userData = resultadoFirestore.data;
+
+      /*const tipoMap = {
+        student: USER_TYPES.ALUNO,
+        teacher: USER_TYPES.PROFESSOR,
+        parent: USER_TYPES.RESPONSAVEL,
+      };
+
+      const tipoEsperado = tipoMap[userType];
+
+      if (userData.tipo !== tipoEsperado) {
+        toast({
+          title: "Acesso negado",
+          description: `Este email é de um ${userData.tipo}, não ${tipoEsperado}`,
+          variant: "destructive",
+        });
+        return;
+      }*/
+
+      const tipoReverseMap = {
+        [USER_TYPES.ALUNO]: "student",
+        [USER_TYPES.PROFESSOR]: "teacher",
+        [USER_TYPES.RESPONSAVEL]: "parent",
+      };
+
+      const tipoNoFirestore = userData.tipo;
+      const tipoEsperadoNoLogin = userType;
+
+      if (tipoEsperadoNoLogin !== userType) {
+        toast({
+          title: "Acesso negado",
+          description: `Este email é de um ${tipoNoFirestore}, não ${userType}`,
+          variant: "destructive",
+        });
+        return;
+      }
+
+      await atualizarDadosUsuario(uid, {
+        ultimoAcesso: new Date(),
+      });
+
+      localStorage.setItem("userType", userType);
+      localStorage.setItem("userEmail", email);
+      localStorage.setItem("userName", userData.nome);
+
+      toast({
+        title: "Login realizado!",
+        description: `Bem-vindo(a) ${userData.nome}! 🎉`,
+      });
+
+      switch (userType) {
+        case "student":
+          navigate("/student");
+          break;
+        case "parent":
+          navigate("/parents");
+          break;
+        case "teacher":
+          navigate("/teacher");
+          break;
+        default:
+          navigate("/student");
+      }
+    } catch (error) {
+      toast({
+        title: "Erro inesperado",
+        description: "Ocorreu um erro durante o login.",
+        variant: "destructive",
+      });
     }
   };
-
   const userTypes = [
     { id: "student", label: "Estudante", icon: "🎓" },
     { id: "parent", label: "Responsável", icon: "👨‍👩‍👧‍👦" },
@@ -158,9 +253,9 @@ const Login = () => {
                 <p className="text-sm text-[#153c4b]">
                   Não tem uma conta?{" "}
                   <Link to="/register" className="w-full">
-                  <button className="font-medium text-[#153c4b] hover:underline" >
-                    Cadastre-se aqui
-                  </button>
+                    <button className="font-medium text-[#153c4b] hover:underline">
+                      Cadastre-se aqui
+                    </button>
                   </Link>
                 </p>
               </div>

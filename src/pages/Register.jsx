@@ -45,8 +45,8 @@ const Register = () => {
         parent: USER_TYPES.RESPONSAVEL,
       };
 
+      //const tipoUsuario = tipoMap[userType];
       const tipoUsuario = tipoMap[userType];
-
       const resultado = await cadastrarUsuario(email, password, userType, nome);
 
       if (!resultado.success) {
@@ -242,7 +242,7 @@ const Register = () => {
               <div className="text-center">
                 <p className="text-sm text-[#153c4b]">
                   Já tem uma conta?{" "}
-                  <Link to="/login" lassName="w-full">
+                  <Link to="/login" className="w-full">
                     <button className="font-medium text-[#153c4b] hover:underline">
                       Entrar
                     </button>
