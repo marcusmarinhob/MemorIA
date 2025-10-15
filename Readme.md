@@ -95,7 +95,10 @@ src/
 │   ├── server.js       # Servidor principal
 │   └── service/        # Serviços (API Gemini)
 ├── assets/             # Imagens e recursos
-└── lib/                # Utilitários
+└── lib/             # Utilitários
+    └── auth.js
+    └── firebase.js
+    └── firestore.js     
 ```
 
 ## Funcionalidades
@@ -187,6 +190,7 @@ Configuração em `vite.config.js` com:
 3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`)
 4. Push para a branch (`git push origin feature/nova-feature`)
 5. Abra um Pull Request
+
 
 
 
