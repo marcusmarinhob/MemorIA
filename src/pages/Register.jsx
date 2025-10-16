@@ -7,17 +7,21 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "@/components/ui/use-toast";
+import { cadastrarUsuario, USER_TYPES } from "../lib/auth";
+import { salvarDadosUsuario } from "../lib/firestore";
 
 const Register = () => {
   const [userType, setUserType] = useState("student");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [nome, setNome] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
 
-    if (!email || !password) {
+    if (!email || !password || !confirmPassword || !nome) {
       toast({
         title: "Campos obrigatórios",
         description: "Por favor, preencha todos os campos.",
@@ -26,26 +30,76 @@ const Register = () => {
       return;
     }
 
-    localStorage.setItem("userType", userType);
-    localStorage.setItem("userEmail", email);
+    if (password !== confirmPassword) {
+      toast({
+        title: "Senhas não conferem",
+        description: "Confirme a senha corretamente.",
+        variant: "destructive",
+      });
+      return;
+    }
+    try {
+      const tipoMap = {
+        student: USER_TYPES.ALUNO,
+        teacher: USER_TYPES.PROFESSOR,
+        parent: USER_TYPES.RESPONSAVEL,
+      };
 
-    toast({
-      title: "Cadastro realizado!",
-      description: "Bem-vindo(a) ao SabIA! 🎉",
-    });
+      //const tipoUsuario = tipoMap[userType];
+      const tipoUsuario = tipoMap[userType];
+      const resultado = await cadastrarUsuario(email, password, userType, nome);
 
-    switch (userType) {
-      case "student":
-        navigate("/student");
-        break;
-      case "parent":
-        navigate("/parents");
-        break;
-      case "teacher":
-        navigate("/teacher");
-        break;
-      default:
-        navigate("/student");
+      if (!resultado.success) {
+        toast({
+          title: "Erro no cadastro",
+          description: resultado.error,
+          variant: "destructive",
+        });
+        return;
+      }
+
+      const salvar = await salvarDadosUsuario(resultado.user.uid, {
+        nome: nome,
+        email: email,
+        tipo: tipoUsuario,
+      });
+
+      if (!salvar.success) {
+        toast({
+          title: "Erro ao salvar dados",
+          description: salvar.error,
+          variant: "destructive",
+        });
+        return;
+      }
+
+      localStorage.setItem("userType", userType);
+      localStorage.setItem("userEmail", email);
+
+      toast({
+        title: "Cadastro realizado!",
+        description: "Bem-vindo(a) ao SabIA! 🎉",
+      });
+
+      switch (userType) {
+        case "student":
+          navigate("/student");
+          break;
+        case "parent":
+          navigate("/parents");
+          break;
+        case "teacher":
+          navigate("/teacher");
+          break;
+        default:
+          navigate("/student");
+      }
+    } catch (error) {
+      toast({
+        title: "Erro inesperado",
+        description: "Ocorreu um erro durante o cadastro.",
+        variant: "destructive",
+      });
     }
   };
 
@@ -114,7 +168,23 @@ const Register = () => {
                 </div>
               </div>
 
-              <form onSubmit={handleLogin} className="space-y-4">
+              <form onSubmit={handleRegister} className="space-y-4">
+                <div>
+                  <label className="text-sm font-medium mb-2 block text-[#153c4b]">
+                    Nome
+                  </label>
+                  <div className="relative">
+                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#153c4b]" />
+                    <Input
+                      type="text"
+                      value={nome}
+                      onChange={(e) => setNome(e.target.value)}
+                      placeholder="seu Nome"
+                      className="pl-10 h-12 rounded-full bg-white/40 text-[#153c4b] placeholder:text-[#153c4b]/70 border-none focus:ring-2 focus:ring-yellow-400"
+                    />
+                  </div>
+                </div>
+
                 <div>
                   <label className="text-sm font-medium mb-2 block text-[#153c4b]">
                     Email
@@ -154,8 +224,8 @@ const Register = () => {
                     <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#153c4b]" />
                     <Input
                       type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
                       placeholder="••••••••"
                       className="pl-10 h-12 rounded-full bg-white/40 text-[#153c4b] placeholder:text-[#153c4b]/70 border-none focus:ring-2 focus:ring-yellow-400"
                     />
@@ -172,7 +242,7 @@ const Register = () => {
               <div className="text-center">
                 <p className="text-sm text-[#153c4b]">
                   Já tem uma conta?{" "}
-                  <Link to="/login" lassName="w-full">
+                  <Link to="/login" className="w-full">
                     <button className="font-medium text-[#153c4b] hover:underline">
                       Entrar
                     </button>
