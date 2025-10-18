@@ -2,7 +2,8 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  onAuthStateChanged
+  onAuthStateChanged,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "./firebase.js";
 
@@ -12,7 +13,13 @@ export const USER_TYPES = {
   RESPONSAVEL: "responsavel",
 };
 
-export async function cadastrarUsuario(email, senha, tipoUsuario, nome) {
+export async function cadastrarUsuario(
+  email,
+  senha,
+  tipoUsuario,
+  nome,
+  materia
+) {
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -21,11 +28,16 @@ export async function cadastrarUsuario(email, senha, tipoUsuario, nome) {
     );
     const user = userCredential.user;
 
+    if (tipoUsuario === USER_TYPES.PROFESSOR) {
+      await updateProfile(user, { displayName: nome });
+    }
+
     return {
       success: true,
       user: user,
       tipo: tipoUsuario,
       nome: nome,
+      materia: materia,
       email: email,
     };
   } catch (error) {
@@ -57,7 +69,7 @@ export async function loginUsuario(email, senha) {
       user: user,
     };
   } catch (error) {
-     let mensagemErro = "Erro ao fazer login";
+    let mensagemErro = "Erro ao fazer login";
 
     if (error.code === "auth/user-not-found") {
       mensagemErro = "Usuário não encontrado";

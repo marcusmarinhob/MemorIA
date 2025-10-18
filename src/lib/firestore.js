@@ -15,6 +15,7 @@ export async function salvarDadosUsuario(uid, userData) {
   try {
     const dadosCompletos = {
       ...userData,
+      materia: userData.materia || null,
       ativo: true,
       createdAt: serverTimestamp(),
       ultimoAcesso: serverTimestamp(),
