@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Users, Menu , Home, BookOpen, Brain, GraduationCap, LogIn } from "lucide-react";
+import {
+  Users,
+  Menu,
+  Home,
+  BookOpen,
+  Brain,
+  GraduationCap,
+  LogIn,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ImagemSabia from "../assets/sabia2.jpg";
 
@@ -54,7 +62,9 @@ const Navigation = () => {
                     }`}
                   >
                     <Icon className="w-4 h-4 flex-shrink-0" />
-                    <span className="whitespace-nowrap text-sm font-medium">{item.label}</span>
+                    <span className="whitespace-nowrap text-sm font-medium">
+                      {item.label}
+                    </span>
                   </div>
                 </Link>
               );
@@ -110,7 +120,9 @@ const Navigation = () => {
                     }`}
                   >
                     <Icon className="w-5 h-5 flex-shrink-0" />
-                    <span className="whitespace-nowrap text-base font-medium">{item.label}</span>
+                    <span className="whitespace-nowrap text-base font-medium">
+                      {item.label}
+                    </span>
                   </div>
                 </Link>
               );
@@ -121,6 +133,18 @@ const Navigation = () => {
                 <LogIn className="w-4 h-4 mr-2" /> Entrar
               </Button>
             </Link>
+
+            {/*
+            <Link to="/login" onClick={async () => {
+              await logoutUsuario();
+              setIsOpen(false);
+              window.location.href = "/login";
+              }}>
+              <Button className="bg-[#153c4b] text-white w-full flex items-center justify-center px-4 py-3 rounded-full hover:bg-[#1a4a5c] transition-all duration-200">
+                <LogIn className="w-4 h-4 mr-2" /> Sair
+              </Button>
+            </Link>
+            */}
           </div>
         </div>
       )}
