@@ -16,7 +16,7 @@ const TeacherArea = () => {
       teacher: {
         name: "Prof. João Santos",
         subject: "Matemática",
-        school: "Escola Municipal Dom Pedro",
+        school: "Escola Cidadã Integral Técnica (ECIT) Severino Cabral",
         totalStudents: 120,
         activeClasses: 4,
       },
