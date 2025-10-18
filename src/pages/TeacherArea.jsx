@@ -27,16 +27,18 @@ const TeacherArea = () => {
       const fetchUserData = async () => {
         const userDataResult = await buscarDadosUsuario(user.uid);
         let userName = "professor";
+        let userMateria = "materia";
 
         if (userDataResult.success) {
           userName = userDataResult.data.nome || "professor";
+          userMateria = userDataResult.data.materia || "materia";
         }
 
         const mockData = {
           teacher: {
             uid: user.uid,
             name: userName.toUpperCase(),
-            subject: "Matemática",
+            subject: userMateria.toUpperCase(),
             school: "Escola Cidadã Integral Técnica (ECIT) Severino Cabral",
             totalStudents: 120,
             activeClasses: 4,

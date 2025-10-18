@@ -13,6 +13,7 @@ import { salvarDadosUsuario } from "../lib/firestore";
 const Register = () => {
   const [userType, setUserType] = useState("student");
   const [email, setEmail] = useState("");
+  const [materia, setMateria] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [nome, setNome] = useState("");
@@ -45,7 +46,6 @@ const Register = () => {
         parent: USER_TYPES.RESPONSAVEL,
       };
 
-      //const tipoUsuario = tipoMap[userType];
       const tipoUsuario = tipoMap[userType];
       const resultado = await cadastrarUsuario(email, password, userType, nome);
 
@@ -61,6 +61,7 @@ const Register = () => {
       const salvar = await salvarDadosUsuario(resultado.user.uid, {
         nome: nome,
         email: email,
+        materia: userType === "teacher" ? materia : null,
         tipo: tipoUsuario,
       });
 
@@ -200,6 +201,24 @@ const Register = () => {
                     />
                   </div>
                 </div>
+
+                {userType === "teacher" && (
+                  <div>
+                    <label className="text-sm font-medium mb-2 block text-[#153c4b]">
+                      Matéria
+                    </label>
+                    <div className="relative">
+                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#153c4b]" />
+                      <Input
+                        type="text"
+                        value={materia}
+                        onChange={(e) => setMateria(e.target.value)}
+                        placeholder="matéria que leciona"
+                        className="pl-10 h-12 rounded-full bg-white/40 text-[#153c4b] placeholder:text-[#153c4b]/70 border-none focus:ring-2 focus:ring-yellow-400"
+                      />
+                    </div>
+                  </div>
+                )}
 
                 <div>
                   <label className="text-sm font-medium mb-2 block text-[#153c4b]">
