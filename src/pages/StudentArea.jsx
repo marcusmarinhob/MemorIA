@@ -17,44 +17,105 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import ChatBot from "@/components/ChatBot";
 import { toast } from "@/components/ui/use-toast";
+import { buscarDadosUsuario } from "../lib/firestore";
+import { onAuthStateChange } from "../lib/auth";
 
 const StudentArea = () => {
   const [studentData, setStudentData] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const mockData = {
-      name: "Ana Silva",
-      grade: "7º ano",
-      points: 1250,
-      level: 5,
-      streak: 7,
-      subjects: [
-        { name: "Matemática", progress: 75, nextTopic: "Equações do 1º grau" },
-        { name: "Português", progress: 85, nextTopic: "Análise sintática" },
-        { name: "Ciências", progress: 60, nextTopic: "Sistema digestório" },
-        { name: "História", progress: 70, nextTopic: "Brasil Colonial" },
-        { name: "Geografia", progress: 55, nextTopic: "Clima brasileiro" },
-      ],
-      recentActivities: [
-        { subject: "Matemática", topic: "Frações", score: 95, time: "2 horas atrás" },
-        { subject: "Português", topic: "Verbos", score: 88, time: "1 dia atrás" },
-        { subject: "Ciências", topic: "Células", score: 92, time: "2 dias atrás" },
-      ],
-      achievements: [
-        { name: "Primeira Semana", icon: "🎯", unlocked: true },
-        { name: "Matemático", icon: "🔢", unlocked: true },
-        { name: "Leitor Voraz", icon: "📚", unlocked: false },
-        { name: "Cientista", icon: "🔬", unlocked: false },
-      ],
+    const unsubscribe = onAuthStateChange((user) => {
+      if (!user) {
+        window.location.href = "/login";
+        return;
+      }
+
+      setCurrentUser(user);
+      fetchUserData(user);
+    });
+
+    const fetchUserData = async (user) => {
+      const userDataResult = await buscarDadosUsuario(user.uid);
+      let userName = "students";
+
+      if (userDataResult.success) {
+        userName = userDataResult.data.nome || "students";
+      }
+
+      const mockData = {
+        uid: user.uid,
+        name: userName.toUpperCase(),
+        grade: "7º ano",
+        points: 1250,
+        level: 5,
+        streak: 7,
+        subjects: [
+          {
+            name: "Matemática",
+            progress: 75,
+            nextTopic: "Equações do 1º grau",
+          },
+          { name: "Português", progress: 85, nextTopic: "Análise sintática" },
+          { name: "Ciências", progress: 60, nextTopic: "Sistema digestório" },
+          { name: "História", progress: 70, nextTopic: "Brasil Colonial" },
+          { name: "Geografia", progress: 55, nextTopic: "Clima brasileiro" },
+        ],
+        recentActivities: [
+          {
+            subject: "Matemática",
+            topic: "Frações",
+            score: 95,
+            time: "2 horas atrás",
+          },
+          {
+            subject: "Português",
+            topic: "Verbos",
+            score: 88,
+            time: "1 dia atrás",
+          },
+          {
+            subject: "Ciências",
+            topic: "Células",
+            score: 92,
+            time: "2 dias atrás",
+          },
+        ],
+        achievements: [
+          { name: "Primeira Semana", icon: "🎯", unlocked: true },
+          { name: "Matemático", icon: "🔢", unlocked: true },
+          { name: "Leitor Voraz", icon: "📚", unlocked: false },
+          { name: "Cientista", icon: "🔬", unlocked: false },
+        ],
+      };
+
+      setStudentData(mockData);
+      setLoading(false);
     };
 
-    setStudentData(mockData);
+    fetchUserData();
+
+    return () => unsubscribe();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#edbf21] mx-auto"></div>
+          <p className="mt-4 text-[#153c4b]">Carregando...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!studentData) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-white bg-[#153c4b]">
-        <div className="text-xl">Carregando...</div>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-[#153c4b]">Erro ao carregar dados.</p>
+        </div>
       </div>
     );
   }
@@ -85,10 +146,30 @@ const StudentArea = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 text-center">
             {[
-              { icon: Trophy, value: studentData.points, label: "Pontos", color: "yellow-400" },
-              { icon: Star, value: `Nível ${studentData.level}`, label: "Experiência", color: "purple-400" },
-              { icon: Clock, value: studentData.streak, label: "Dias seguidos", color: "yellow-300" },
-              { icon: BookOpen, value: studentData.grade, label: "Série", color: "green-400" },
+              {
+                icon: Trophy,
+                value: studentData.points,
+                label: "Pontos",
+                color: "yellow-400",
+              },
+              {
+                icon: Star,
+                value: `Nível ${studentData.level}`,
+                label: "Experiência",
+                color: "purple-400",
+              },
+              {
+                icon: Clock,
+                value: studentData.streak,
+                label: "Dias seguidos",
+                color: "yellow-300",
+              },
+              {
+                icon: BookOpen,
+                value: studentData.grade,
+                label: "Série",
+                color: "green-400",
+              },
             ].map((item, index) => (
               <motion.div
                 key={index}
@@ -97,7 +178,9 @@ const StudentArea = () => {
                 transition={{ delay: 0.2 + index * 0.1 }}
               >
                 <Card className="rounded-2xl p-6 bg-[#153c4b] text-white shadow-lg">
-                  <item.icon className={`w-8 h-8 mx-auto mb-2 text-${item.color}`} />
+                  <item.icon
+                    className={`w-8 h-8 mx-auto mb-2 text-${item.color}`}
+                  />
                   <div className="text-2xl font-bold">{item.value}</div>
                   <p className="text-white/80 text-sm">{item.label}</p>
                 </Card>
@@ -126,17 +209,24 @@ const StudentArea = () => {
                         className="p-4 bg-white/10 rounded-xl flex flex-col gap-2"
                       >
                         <div className="flex items-center justify-between">
-                          <h3 className="font-semibold text-white">{subject.name}</h3>
+                          <h3 className="font-semibold text-white">
+                            {subject.name}
+                          </h3>
                           <Badge
                             variant="secondary"
                             className="text-xs"
-                            style={{ backgroundColor: "#edbf21", color: "#153c4b" }}
+                            style={{
+                              backgroundColor: "#edbf21",
+                              color: "#153c4b",
+                            }}
                           >
                             {subject.progress}%
                           </Badge>
                         </div>
                         <Progress value={subject.progress} className="mb-2" />
-                        <p className="text-sm text-white/80">Próximo: {subject.nextTopic}</p>
+                        <p className="text-sm text-white/80">
+                          Próximo: {subject.nextTopic}
+                        </p>
                         <Button
                           variant="outline"
                           size="md"
@@ -169,16 +259,23 @@ const StudentArea = () => {
                         className="p-3 bg-white/10 rounded-xl flex flex-col gap-1"
                       >
                         <div className="flex items-center justify-between">
-                          <span className="font-medium text-white text-sm">{activity.subject}</span>
+                          <span className="font-medium text-white text-sm">
+                            {activity.subject}
+                          </span>
                           <Badge
                             variant="secondary"
                             className="text-xs"
-                            style={{ backgroundColor: "#edbf21", color: "#153c4b" }}
+                            style={{
+                              backgroundColor: "#edbf21",
+                              color: "#153c4b",
+                            }}
                           >
                             {activity.score}%
                           </Badge>
                         </div>
-                        <p className="text-xs text-white/80">{activity.topic}</p>
+                        <p className="text-xs text-white/80">
+                          {activity.topic}
+                        </p>
                         <p className="text-xs text-white/60">{activity.time}</p>
                       </div>
                     ))}
@@ -206,8 +303,12 @@ const StudentArea = () => {
                               : "bg-white/10 opacity-60"
                           }`}
                         >
-                          <div className="text-2xl mb-1">{achievement.icon}</div>
-                          <p className="text-xs text-white font-medium">{achievement.name}</p>
+                          <div className="text-2xl mb-1">
+                            {achievement.icon}
+                          </div>
+                          <p className="text-xs text-white font-medium">
+                            {achievement.name}
+                          </p>
                         </div>
                       ))}
                     </div>
@@ -255,7 +356,6 @@ const StudentArea = () => {
                   </CardContent>
                 </Card>
               </motion.div>
-
             </div>
           </div>
         </div>
