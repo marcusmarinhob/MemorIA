@@ -7,14 +7,36 @@ import TeacherStats from "@/components/teacher/TeacherStats";
 import ClassList from "@/components/teacher/ClassList";
 import TopicPerformance from "@/components/teacher/TopicPerformance";
 import TeacherSidebar from "@/components/teacher/TeacherSidebar";
+import { buscarDadosUsuario } from "../lib/firestore";
+import { onAuthStateChange } from "../lib/auth";
+import { auth } from "../lib/firebase";
 
 const TeacherArea = () => {
   const [teacherData, setTeacherData] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const unsubscribe = onAuthStateChange((user) => {
+      if (!user) {
+        window.location.href = "/login";
+        return;
+      }
+      
+        setCurrentUser(user);
+        
+      const fetchUserData = async () => { 
+        const userDataResult = await buscarDadosUsuario(user.uid);
+        let userName = "professor";
+
+        if (userDataResult.success) {
+          userName = userDataResult.data.nome || "professor";
+        }
+
     const mockData = {
       teacher: {
-        name: "Prof. João Santos",
+        uid: user.uid,
+        name: userName.toUpperCase(),
         subject: "Matemática",
         school: "Escola Cidadã Integral Técnica (ECIT) Severino Cabral",
         totalStudents: 120,
@@ -111,13 +133,33 @@ const TeacherArea = () => {
       ],
     };
 
-    setTeacherData(mockData);
+      setTeacherData(mockData);
+      setLoading(false);
+  };
+  
+  fetchUserData();
+});
+
+    return () => unsubscribe();
   }, []);
+   
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#edbf21] mx-auto"></div>
+          <p className="mt-4 text-[#153c4b]">Carregando...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!teacherData) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-white text-xl">Carregando...</div>
+        <div className="text-center">
+          <p className="text-[#153c4b]">Erro ao carregar dados.</p>
+        </div>
       </div>
     );
   }

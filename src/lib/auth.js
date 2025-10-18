@@ -2,6 +2,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  onAuthStateChanged
 } from "firebase/auth";
 import { auth } from "./firebase.js";
 
@@ -91,5 +92,5 @@ export function getUsuarioAtual() {
 }
 
 export function onAuthStateChange(callback) {
-  return auth.onAuthStateChanged(callback);
+  return onAuthStateChanged(auth, callback);
 }
