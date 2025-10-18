@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ImagemSabia from "../assets/sabia2.jpg";
+import { logoutUsuario } from "../lib/auth";
 
 const Navigation = () => {
   const location = useLocation();
@@ -78,6 +79,16 @@ const Navigation = () => {
                 Entrar
               </Button>
             </Link>
+            {/*<Button
+              onClick={async () => {
+                await logoutUsuario();
+                window.location.href = "/login";
+              }}
+              className="bg-[#153c4b] text-white px-6 py-3 font-semibold rounded-full flex items-center justify-center hover:bg-[#1a4a5c] hover:scale-105 transition-all duration-200 shadow-md border-0"
+            >
+              <LogIn className="w-4 h-4 mr-2" />
+              Sair
+            </Button>*/}
           </div>
 
           <div className="md:hidden">
@@ -135,15 +146,15 @@ const Navigation = () => {
             </Link>
 
             {/*
-            <Link to="/login" onClick={async () => {
+            <Button
+             onClick={async () => {
               await logoutUsuario();
               setIsOpen(false);
               window.location.href = "/login";
-              }}>
-              <Button className="bg-[#153c4b] text-white w-full flex items-center justify-center px-4 py-3 rounded-full hover:bg-[#1a4a5c] transition-all duration-200">
+              }}
+               className="bg-[#153c4b] text-white w-full flex items-center justify-center px-4 py-3 rounded-full hover:bg-[#1a4a5c] transition-all duration-200">
                 <LogIn className="w-4 h-4 mr-2" /> Sair
               </Button>
-            </Link>
             */}
           </div>
         </div>
