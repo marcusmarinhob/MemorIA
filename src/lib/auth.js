@@ -6,6 +6,9 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "./firebase.js";
+import {doc, getDoc, setDoc} from "firebase/firestore"
+import { db } from "./firebase.js";
+
 
 export const USER_TYPES = {
   PROFESSOR: "professor",
@@ -27,6 +30,15 @@ export async function cadastrarUsuario(
       senha
     );
     const user = userCredential.user;
+
+    await setDoc(doc(db, "users", user.uid), {
+      email: email,
+      tipo: tipoUsuario,
+      nome: nome,
+      materia: materia || null,
+      ativo: true,
+      createdAt: new Date(),
+    });
 
     if (tipoUsuario === USER_TYPES.PROFESSOR) {
       await updateProfile(user, { displayName: nome });
@@ -64,9 +76,15 @@ export async function loginUsuario(email, senha) {
     const userCredential = await signInWithEmailAndPassword(auth, email, senha);
     const user = userCredential.user;
 
+    const userDoc = await getDoc(doc(db, "users", user.uid));
+    const userData = userDoc.data();
+
     return {
       success: true,
       user: user,
+      role: userData.tipo,
+      nome: userData.nome,
+      tipo: userData.tipo
     };
   } catch (error) {
     let mensagemErro = "Erro ao fazer login";

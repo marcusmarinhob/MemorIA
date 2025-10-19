@@ -40,14 +40,15 @@ const Register = () => {
       return;
     }
     try {
-      const tipoMap = {
-        student: USER_TYPES.ALUNO,
-        teacher: USER_TYPES.PROFESSOR,
-        parent: USER_TYPES.RESPONSAVEL,
-      };
+      
+    const tipoMap = {
+      student: "aluno",
+      teacher: "professor",
+      parent: "responsavel",
+    };
 
       const tipoUsuario = tipoMap[userType];
-      const resultado = await cadastrarUsuario(email, password, userType, nome);
+      const resultado = await cadastrarUsuario(email, password, tipoUsuario, nome, userType === "teacher" ? materia : null);
 
       if (!resultado.success) {
         toast({
@@ -64,8 +65,40 @@ const Register = () => {
         materia: userType === "teacher" ? materia : null,
         tipo: tipoUsuario,
       });
+      
+      localStorage.setItem("userType", tipoUsuario);
+      localStorage.setItem("userEmail", email);
+      localStorage.setItem("userName", nome);
+      
+    toast({
+      title: "Cadastro realizado!",
+      description: "Bem-vindo(a) ao SabIA! 🎉",
+    });
 
-      if (!salvar.success) {
+    switch (tipoUsuario) {
+      case "aluno":
+        navigate("/student");
+        break;
+      case "responsavel":
+        navigate("/parents");
+        break;
+      case "professor":
+        navigate("/teacher");
+        break;
+      default:
+        navigate("/student");
+      }
+    } catch (error) {
+      toast({
+        title: "Erro inesperado",
+        description: "Ocorreu um erro durante o cadastro.",
+        variant: "destructive",
+      });
+    }
+  }; 
+
+
+     /* if (!salvar.success) {
         toast({
           title: "Erro ao salvar dados",
           description: salvar.error,
@@ -102,7 +135,7 @@ const Register = () => {
         variant: "destructive",
       });
     }
-  };
+  }; */
 
   const userTypes = [
     { id: "student", label: "Estudante", icon: "🎓" },

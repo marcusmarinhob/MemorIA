@@ -74,6 +74,24 @@ const Login = () => {
       }
 
       const userData = resultadoFirestore.data;
+      
+      const tipoMap = {
+        student: "aluno",
+        teacher: "professor",
+        parent: "responsavel"
+      }
+
+      const tipoEsperado = tipoMap[userType];
+      const tipoUsuario = userData.tipo;
+
+      if(tipoUsuario !== tipoEsperado) {
+        toast({
+        title: "Acesso negado",
+        description: `Este email é de um ${tipoUsuario}, não ${userType}`,
+        variant: "destructive",
+      });
+      return;
+    }
 
       /*const tipoMap = {
         student: USER_TYPES.ALUNO,
@@ -90,7 +108,7 @@ const Login = () => {
           variant: "destructive",
         });
         return;
-      }*/
+      }
 
       const tipoReverseMap = {
         [USER_TYPES.ALUNO]: "student",
@@ -101,20 +119,20 @@ const Login = () => {
       const tipoNoFirestore = userData.tipo;
       const tipoEsperadoNoLogin = userType;
 
-      if (tipoEsperadoNoLogin !== userType) {
+      if (tipoNoFirestore!== userType) {
         toast({
           title: "Acesso negado",
           description: `Este email é de um ${tipoNoFirestore}, não ${userType}`,
           variant: "destructive",
         });
         return;
-      }
+      } */
 
       await atualizarDadosUsuario(uid, {
         ultimoAcesso: new Date(),
       });
 
-      localStorage.setItem("userType", userType);
+      localStorage.setItem("userType", tipoUsuario);
       localStorage.setItem("userEmail", email);
       localStorage.setItem("userName", userData.nome);
 
@@ -123,18 +141,18 @@ const Login = () => {
         description: `Bem-vindo(a) ${userData.nome}! 🎉`,
       });
 
-      switch (userType) {
-        case "student":
+      switch (tipoUsuario) {
+        case "aluno":
           navigate("/student");
           break;
-        case "parent":
+        case "responsavel":
           navigate("/parents");
           break;
-        case "teacher":
+        case "professor":
           navigate("/teacher");
           break;
         default:
-          navigate("/student");
+          navigate("/");
       }
     } catch (error) {
       toast({

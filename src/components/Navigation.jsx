@@ -16,13 +16,15 @@ import { logoutUsuario } from "../lib/auth";
 const Navigation = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const userRole = localStorage.getItem("userType");
 
   const navItems = [
     { path: "/", label: "Início", icon: Home },
     { path: "/library", label: "Biblioteca", icon: BookOpen },
     { path: "/how-ai-works", label: "Como a IA Funciona?", icon: Brain },
-    { path: "/parents", label: "Responsáveis", icon: Users },
-    { path: "/teacher", label: "Professores", icon: GraduationCap },
+    ...(userRole === "responsavel" ? [{ path: "/parents", label: "Responsáveis", icon: Users }] : []),
+    ...(userRole === "professor" ? [{ path: "/teacher", label: "Professores", icon: GraduationCap }] : []),
+    ...(userRole === "aluno" ? [{ path: "/student", label: "Meu Progresso", icon: GraduationCap }] : []),
   ];
 
   return (
