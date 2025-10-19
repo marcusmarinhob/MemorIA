@@ -22,9 +22,15 @@ const Navigation = () => {
     { path: "/", label: "Início", icon: Home },
     { path: "/library", label: "Biblioteca", icon: BookOpen },
     { path: "/how-ai-works", label: "Como a IA Funciona?", icon: Brain },
-    ...(userRole === "responsavel" ? [{ path: "/parents", label: "Responsáveis", icon: Users }] : []),
-    ...(userRole === "professor" ? [{ path: "/teacher", label: "Professores", icon: GraduationCap }] : []),
-    ...(userRole === "aluno" ? [{ path: "/student", label: "Meu Progresso", icon: GraduationCap }] : []),
+    ...(userRole === "responsavel"
+      ? [{ path: "/parents", label: "Responsáveis", icon: Users }]
+      : []),
+    ...(userRole === "professor"
+      ? [{ path: "/teacher", label: "Professores", icon: GraduationCap }]
+      : []),
+    ...(userRole === "aluno"
+      ? [{ path: "/student", label: "Estudante", icon: GraduationCap }]
+      : []),
   ];
 
   return (
