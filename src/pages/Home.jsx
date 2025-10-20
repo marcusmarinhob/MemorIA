@@ -91,7 +91,7 @@ const Home = () => {
 
           <p className="text-xl md:text-2xl text-[#153c4b] max-w-2xl mx-auto">
             A plataforma de tutoria com inteligência artificial <br />
-            que transforma o aprendizado dos alunos do 6º ao 9º ano
+            que transforma o aprendizado dos alunos do 6 ao 9 ano
           </p>
 
           <div className="flex justify-center mt-10">
