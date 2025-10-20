@@ -1,19 +1,36 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Users, Menu , Home, BookOpen, Brain, GraduationCap, LogIn } from "lucide-react";
+import {
+  Users,
+  Menu,
+  Home,
+  BookOpen,
+  Brain,
+  GraduationCap,
+  LogIn,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ImagemSabia from "../assets/sabia2.jpg";
+import { logoutUsuario } from "../lib/auth";
 
 const Navigation = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const userRole = localStorage.getItem("userType");
 
   const navItems = [
     { path: "/", label: "Início", icon: Home },
     { path: "/library", label: "Biblioteca", icon: BookOpen },
     { path: "/how-ai-works", label: "Como a IA Funciona?", icon: Brain },
-    { path: "/parents", label: "Responsáveis", icon: Users },
-    { path: "/teacher", label: "Professores", icon: GraduationCap },
+    ...(userRole === "responsavel"
+      ? [{ path: "/parents", label: "Responsáveis", icon: Users }]
+      : []),
+    ...(userRole === "professor"
+      ? [{ path: "/teacher", label: "Professores", icon: GraduationCap }]
+      : []),
+    ...(userRole === "aluno"
+      ? [{ path: "/student", label: "Estudante", icon: GraduationCap }]
+      : []),
   ];
 
   return (
@@ -54,7 +71,9 @@ const Navigation = () => {
                     }`}
                   >
                     <Icon className="w-4 h-4 flex-shrink-0" />
-                    <span className="whitespace-nowrap text-sm font-medium">{item.label}</span>
+                    <span className="whitespace-nowrap text-sm font-medium">
+                      {item.label}
+                    </span>
                   </div>
                 </Link>
               );
@@ -68,6 +87,16 @@ const Navigation = () => {
                 Entrar
               </Button>
             </Link>
+            {/*<Button
+              onClick={async () => {
+                await logoutUsuario();
+                window.location.href = "/login";
+              }}
+              className="bg-[#153c4b] text-white px-6 py-3 font-semibold rounded-full flex items-center justify-center hover:bg-[#1a4a5c] hover:scale-105 transition-all duration-200 shadow-md border-0"
+            >
+              <LogIn className="w-4 h-4 mr-2" />
+              Sair
+            </Button>*/}
           </div>
 
           <div className="md:hidden">
@@ -110,7 +139,9 @@ const Navigation = () => {
                     }`}
                   >
                     <Icon className="w-5 h-5 flex-shrink-0" />
-                    <span className="whitespace-nowrap text-base font-medium">{item.label}</span>
+                    <span className="whitespace-nowrap text-base font-medium">
+                      {item.label}
+                    </span>
                   </div>
                 </Link>
               );
@@ -121,6 +152,18 @@ const Navigation = () => {
                 <LogIn className="w-4 h-4 mr-2" /> Entrar
               </Button>
             </Link>
+
+            {/*
+            <Button
+             onClick={async () => {
+              await logoutUsuario();
+              setIsOpen(false);
+              window.location.href = "/login";
+              }}
+               className="bg-[#153c4b] text-white w-full flex items-center justify-center px-4 py-3 rounded-full hover:bg-[#1a4a5c] transition-all duration-200">
+                <LogIn className="w-4 h-4 mr-2" /> Sair
+              </Button>
+            */}
           </div>
         </div>
       )}
