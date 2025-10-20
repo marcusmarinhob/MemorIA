@@ -87,6 +87,7 @@ src/
 │   ├── teacher/        # Componentes específicos para professores
 │   ├── ChatBot.jsx     # Chatbot principal
 │   └── Navigation.jsx  # Navegação
+|   └── PrivateRoute.jsx #Rotas privadas
 ├── pages/              # Páginas da aplicação
 │   ├── Home.jsx        # Página inicial
 |   ├── Dashboard.jsx   # Área de meu progresso
@@ -105,6 +106,7 @@ src/
     └── auth.js         # Autenticação
     └── firebase.js     # Configuração do firebase
     └── firestore.js    # Banco de dados login e cadastro
+└── App.jsx
 ```
 
 ## Funcionalidades
@@ -196,6 +198,7 @@ Configuração em `vite.config.js` com:
 3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`)
 4. Push para a branch (`git push origin feature/nova-feature`)
 5. Abra um Pull Request
+
 
 
 
