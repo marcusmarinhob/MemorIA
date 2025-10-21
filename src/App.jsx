@@ -16,10 +16,12 @@ import TeacherArea from "@/pages/TeacherArea.jsx";
 import Login from "@/pages/Login.jsx";
 import Register from "@/pages/Register";
 import PrivateRoute from "@/components/PrivateRoute";
+import Logout from "@/components/Logout";
 
 function App() {
   return (
     <Router>
+      <Logout/>
       <div className="min-h-screen">
         <Routes>
           <Route path="/" element={<Home />} />
