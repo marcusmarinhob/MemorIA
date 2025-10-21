@@ -16,6 +16,7 @@ import Navigation from "@/components/Navigation";
 import ChatBot from "@/components/ChatBot";
 import { toast } from "@/components/ui/use-toast";
 import Apresentacao from "../Videos/apresentacao.mp4";
+import { Link } from "react-router-dom";
 
 const HowAIWorks = () => {
   const [showVideo, setShowVideo] = useState(false);
@@ -408,21 +409,16 @@ const HowAIWorks = () => {
                 Comece agora e descubra como a inteligência artificial pode
                 transformar seus estudos!
               </p>
-              <Button
-                size="lg"
-                className="bg-[#edbf21] text-[#153c4b] text-2xl sm:text-2xl px-8 sm:px-16 py-4 sm:py-6 font-bold rounded-full flex items-center justify-center 
+              <Link to="/login">
+                <Button
+                  size="lg"
+                  className="bg-[#edbf21] text-[#153c4b] text-2xl sm:text-2xl px-8 sm:px-16 py-4 sm:py-6 font-bold rounded-full flex items-center justify-center 
              hover:bg-[#153c4b] hover:text-[#edbf21] hover:scale-105 transition duration-300 mx-auto"
-                onClick={() =>
-                  toast({
-                    title: "Demonstração",
-                    description:
-                      "🚧 Esta funcionalidade ainda não está implementada—mas não se preocupe! Você pode solicitá-la no seu próximo prompt! 🚀",
-                  })
-                }
-              >
-                Começar Agora
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
+                >
+                  Começar Agora
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
             </motion.div>
           </div>
         </div>
