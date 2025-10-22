@@ -88,6 +88,7 @@ src/
 │   ├── ChatBot.jsx     # Chatbot principal
 │   └── Navigation.jsx  # Navegação
 |   └── PrivateRoute.jsx #Rotas privadas
+|   └── Logout.jsx      # Logout automático
 ├── pages/              # Páginas da aplicação
 │   ├── Home.jsx        # Página inicial
 |   ├── Dashboard.jsx   # Área de meu progresso
@@ -198,6 +199,7 @@ Configuração em `vite.config.js` com:
 3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`)
 4. Push para a branch (`git push origin feature/nova-feature`)
 5. Abra um Pull Request
+
 
 
 
