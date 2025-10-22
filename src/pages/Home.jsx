@@ -84,7 +84,6 @@ const Home = () => {
           transition={{ duration: 0.8 }}
           className="space-y-10"
         >
-
           <h1 className="text-5xl mt-32 md:text-8xl font-bold text-[#edbf21]">
             Aprenda com o <br /> SabIA
           </h1>
@@ -284,7 +283,8 @@ const Home = () => {
               SabIA
             </p>
             <div className="flex items-center justify-center gap-4">
-              <Link to="/how-ai-works">
+              {/* Modificação aqui: direcionando para /login */}
+              <Link to="/login">
                 <Button
                   variant="outline"
                   size="lg"
