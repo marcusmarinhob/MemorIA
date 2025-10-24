@@ -40,15 +40,20 @@ const Register = () => {
       return;
     }
     try {
-      
-    const tipoMap = {
-      student: "aluno",
-      teacher: "professor",
-      parent: "responsavel",
-    };
+      const tipoMap = {
+        student: "aluno",
+        teacher: "professor",
+        parent: "responsavel",
+      };
 
       const tipoUsuario = tipoMap[userType];
-      const resultado = await cadastrarUsuario(email, password, tipoUsuario, nome, userType === "teacher" ? materia : null);
+      const resultado = await cadastrarUsuario(
+        email,
+        password,
+        tipoUsuario,
+        nome,
+        userType === "teacher" ? materia : null
+      );
 
       if (!resultado.success) {
         toast({
@@ -65,64 +70,24 @@ const Register = () => {
         materia: userType === "teacher" ? materia : null,
         tipo: tipoUsuario,
       });
-      
+
       localStorage.setItem("userType", tipoUsuario);
       localStorage.setItem("userEmail", email);
       localStorage.setItem("userName", nome);
-      
-    toast({
-      title: "Cadastro realizado!",
-      description: "Bem-vindo(a) ao SabIA! 🎉",
-    });
-
-    switch (tipoUsuario) {
-      case "aluno":
-        navigate("/student");
-        break;
-      case "responsavel":
-        navigate("/parents");
-        break;
-      case "professor":
-        navigate("/teacher");
-        break;
-      default:
-        navigate("/student");
-      }
-    } catch (error) {
-      toast({
-        title: "Erro inesperado",
-        description: "Ocorreu um erro durante o cadastro.",
-        variant: "destructive",
-      });
-    }
-  }; 
-
-
-     /* if (!salvar.success) {
-        toast({
-          title: "Erro ao salvar dados",
-          description: salvar.error,
-          variant: "destructive",
-        });
-        return;
-      }
-
-      localStorage.setItem("userType", userType);
-      localStorage.setItem("userEmail", email);
 
       toast({
         title: "Cadastro realizado!",
         description: "Bem-vindo(a) ao SabIA! 🎉",
       });
 
-      switch (userType) {
-        case "student":
+      switch (tipoUsuario) {
+        case "aluno":
           navigate("/student");
           break;
-        case "parent":
+        case "responsavel":
           navigate("/parents");
           break;
-        case "teacher":
+        case "professor":
           navigate("/teacher");
           break;
         default:
@@ -135,7 +100,7 @@ const Register = () => {
         variant: "destructive",
       });
     }
-  }; */
+  };
 
   const userTypes = [
     { id: "student", label: "Estudante", icon: "🎓" },

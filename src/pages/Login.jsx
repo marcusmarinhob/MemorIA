@@ -92,42 +92,7 @@ const Login = () => {
       });
       return;
     }
-
-      /*const tipoMap = {
-        student: USER_TYPES.ALUNO,
-        teacher: USER_TYPES.PROFESSOR,
-        parent: USER_TYPES.RESPONSAVEL,
-      };
-
-      const tipoEsperado = tipoMap[userType];
-
-      if (userData.tipo !== tipoEsperado) {
-        toast({
-          title: "Acesso negado",
-          description: `Este email é de um ${userData.tipo}, não ${tipoEsperado}`,
-          variant: "destructive",
-        });
-        return;
-      }
-
-      const tipoReverseMap = {
-        [USER_TYPES.ALUNO]: "student",
-        [USER_TYPES.PROFESSOR]: "teacher",
-        [USER_TYPES.RESPONSAVEL]: "parent",
-      };
-
-      const tipoNoFirestore = userData.tipo;
-      const tipoEsperadoNoLogin = userType;
-
-      if (tipoNoFirestore!== userType) {
-        toast({
-          title: "Acesso negado",
-          description: `Este email é de um ${tipoNoFirestore}, não ${userType}`,
-          variant: "destructive",
-        });
-        return;
-      } */
-
+    
       await atualizarDadosUsuario(uid, {
         ultimoAcesso: new Date(),
       });
