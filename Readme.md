@@ -2,7 +2,7 @@
 
 Plataforma educacional por meio de jogo da memória que utiliza IA para oferecer tutoria personalizada para estudantes do ensino fundamental (6º ao 9º ano).
 
-**Site:**
+**Site:** https://memor-ia-jet.vercel.app/
 
 ## Tecnologias
 
@@ -107,3 +107,4 @@ Marcus Marinho- [GitHub](https://github.com/marcusmarinhob)
 ## Orientador do projeto:
 
 Sergio Natan- [GitHub](https://github.com/sergionatans)
+
