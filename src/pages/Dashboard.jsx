@@ -15,7 +15,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/Navigation";
-import ChatBot from "@/components/ChatBot";
 
 const Dashboard = () => {
   const [dashboardData, setDashboardData] = useState(null);
@@ -99,7 +98,7 @@ const Dashboard = () => {
   return (
     <>
       <Helmet>
-        <title>Meu Progresso - sabIA</title>
+        <title>Meu Progresso - MemorIA</title>
         <meta
           name="description"
           content="Acompanhe seu progresso de aprendizado, estatísticas detalhadas e recomendações personalizadas da IA."
@@ -246,8 +245,6 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-
-        <ChatBot />
       </div>
     </>
   );

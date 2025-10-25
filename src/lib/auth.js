@@ -13,7 +13,6 @@ import { db } from "./firebase.js";
 export const USER_TYPES = {
   PROFESSOR: "professor",
   ALUNO: "aluno",
-  RESPONSAVEL: "responsavel",
 };
 
 export async function cadastrarUsuario(

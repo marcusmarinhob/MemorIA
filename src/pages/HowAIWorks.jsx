@@ -13,9 +13,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
-import ChatBot from "@/components/ChatBot";
 import { toast } from "@/components/ui/use-toast";
-import Apresentacao from "../Videos/apresentacao.mp4";
 import { Link } from "react-router-dom";
 
 const HowAIWorks = () => {
@@ -23,9 +21,9 @@ const HowAIWorks = () => {
   const steps = [
     {
       number: "01",
-      title: "Você faz uma pergunta",
+      title: "Você escolher uma carta",
       description:
-        "Digite sua dúvida sobre qualquer matéria escolar no chat da sabIA",
+        "Selecione uma opção de pergunta e outra de resposta, a IA analisa e julga certa ou errada.",
       icon: MessageCircle,
       color: "from-blue-500 to-cyan-500",
     },
@@ -57,7 +55,7 @@ const HowAIWorks = () => {
     {
       title: "Linguagem Simples",
       description:
-        "A sabIA explica conceitos complexos de forma fácil de entender, usando exemplos do seu dia a dia.",
+        "O MemorIA explica conceitos complexos de forma fácil de entender, usando o jogo.",
       icon: MessageCircle,
       example:
         "Em vez de dizer 'equação linear', ela explica: 'vamos descobrir o valor de x, como um mistério matemático!'",
@@ -101,17 +99,6 @@ const HowAIWorks = () => {
       color: "#153c4b",
     },
     {
-      title: "Para Responsáveis",
-      points: [
-        "Monitore o progresso do seu filho",
-        "Receba relatórios semanais",
-        "Veja onde precisa de mais ajuda",
-        "Acompanhe as conquistas",
-      ],
-      icon: "👨‍👩‍👧‍👦",
-      color: "#153c4b",
-    },
-    {
       title: "Para Professores",
       points: [
         "Identifique dificuldades da turma",
@@ -127,7 +114,7 @@ const HowAIWorks = () => {
   return (
     <>
       <Helmet>
-        <title>Como a IA Funciona? - sabIA</title>
+        <title>Como a IA Funciona? - MemorIA</title>
         <meta
           name="description"
           content="Entenda como nossa inteligência artificial personaliza o aprendizado e adapta o conteúdo para cada estudante do ensino fundamental."
@@ -159,7 +146,7 @@ const HowAIWorks = () => {
                 Descubra como nossa inteligência artificial torna o aprendizado
                 mais fácil, divertido e personalizado para você!
               </p>
-              <Button
+             {/* <Button
                 size="lg"
                 className="bg-[#153c4b]  text-[#edbf21] text-2xl sm:text-2xl px-8 sm:px-16 py-4 sm:py-6 font-bold rounded-full flex items-center justify-center 
              hover:bg-[#edbf21] hover:text-[#153c4b] hover:scale-105 transition duration-300 mx-auto"
@@ -174,7 +161,7 @@ const HowAIWorks = () => {
               <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
                 <div className="relative w-11/12 md:w-3/4 lg:w-1/2">
                   <video
-                    src={Apresentacao}
+                    src={}
                     controls
                     autoPlay
                     className="w-full rounded-2xl shadow-lg"
@@ -188,7 +175,22 @@ const HowAIWorks = () => {
                 </div>
               </div>
             )}
-
+              */}
+              <Button
+  size="lg"
+  className="bg-[#153c4b] text-[#edbf21] text-2xl px-8 py-4 font-bold rounded-full mx-auto hover:bg-[#edbf21] hover:text-[#153c4b] hover:scale-105 transition-all duration-300"
+  onClick={() =>
+    toast({
+      title: "Criar Atividade",
+      description:
+        "🚧 Esta funcionalidade ainda não está implementada — mas não se preocupe! Você pode solicitá-la no seu próximo prompt! 🚀",
+    })
+  }
+>
+  <Play className="w-5 h-5 mr-2" />
+  Ver Demonstração
+</Button>
+    </motion.div>
             <section className="py-12 px-6 bg-gradient-to-b from-[#e6f7f6] to-white relative">
               <div className="max-w-7xl mx-auto">
                 <motion.div
@@ -201,7 +203,7 @@ const HowAIWorks = () => {
                     Como funciona em 4 passos simples
                   </h2>
                   <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8 text-[#153c4b]/50">
-                    Veja como é fácil aprender com o SabIA
+                    Veja como é fácil aprender com o MemorIA
                   </p>
                 </motion.div>
 
@@ -305,46 +307,42 @@ const HowAIWorks = () => {
                   Benefícios para toda a comunidade escolar
                 </h2>
                 <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8 text-[#153c4b]/50">
-                  O SabIA ajuda estudantes, responsáveis e professores
+                  O MemorIA ajuda estudantes e professores
                 </p>
               </motion.div>
 
-              <div className="grid md:grid-cols-3 gap-8">
-                {benefits.map((benefit, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                  >
-                    <Card className="h-full rounded-2xl shadow-xl bg-white/20 backdrop-blur-lg border border-white/30">
-                      <CardHeader className="text-center">
-                        <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-[#153c4b]">
-                          <span className="text-2xl text-[#edbf21]">
-                            {benefit.icon}
-                          </span>
-                        </div>
-                        <CardTitle className="text-[#153c4b]">
-                          {benefit.title}
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <ul className="space-y-3">
-                          {benefit.points.map((point, pointIndex) => (
-                            <li
-                              key={pointIndex}
-                              className="flex items-center text-[#153c4b]/70"
-                            >
-                              <div className="w-2 h-2 rounded-full mr-3 bg-[#edbf21]" />
-                              {point}
-                            </li>
-                          ))}
-                        </ul>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
+              <div className="grid md:grid-cols-2 gap-8 justify-items-center">
+  {benefits.slice(0, 2).map((benefit, index) => (
+    <motion.div
+      key={index}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+    >
+      <Card className="h-full rounded-2xl shadow-xl bg-white/20 backdrop-blur-lg border border-white/30">
+        <CardHeader className="text-center">
+          <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-[#153c4b]">
+            <span className="text-2xl text-[#edbf21]">{benefit.icon}</span>
+          </div>
+          <CardTitle className="text-[#153c4b]">{benefit.title}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ul className="space-y-3">
+            {benefit.points.map((point, pointIndex) => (
+              <li
+                key={pointIndex}
+                className="flex items-center text-[#153c4b]/70"
+              >
+                <div className="w-2 h-2 rounded-full mr-3 bg-[#edbf21]" />
+                {point}
+              </li>
+            ))}
+          </ul>
+        </CardContent>
+      </Card>
+    </motion.div>
+  ))}
+</div>
             </section>
 
             <motion.div
@@ -422,8 +420,6 @@ const HowAIWorks = () => {
             </motion.div>
           </div>
         </div>
-
-        <ChatBot />
       </div>
     </>
   );

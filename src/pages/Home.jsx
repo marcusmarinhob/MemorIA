@@ -14,14 +14,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
-import ChatBot from "@/components/ChatBot";
-import ImagemSabia from "../assets/sabia.jpeg";
-import IconeEsquerdo from "../assets/icone-esquerdo.jpeg";
-import IconeDireito from "../assets/icone-direito.jpeg";
-import ImagemLateral from "../assets/livros.jpeg";
-import ImagemAprendizado from "../assets/Aula-Personalizada.png";
-import ImagemTutor from "../assets/tutor.png";
-import ImagemOrganizacao from "../assets/organizacao.png";
+import ImagemMemoria from "../assets/minha_logo.png";
 
 const Home = () => {
   const features = [
@@ -50,7 +43,7 @@ const Home = () => {
   const testimonials = [
     {
       name: "Ana, 13 anos",
-      text: "A sabIA me ajudou muito em matemática! Agora entendo frações de verdade!",
+      text: "A MemorIA me ajudou muito em matemática! Agora entendo frações de verdade!",
       grade: "7º ano",
     },
     {
@@ -68,7 +61,9 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>sabIA - Plataforma de Tutoria com Inteligência Artificial</title>
+        <title>
+          MemorIA - Plataforma de um jogo tutor com Inteligência Artificial
+        </title>
         <meta
           name="description"
           content="Plataforma educativa com IA para alunos do 6º ao 9º ano. Tutoria personalizada, conteúdo adaptativo e acompanhamento do progresso."
@@ -77,19 +72,27 @@ const Home = () => {
 
       <Navigation />
 
-      <section className="pt-10 pb-16 px-4 text-center relative">
+      <section className="pt-32 pb-16 px-4 text-center relative">
         <motion.div
-          initial={{ opacity: 1, y: 30 }}
+          initial={{ opacity: 0, y: 35 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="space-y-10"
+          className="space-y-6"
         >
+          <div className="floating-animation">
+            <img
+              alt="Mascote MemorIA: Golfinho com vários componentes da IA"
+              className="w-60 h-60 mx-auto rounded-2xl"
+              src={ImagemMemoria}
+            />
+          </div>
+
           <h1 className="text-5xl mt-32 md:text-8xl font-bold text-[#edbf21]">
-            Aprenda com o <br /> SabIA
+            Aprenda jogando com o <br /> MemorIA
           </h1>
 
           <p className="text-xl md:text-2xl text-[#153c4b] max-w-2xl mx-auto">
-            A plataforma de tutoria com inteligência artificial <br />
+            A plataforma de jogo da Memória com inteligência artificial <br />
             que transforma o aprendizado dos alunos do 6 ao 9 ano
           </p>
 
@@ -116,7 +119,7 @@ const Home = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-[#153c4b] mb-6">
-              Por que escolher o SabIA?
+              Por que escolher o MemorIA?
             </h2>
             <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
               Nossa inteligência artificial foi desenvolvida especialmente para
@@ -168,7 +171,7 @@ const Home = () => {
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             <div className="relative rounded-2xl overflow-hidden shadow-lg">
               <img
-                src={ImagemAprendizado}
+                src={ImagemMemoria}
                 alt="Aprendizado personalizado"
                 className="w-full h-64 object-cover"
               />
@@ -178,7 +181,7 @@ const Home = () => {
             </div>
             <div className="relative rounded-2xl overflow-hidden shadow-lg">
               <img
-                src={ImagemOrganizacao}
+                src={ImagemMemoria}
                 alt="Conteúdo completo e organizado"
                 className="w-full h-64 object-cover"
               />
@@ -188,7 +191,7 @@ const Home = () => {
             </div>
             <div className="relative rounded-2xl overflow-hidden shadow-lg">
               <img
-                src={ImagemTutor}
+                src={ImagemMemoria}
                 alt="Acompanhamento para pais e professores"
                 className="w-full h-64 object-cover"
               />
@@ -280,10 +283,9 @@ const Home = () => {
             </h2>
             <p className="text-xl text-[#153c4b] mb-8">
               Junte-se a milhares de estudantes que já estão aprendendo com o
-              SabIA
+              MemorIA
             </p>
             <div className="flex items-center justify-center gap-4">
-              {/* Modificação aqui: direcionando para /login */}
               <Link to="/login">
                 <Button
                   variant="outline"
@@ -298,8 +300,6 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
-
-      <ChatBot />
     </>
   );
 };

@@ -11,7 +11,6 @@ import {
 } from "firebase/firestore";
 import { db } from "./firebase.js";
 
-
 export async function salvarDadosUsuario(uid, userData) {
   try {
     const dadosCompletos = {

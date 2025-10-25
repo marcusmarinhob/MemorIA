@@ -10,13 +10,13 @@ import Home from "@/pages/Home.jsx";
 import StudentArea from "@/pages/StudentArea.jsx";
 import Library from "@/pages/Library.jsx";
 import Dashboard from "@/pages/Dashboard.jsx";
-import ParentsArea from "@/pages/ParentsArea.jsx";
 import HowAIWorks from "@/pages/HowAIWorks.jsx";
 import TeacherArea from "@/pages/TeacherArea.jsx";
 import Login from "@/pages/Login.jsx";
 import Register from "@/pages/Register";
 import PrivateRoute from "@/components/PrivateRoute";
 import Logout from "@/components/Logout";
+import Memory from "@/pages/Memory.jsx";
 
 function App() {
   return (
@@ -38,10 +38,10 @@ function App() {
             }
           />
           <Route
-            path="/parents"
+            path="/memory"
             element={
-              <PrivateRoute allowedRoles={["responsavel"]}>
-                <ParentsArea />
+              <PrivateRoute allowedRoles={["aluno", "professor"]}>
+                <Memory />
               </PrivateRoute>
             }
           />

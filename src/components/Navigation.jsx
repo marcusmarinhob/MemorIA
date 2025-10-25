@@ -10,8 +10,9 @@ import {
   LogIn,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import ImagemSabia from "../assets/sabia2.jpg";
+import ImagemMemoria from "../assets/minha_logo.png";
 import { logoutUsuario } from "../lib/auth";
+import { Zap } from "lucide-react";
 
 const Navigation = () => {
   const location = useLocation();
@@ -22,15 +23,15 @@ const Navigation = () => {
     { path: "/", label: "Início", icon: Home },
     { path: "/library", label: "Biblioteca", icon: BookOpen },
     { path: "/how-ai-works", label: "Como a IA Funciona?", icon: Brain },
-    ...(userRole === "responsavel"
-      ? [{ path: "/parents", label: "Responsáveis", icon: Users }]
-      : []),
     ...(userRole === "professor"
       ? [{ path: "/teacher", label: "Professores", icon: GraduationCap }]
       : []),
     ...(userRole === "aluno"
       ? [{ path: "/student", label: "Estudante", icon: GraduationCap }]
       : []),
+     ...(userRole === "professor" || userRole === "aluno"
+    ? [{ path: "/memory", label: "Game", icon: Zap }] 
+    : []),
   ];
 
   return (
@@ -46,14 +47,14 @@ const Navigation = () => {
           <Link to="/" className="flex items-center space-x-3">
             <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden shadow-md">
               <img
-                src={ImagemSabia}
-                alt="Sabiá"
+                src={ImagemMemoria}
+                alt="MemorIA"
                 className="w-full h-full object-cover rounded-full"
               />
             </div>
             <span className="text-2xl font-bold">
-              <span style={{ color: "#edbf21" }}>Sab</span>
-              <span style={{ color: "#153c4b" }}>IA</span>
+              <span style={{ color: "#153c4b" }}>Memor</span>
+              <span style={{ color: "#edbf21" }}>IA</span>
             </span>
           </Link>
 

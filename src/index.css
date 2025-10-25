@@ -33,7 +33,7 @@
 
 body {
   font-family: "Urbanist", sans-serif;
-  background-image: url(../src/assets/logo.jpeg);
+  background: #acf9f2;
   background-size: 100% 100%;
   background-attachment: fixed;
   min-height: 100vh;

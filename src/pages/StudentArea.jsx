@@ -15,7 +15,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import ChatBot from "@/components/ChatBot";
 import { toast } from "@/components/ui/use-toast";
 import { buscarDadosUsuario } from "../lib/firestore";
 import { onAuthStateChange } from "../lib/auth";
@@ -359,8 +358,6 @@ const StudentArea = () => {
             </div>
           </div>
         </div>
-
-        <ChatBot />
       </div>
     </>
   );

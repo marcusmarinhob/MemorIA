@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
-import ChatBot from "@/components/ChatBot";
 import TeacherStats from "@/components/teacher/TeacherStats";
 import ClassList from "@/components/teacher/ClassList";
 import TopicPerformance from "@/components/teacher/TopicPerformance";
@@ -221,8 +220,6 @@ const TeacherArea = () => {
             </div>
           </div>
         </div>
-
-        <ChatBot />
       </div>
     </>
   );

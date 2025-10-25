@@ -78,7 +78,6 @@ const Login = () => {
       const tipoMap = {
         student: "aluno",
         teacher: "professor",
-        parent: "responsavel"
       }
 
       const tipoEsperado = tipoMap[userType];
@@ -110,9 +109,6 @@ const Login = () => {
         case "aluno":
           navigate("/student");
           break;
-        case "responsavel":
-          navigate("/parents");
-          break;
         case "professor":
           navigate("/teacher");
           break;
@@ -129,14 +125,13 @@ const Login = () => {
   };
   const userTypes = [
     { id: "student", label: "Estudante", icon: "🎓" },
-    { id: "parent", label: "Responsável", icon: "👨‍👩‍👧‍👦" },
     { id: "teacher", label: "Professor", icon: "👩‍🏫" },
   ];
 
   return (
     <>
       <Helmet>
-        <title>Login - SabIA</title>
+        <title>Login - MemorIA</title>
         <meta
           name="description"
           content="Faça login na plataforma sabIA e acesse sua área personalizada de estudos com inteligência artificial."
@@ -164,7 +159,7 @@ const Login = () => {
                 <Brain className="w-8 h-8 text-[#edbf21]" />
               </div>
               <CardTitle className="text-2xl font-bold text-[#153c4b]">
-                Entrar no SabIA
+                Entrar no MemorIA
               </CardTitle>
               <p className="text-[#153c4b]">Acesse sua área personalizada</p>
             </CardHeader>
@@ -174,7 +169,7 @@ const Login = () => {
                 <label className="text-sm font-medium mb-3 block text-[#153c4b]">
                   Eu sou:
                 </label>
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-2 gap-2">
                   {userTypes.map((type) => (
                     <button
                       key={type.id}

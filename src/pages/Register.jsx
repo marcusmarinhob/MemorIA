@@ -43,7 +43,6 @@ const Register = () => {
       const tipoMap = {
         student: "aluno",
         teacher: "professor",
-        parent: "responsavel",
       };
 
       const tipoUsuario = tipoMap[userType];
@@ -77,15 +76,12 @@ const Register = () => {
 
       toast({
         title: "Cadastro realizado!",
-        description: "Bem-vindo(a) ao SabIA! 🎉",
+        description: "Bem-vindo(a) ao MemorIA! 🎉",
       });
 
       switch (tipoUsuario) {
         case "aluno":
           navigate("/student");
-          break;
-        case "responsavel":
-          navigate("/parents");
           break;
         case "professor":
           navigate("/teacher");
@@ -104,14 +100,13 @@ const Register = () => {
 
   const userTypes = [
     { id: "student", label: "Estudante", icon: "🎓" },
-    { id: "parent", label: "Responsável", icon: "👨‍👩‍👧‍👦" },
     { id: "teacher", label: "Professor", icon: "👩‍🏫" },
   ];
 
   return (
     <>
       <Helmet>
-        <title>Cadastro - SabIA</title>
+        <title>Cadastro - MemorIA</title>
         <meta
           name="description"
           content="Faça login na plataforma sabIA e acesse sua área personalizada de estudos com inteligência artificial."
@@ -139,7 +134,7 @@ const Register = () => {
                 <Brain className="w-8 h-8 text-[#edbf21]" />
               </div>
               <CardTitle className="text-2xl font-bold text-[#153c4b]">
-                Cadastre-se no SabIA
+                Cadastre-se no MemorIA
               </CardTitle>
               <p className="text-[#153c4b]">Acesse sua área personalizada</p>
             </CardHeader>
@@ -149,7 +144,7 @@ const Register = () => {
                 <label className="text-sm font-medium mb-3 block text-[#153c4b]">
                   Eu sou:
                 </label>
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-2 gap-2">
                   {userTypes.map((type) => (
                     <button
                       key={type.id}

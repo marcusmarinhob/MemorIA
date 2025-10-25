@@ -15,7 +15,6 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/Navigation";
-import ChatBot from "@/components/ChatBot";
 import { toast } from "@/components/ui/use-toast";
 
 const Library = () => {
@@ -130,7 +129,7 @@ const Library = () => {
   return (
     <>
       <Helmet>
-        <title>Biblioteca de Conteúdos - sabIA</title>
+        <title>Biblioteca de Conteúdos - MemorIA</title>
         <meta
           name="description"
           content="Acesse nossa biblioteca completa de conteúdos educacionais organizados por série e matéria, com tutoria personalizada por IA."
@@ -315,8 +314,6 @@ const Library = () => {
             </motion.div>
           )}
         </div>
-
-        <ChatBot />
       </div>
     </>
   );

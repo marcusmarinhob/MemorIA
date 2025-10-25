@@ -38,12 +38,10 @@ const TopicPerformance = ({ topics }) => {
               className="p-4 bg-white/10 rounded-xl border border-white/10"
             >
               <div className="flex items-center justify-between mb-2">
-                {/* Nome do tópico */}
                 <span className="font-semibold text-white">
                   {topic.topic}
                 </span>
 
-                {/* Dificuldade + badge */}
                 <div className="flex items-center space-x-2">
                   <span
                     className={`text-sm font-medium ${getDifficultyColor(
@@ -61,7 +59,6 @@ const TopicPerformance = ({ topics }) => {
                 </div>
               </div>
 
-              {/* Barra de progresso */}
               <Progress value={100 - topic.difficulty} />
             </div>
           ))}
