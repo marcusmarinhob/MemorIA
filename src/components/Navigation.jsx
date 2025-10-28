@@ -29,9 +29,9 @@ const Navigation = () => {
     ...(userRole === "aluno"
       ? [{ path: "/student", label: "Estudante", icon: GraduationCap }]
       : []),
-     ...(userRole === "professor" || userRole === "aluno"
-    ? [{ path: "/memory", label: "Game", icon: Zap }] 
-    : []),
+    ...(userRole === "professor" || userRole === "aluno"
+      ? [{ path: "/memory", label: "Game", icon: Zap }]
+      : []),
   ];
 
   return (
@@ -82,22 +82,26 @@ const Navigation = () => {
           </div>
 
           <div className="hidden md:block">
-            <Link to="/login">
-              <Button className="bg-[#153c4b] text-white px-6 py-3 font-semibold rounded-full flex items-center justify-center hover:bg-[#1a4a5c] hover:scale-105 transition-all duration-200 shadow-md border-0">
+            {userRole ? (
+              <Button
+                onClick={async () => {
+                  await logoutUsuario();
+                  localStorage.removeItem("userType");
+                  window.location.href = "/login";
+                }}
+                className="bg-[#153c4b] text-white px-6 py-3 font-semibold rounded-full flex items-center justify-center hover:bg-[#1a4a5c] hover:scale-105 transition-all duration-200 shadow-md border-0"
+              >
                 <LogIn className="w-4 h-4 mr-2" />
-                Entrar
+                Sair
               </Button>
-            </Link>
-            {/*<Button
-              onClick={async () => {
-                await logoutUsuario();
-                window.location.href = "/login";
-              }}
-              className="bg-[#153c4b] text-white px-6 py-3 font-semibold rounded-full flex items-center justify-center hover:bg-[#1a4a5c] hover:scale-105 transition-all duration-200 shadow-md border-0"
-            >
-              <LogIn className="w-4 h-4 mr-2" />
-              Sair
-            </Button>*/}
+            ) : (
+              <Link to="/login">
+                <Button className="bg-[#153c4b] text-white px-6 py-3 font-semibold rounded-full flex items-center justify-center hover:bg-[#1a4a5c] hover:scale-105 transition-all duration-200 shadow-md border-0">
+                  <LogIn className="w-4 h-4 mr-2" />
+                  Entrar
+                </Button>
+              </Link>
+            )}
           </div>
 
           <div className="md:hidden">
@@ -148,23 +152,25 @@ const Navigation = () => {
               );
             })}
 
-            <Link to="/login" onClick={() => setIsOpen(false)}>
-              <Button className="bg-[#153c4b] text-white w-full flex items-center justify-center px-4 py-3 rounded-full hover:bg-[#1a4a5c] transition-all duration-200">
-                <LogIn className="w-4 h-4 mr-2" /> Entrar
-              </Button>
-            </Link>
-
-            {/*
-            <Button
-             onClick={async () => {
-              await logoutUsuario();
-              setIsOpen(false);
-              window.location.href = "/login";
-              }}
-               className="bg-[#153c4b] text-white w-full flex items-center justify-center px-4 py-3 rounded-full hover:bg-[#1a4a5c] transition-all duration-200">
+            {userRole ? (
+              <Button
+                onClick={async () => {
+                  await logoutUsuario();
+                  localStorage.removeItem("userType");
+                  setIsOpen(false);
+                  window.location.href = "/login";
+                }}
+                className="bg-[#153c4b] text-white w-full flex items-center justify-center px-4 py-3 rounded-full hover:bg-[#1a4a5c] transition-all duration-200"
+              >
                 <LogIn className="w-4 h-4 mr-2" /> Sair
               </Button>
-            */}
+            ) : (
+              <Link to="/login" onClick={() => setIsOpen(false)}>
+                <Button className="bg-[#153c4b] text-white w-full flex items-center justify-center px-4 py-3 rounded-full hover:bg-[#1a4a5c] transition-all duration-200">
+                  <LogIn className="w-4 h-4 mr-2" /> Entrar
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       )}
