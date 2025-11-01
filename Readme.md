@@ -81,7 +81,7 @@ src/
 │   ├── ui/             # Componentes de interface
 │   ├── teacher/        # Componentes específicos para professores
 │   └── Navigation.jsx  # Navegação
-|   └── PrivateRoute.jsx #Rotas privadas
+|   └── PrivateRoute.jsx # Rotas privadas
 |   └── Logout.jsx      # Logout automático
 ├── pages/              # Páginas da aplicação
 │   ├── Home.jsx        # Página inicial
