@@ -276,7 +276,7 @@ export default function Memory() {
               <span style={{ color: "#153c4b" }}>Memor</span>
               <span style={{ color: "#edbf21" }}>IA</span>
             </h1>
-            <div className="text-2xl text-[#f39c12]">🎓</div>
+            <div className="text-2xl text-[#f39c12]"></div>
           </div>
           <p className="text-lg mb-6 text-[#0a5d61]">
             Jogo da Memória com IA 🤖
