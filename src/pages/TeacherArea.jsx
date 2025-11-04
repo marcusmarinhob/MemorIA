@@ -8,6 +8,7 @@ import TopicPerformance from "@/components/teacher/TopicPerformance";
 import TeacherSidebar from "@/components/teacher/TeacherSidebar";
 import { buscarDadosUsuario } from "../lib/firestore";
 import { onAuthStateChange } from "../lib/auth";
+import FileList from "@/components/teacher/File";
 
 const TeacherArea = () => {
   const [teacherData, setTeacherData] = useState(null);
@@ -209,6 +210,7 @@ const TeacherArea = () => {
 
             <div className="grid lg:grid-cols-3 gap-8">
               <div className="lg:col-span-2 space-y-6">
+                <FileList />
                 <ClassList classes={teacherData.classes} />
                 <TopicPerformance topics={teacherData.topicPerformance} />
               </div>

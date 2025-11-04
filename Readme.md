@@ -4,6 +4,41 @@ Plataforma educacional por meio de jogo da memória que utiliza IA para oferecer
 
 **Site:** https://memor-ia-jet.vercel.app/
 
+## Fluxo de Execução Detalhado
+
+| Etapa | Descrição                                              | Tecnologia        |
+| ----- | ------------------------------------------------------ | ----------------- |
+| **1** | Professor envia PDF no `FileList.jsx`                  | React             |
+| **2** | PDF é enviado para o backend                           | Express (Node.js) |
+| **3** | Backend envia o arquivo para o serviço Python          | Flask             |
+| **4** | Python converte o PDF em Markdown e retorna o conteúdo | Docling           |
+| **5** | Backend salva os metadados e o conteúdo no banco       | Supabase          |
+| **6** | Frontend exibe o status de sucesso ou resultado        | React             |
+
+---
+
+## Tecnologias Envolvidas
+
+### **Python**
+
+- Versão: `3.10.11`
+- Plataforma: `Windows-10-10.0.26100-SP0`
+- Implementação: `cpython-310`
+
+### **Docling**
+
+| Componente     | Versão |
+| -------------- | ------ |
+| **Docling**    | 2.55.0 |
+| **Core**       | 2.48.4 |
+| **IBM Models** | 3.9.1  |
+| **Parse**      | 4.5.0  |
+
+### **Flask**
+
+- Versão: `3.1.2`
+- Werkzeug: `3.1.3`
+
 ## Tecnologias
 
 ### Frontend
@@ -23,6 +58,8 @@ Plataforma educacional por meio de jogo da memória que utiliza IA para oferecer
 - Google Gemini AI (gemini-2.0-flash)
 - CORS 2.8.5
 - dotenv 17.2.1
+- Python 3.10.11
+- Flask 3.1.2
 
 ### Ferramentas de Desenvolvimento
 
@@ -92,7 +129,13 @@ src/
 |   ├── Register.jsx    # Área de cadastro
 │   ├── StudentArea.jsx # Área do estudante
 │   ├── TeacherArea.jsx # Área do professor
+├── server/             # Backend Express
+│   ├── server.js       # Servidor principal
+│   └── service/        # Serviços do Supabase
+|   └── routes/         # rota de upload em um servidor Express, correlaciona Docling usando fetch com o Supabase
 ├── assets/             # Imagens e recursos
+├── python              # Estrutura do Backend em Flask
+|   ├── docling_service.py # Estrutura do Docling
 └── lib/                # Utilitários
     └── auth.js         # Autenticação
     └── firebase.js     # Configuração do firebase
@@ -107,4 +150,3 @@ Marcus Marinho- [GitHub](https://github.com/marcusmarinhob)
 ## Orientador do projeto:
 
 Sergio Natan- [GitHub](https://github.com/sergionatans)
-
