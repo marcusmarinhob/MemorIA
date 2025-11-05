@@ -130,12 +130,12 @@ src/
 │   ├── StudentArea.jsx # Área do estudante
 │   ├── TeacherArea.jsx # Área do professor
 ├── server/             # Backend Express
-│   ├── server.js       # Servidor principal
+│   └── server.js       # Servidor principal
 │   └── service/        # Serviços do Supabase
 |   └── routes/         # rota de upload em um servidor Express, correlaciona Docling usando fetch com o Supabase
 ├── assets/             # Imagens e recursos
 ├── python              # Estrutura do Backend em Flask
-|   ├── docling_service.py # Estrutura do Docling
+|   └── docling_service.py # Estrutura do Docling
 └── lib/                # Utilitários
     └── auth.js         # Autenticação
     └── firebase.js     # Configuração do firebase
@@ -150,3 +150,4 @@ Marcus Marinho- [GitHub](https://github.com/marcusmarinhob)
 ## Orientador do projeto:
 
 Sergio Natan- [GitHub](https://github.com/sergionatans)
+
