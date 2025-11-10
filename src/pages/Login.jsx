@@ -78,19 +78,19 @@ const Login = () => {
       const tipoMap = {
         student: "aluno",
         teacher: "professor",
-      }
+      };
 
       const tipoEsperado = tipoMap[userType];
       const tipoUsuario = userData.tipo;
 
-      if(tipoUsuario !== tipoEsperado) {
+      if (tipoUsuario !== tipoEsperado) {
         toast({
-        title: "Acesso negado",
-        description: `Este email é de um ${tipoUsuario}, não ${userType}`,
-        variant: "destructive",
-      });
-      return;
-    }
+          title: "Acesso negado",
+          description: `Este email é de um ${tipoUsuario}, não de ${tipoEsperado}`,
+          variant: "destructive",
+        });
+        return;
+      }
     
       await atualizarDadosUsuario(uid, {
         ultimoAcesso: new Date(),
@@ -106,15 +106,15 @@ const Login = () => {
       });
 
       switch (tipoUsuario) {
-        case "aluno":
-          navigate("/student");
-          break;
-        case "professor":
-          navigate("/teacher");
-          break;
-        default:
-          navigate("/");
-      }
+    case "aluno":
+      navigate("/aluno/home");
+      break;
+    case "professor":
+      navigate("/professor/home");
+      break;
+    default:
+      navigate("/");
+}
     } catch (error) {
       toast({
         title: "Erro inesperado",

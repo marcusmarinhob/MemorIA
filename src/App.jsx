@@ -1,70 +1,130 @@
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
-import { Toaster } from "@/components/ui/toaster";
-import Home from "@/pages/Home.jsx";
-import StudentArea from "@/pages/StudentArea.jsx";
-import Library from "@/pages/Library.jsx";
-import Dashboard from "@/pages/Dashboard.jsx";
-import HowAIWorks from "@/pages/HowAIWorks.jsx";
-import TeacherArea from "@/pages/TeacherArea.jsx";
-import Login from "@/pages/Login.jsx";
-import Register from "@/pages/Register";
-import PrivateRoute from "@/components/PrivateRoute";
-import Logout from "@/components/Logout";
-import Memory from "@/pages/Memory.jsx";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Menu from "./components/Menu";
+
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import RegisterAluno from "./pages/RegisterAluno";
+import RegisterProfessor from "./pages/RegisterProfessor";
+
+import AlunoHome from "./pages/aluno/AlunoHome";
+import AlunoComoFunciona from "./pages/aluno/AlunoComoFunciona";
+import AlunoEstatisticas from "./pages/aluno/AlunoEstatisticas";
+
+import ProfessorHome from "./pages/professor/ProfessorHome";
+import ProfessorComoFunciona from "./pages/professor/ProfessorComoFunciona";
+import ProfessorEstatisticas from "./pages/professor/ProfessorEstatisticas";
 
 function App() {
   return (
     <Router>
-      <Logout/>
-      <div className="min-h-screen">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/how-ai-works" element={<HowAIWorks />} />
-          <Route path="/library" element={<Library />} />
-          <Route
-            path="/student"
-            element={
-              <PrivateRoute allowedRoles={["aluno"]}>
-                <StudentArea />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/memory"
-            element={
-              <PrivateRoute allowedRoles={["aluno", "professor"]}>
-                <Memory />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/teacher"
-            element={
-              <PrivateRoute allowedRoles={["professor"]}>
-                <TeacherArea />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/dashboard"
-            element={
-              <PrivateRoute allowedRoles={["aluno"]}>
-                <Dashboard />
-              </PrivateRoute>
-            }
-          />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-        <Toaster />
-      </div>
+      <Routes>
+        {/* --- Páginas públicas --- */}
+        <Route
+          path="/"
+          element={
+            <>
+              <Menu tipo="publico" />
+              <div className="pt-20"><Home /></div>
+            </>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <>
+              <Menu tipo="publico" />
+              <div className="pt-20"><Login /></div>
+            </>
+          }
+        />
+        <Route
+          path="/register/aluno"
+          element={
+            <>
+              <Menu tipo="publico" />
+              <div className="pt-20"><RegisterAluno /></div>
+            </>
+          }
+        />
+
+        <Route
+          path="/register/professor"
+          element={
+            <>
+              <Menu tipo="publico" />
+              <div className="pt-20"><RegisterProfessor /></div>
+            </>
+          }
+        />
+
+        <Route
+          path="/como-funciona"
+          element={
+            <>
+              <Menu tipo="publico" />
+              <div className="pt-20" />
+            </>
+          }
+        />
+
+        {/* --- Páginas do aluno --- */}
+        <Route
+          path="/aluno/home"
+          element={
+            <>
+              <Menu tipo="aluno" />
+              <div className="pt-20"><AlunoHome /></div>
+            </>
+          }
+        />
+        <Route
+          path="/aluno/como-funciona"
+          element={
+            <>
+              <Menu tipo="aluno" />
+              <div className="pt-20"><AlunoComoFunciona /></div>
+            </>
+          }
+        />
+        <Route
+          path="/aluno/estatisticas"
+          element={
+            <>
+              <Menu tipo="aluno" />
+              <div className="pt-20"><AlunoEstatisticas /></div>
+            </>
+          }
+        />
+
+        {/* --- Páginas do professor --- */}
+        <Route
+          path="/professor/home"
+          element={
+            <>
+              <Menu tipo="professor" />
+              <div className="pt-20"><ProfessorHome /></div>
+            </>
+          }
+        />
+        <Route
+          path="/professor/como-funciona"
+          element={
+            <>
+              <Menu tipo="professor" />
+              <div className="pt-20"><ProfessorComoFunciona /></div>
+            </>
+          }
+        />
+        <Route
+          path="/professor/estatisticas"
+          element={
+            <>
+              <Menu tipo="professor" />
+              <div className="pt-20"><ProfessorEstatisticas /></div>
+            </>
+          }
+        />
+      </Routes>
     </Router>
   );
 }

@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import Navigation from "@/components/Navigation";
 import ImagemMemoria from "../assets/minha_logo.png";
 
 const Home = () => {
@@ -61,16 +60,12 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>
-          MemorIA - Plataforma de um jogo tutor com Inteligência Artificial
-        </title>
+        <title>MemorIA - Plataforma de um jogo tutor com Inteligência Artificial</title>
         <meta
           name="description"
           content="Plataforma educativa com IA para alunos do 6º ao 9º ano. Tutoria personalizada, conteúdo adaptativo e acompanhamento do progresso."
         />
       </Helmet>
-
-      <Navigation />
 
       <section className="pt-32 pb-16 px-4 text-center relative">
         <motion.div
@@ -93,7 +88,7 @@ const Home = () => {
 
           <p className="text-xl md:text-2xl text-[#153c4b] max-w-2xl mx-auto">
             A plataforma de jogo da Memória com inteligência artificial <br />
-            que transforma o aprendizado dos alunos do 6 ao 9 ano
+            que transforma o aprendizado dos alunos do 6º ao 9º ano
           </p>
 
           <div className="flex justify-center mt-10">
@@ -169,36 +164,23 @@ const Home = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 mb-12">
-            <div className="relative rounded-2xl overflow-hidden shadow-lg">
-              <img
-                src={ImagemMemoria}
-                alt="Aprendizado personalizado"
-                className="w-full h-64 object-cover"
-              />
-              <span className="absolute bottom-3 left-3 bg-[#153c4b] text-white px-3 py-1 rounded-full text-sm">
-                Aprendizado personalizado
-              </span>
-            </div>
-            <div className="relative rounded-2xl overflow-hidden shadow-lg">
-              <img
-                src={ImagemMemoria}
-                alt="Conteúdo completo e organizado"
-                className="w-full h-64 object-cover"
-              />
-              <span className="absolute bottom-3 left-3 bg-[#153c4b] text-white px-3 py-1 rounded-full text-sm">
-                Conteúdo completo e organizado
-              </span>
-            </div>
-            <div className="relative rounded-2xl overflow-hidden shadow-lg">
-              <img
-                src={ImagemMemoria}
-                alt="Acompanhamento para pais e professores"
-                className="w-full h-64 object-cover"
-              />
-              <span className="absolute bottom-3 left-3 bg-[#153c4b] text-white px-3 py-1 rounded-full text-sm">
-                Acompanhamento para pais e professores
-              </span>
-            </div>
+            {["Aprendizado personalizado", "Conteúdo completo e organizado", "Acompanhamento para pais e professores"].map(
+              (label, index) => (
+                <div
+                  key={index}
+                  className="relative rounded-2xl overflow-hidden shadow-lg"
+                >
+                  <img
+                    src={ImagemMemoria}
+                    alt={label}
+                    className="w-full h-64 object-cover"
+                  />
+                  <span className="absolute bottom-3 left-3 bg-[#153c4b] text-white px-3 py-1 rounded-full text-sm">
+                    {label}
+                  </span>
+                </div>
+              )
+            )}
           </div>
 
           <div className="text-[#edbf21] bg-[#153c4b] rounded-2xl p-8 mb-12 text-center">
@@ -234,33 +216,27 @@ const Home = () => {
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
+            {testimonials.map((t, i) => (
               <motion.div
-                key={index}
+                key={i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
               >
                 <Card className="h-full rounded-2xl shadow-lg border border-white/10 bg-[#153c4b]">
                   <CardContent className="p-6 text-center">
                     <div className="flex mb-4 justify-center">
-                      {[...Array(5)].map((_, i) => (
+                      {[...Array(5)].map((_, j) => (
                         <Star
-                          key={i}
+                          key={j}
                           className="w-5 h-5 text-[#edbf21] fill-current"
                         />
                       ))}
                     </div>
-                    <p className="text-gray-200 mb-4 italic">
-                      "{testimonial.text}"
-                    </p>
+                    <p className="text-gray-200 mb-4 italic">"{t.text}"</p>
                     <div>
-                      <p className="font-semibold text-[#edbf21]">
-                        {testimonial.name}
-                      </p>
-                      <p className="text-sm text-gray-400">
-                        {testimonial.grade}
-                      </p>
+                      <p className="font-semibold text-[#edbf21]">{t.name}</p>
+                      <p className="text-sm text-gray-400">{t.grade}</p>
                     </div>
                   </CardContent>
                 </Card>
