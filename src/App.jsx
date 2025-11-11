@@ -5,6 +5,10 @@ import ProfessorHome from "./pages/professor/ProfessorHome";
 import ProfessorComoFunciona from "./pages/professor/ProfessorComoFunciona";
 import ProfessorEstatisticas from "./pages/professor/ProfessorEstatisticas";
 
+import AlunoHome from "./pages/aluno/AlunoHome";
+import AlunoComoFunciona from "./pages/aluno/AlunoComoFunciona";
+import AlunoEstatisticas from "./pages/aluno/AlunoEstatisticas";
+
 function App() {
   return (
     <Router>
@@ -46,6 +50,41 @@ function App() {
               <Menu tipo="professor" />
               <div className="pt-20"><ProfessorEstatisticas /></div>
             </>
+          }
+        />
+
+        {/* --- Páginas do aluno --- */}
+        <Route
+          path="/aluno/home"
+          element={
+            <div className="min-h-screen">
+              <Menu tipo="aluno" />
+              <div className="pt-20">
+                <AlunoHome />
+              </div>
+            </div>
+          }
+        />
+        <Route
+          path="/aluno/como-funciona"
+          element={
+            <div className="min-h-screen">
+              <Menu tipo="aluno" />
+              <div className="pt-20">
+                <AlunoComoFunciona />
+              </div>
+            </div>
+          }
+        />
+        <Route
+          path="/aluno/estatisticas"
+          element={
+            <div className="min-h-screen">
+              <Menu tipo="aluno" />
+              <div className="pt-20">
+                <AlunoEstatisticas />
+              </div>
+            </div>
           }
         />
       </Routes>
