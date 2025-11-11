@@ -18,7 +18,7 @@ export default function Menu({ tipo }) {
           {tipo === "publico" && (
             <>
               <Link to="/como-funciona" className="hover:text-blue-600 transition-colors">
-                Como funciona
+                Como funciona?
               </Link>
               
             </>
@@ -26,9 +26,7 @@ export default function Menu({ tipo }) {
 
           {tipo === "aluno" && (
             <>
-              <Link to="/aluno/home" className="hover:text-blue-600 transition-colors">
-                Início
-              </Link>
+    
               <Link to="/aluno/como-funciona" className="hover:text-blue-600 transition-colors">
                 Como funciona?
               </Link>
@@ -40,11 +38,9 @@ export default function Menu({ tipo }) {
 
           {tipo === "professor" && (
             <>
-              <Link to="/professor/home" className="hover:text-blue-600 transition-colors">
-                Início
-              </Link>
+              
               <Link to="/professor/como-funciona" className="hover:text-blue-600 transition-colors">
-                Como funciona
+                Como funciona?
               </Link>
               <Link to="/professor/estatisticas" className="hover:text-blue-600 transition-colors">
                 Estatísticas
@@ -65,7 +61,7 @@ export default function Menu({ tipo }) {
           ) : (
             <Link
               to="/"
-              className="px-5 py-2 rounded-xl bg-gray-100 text-gray-700 font-semibold hover:bg-gray-200 transition-all"
+              className="px-5 py-2 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-all"
             >
               Sair
             </Link>
