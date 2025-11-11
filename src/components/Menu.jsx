@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import logo from "../assets/minha_logo.png";
 
@@ -5,10 +6,9 @@ export default function Menu({ tipo }) {
   return (
     <nav className="fixed top-0 left-0 w-full bg-white shadow-sm border-b border-gray-100 z-50">
       <div className="max-w-7xl mx-auto px-10 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <div className="flex items-center gap-2">
-          <img src={logo} alt="Logo MemorIA" className="h-8 w-auto" />
-          <span className="font-semibold text-gray-800 text-lg">MemorIA</span>
+        {/* Logo  cores #d4a574 #1a7a8a*/ }
+        <div className="flex items-center">
+          <img src={logo} alt="Logo MemorIA" className="h-16 w-auto" />
         </div>
 
         {/* Links centrais */}
