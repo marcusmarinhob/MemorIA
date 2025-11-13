@@ -163,7 +163,7 @@ const Library = () => {
           >
             <div className="grid md:grid-cols-4 gap-4">
               <div className="relative h-12 flex items-center">
-                <Search className="absolute left-4 w-5 h-5 text-white" />
+                <Search className="absolute left-4 w-5 h-5 text-black" />
                 <Input
                   placeholder="Buscar conteúdo..."
                   value={searchTerm}
@@ -176,7 +176,7 @@ const Library = () => {
                 <select
                   value={selectedGrade}
                   onChange={(e) => setSelectedGrade(e.target.value)}
-                  className="w-full px-4 h-12 rounded-full bg-[#edbf21] text-white appearance-none border-none shadow-sm focus:ring-2 focus:ring-yellow-400"
+                  className="w-full px-4 h-12 rounded-full bg-[#edbf21] text-black appearance-none border-none shadow-sm focus:ring-2 focus:ring-yellow-400"
                 >
                   <option value="all">Todas as séries</option>
                   {grades.map((grade) => (
@@ -185,14 +185,14 @@ const Library = () => {
                     </option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white pointer-events-none" />
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-black pointer-events-none" />
               </div>
 
               <div className="relative h-12 flex items-center">
                 <select
                   value={selectedSubject}
                   onChange={(e) => setSelectedSubject(e.target.value)}
-                  className="w-full px-4 h-12 rounded-full bg-[#edbf21] text-white appearance-none border-none shadow-sm focus:ring-2 focus:ring-yellow-400"
+                  className="w-full px-4 h-12 rounded-full bg-[#edbf21] text-black appearance-none border-none shadow-sm focus:ring-2 focus:ring-yellow-400"
                 >
                   <option value="all">Todas as matérias</option>
                   {subjects.map((subject) => (
@@ -201,12 +201,12 @@ const Library = () => {
                     </option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white pointer-events-none" />
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-black pointer-events-none" />
               </div>
 
               <div className="h-12 flex items-center">
                 <Button
-                  className="w-full h-12 bg-[#edbf21] text-white font-bold rounded-full hover:bg-[#edbf21] hover:scale-105 transition-all duration-300 flex items-center justify-center"
+                  className="w-full h-12 bg-[#edbf21] text-black font-bold rounded-full hover:bg-[#edbf21] hover:scale-105 transition-all duration-300 flex items-center justify-center"
                   onClick={() =>
                     toast({
                       title: "Filtros Avançados",
@@ -215,7 +215,7 @@ const Library = () => {
                     })
                   }
                 >
-                  <Filter className="w-5 h-5 mr-2 text-white" />
+                  <Filter className="w-5 h-5 mr-2 text-black" />
                   Filtros
                 </Button>
               </div>
