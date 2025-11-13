@@ -32,21 +32,66 @@ export default function Memory() {
     if (!selectedContent) {
       toast({
         title: "Acesso Bloqueado ❌",
-        description: "Por favor, selecione um conteúdo na biblioteca para jogar.",
+        description:
+          "Por favor, selecione um conteúdo na biblioteca para jogar.",
       });
       navigate("/library");
     }
   }, [selectedContent, navigate]);
 
   const cardPairs = [
-    { id: 1, question: "O que diz a 1ª Lei de Newton?", answer: "Lei da Inércia", justification: "A 1ª Lei afirma que um corpo em repouso tende a permanecer em repouso..." },
-    { id: 2, question: "Qual a fórmula da velocidade média?", answer: "Vm = ΔS/Δt", justification: "A velocidade média é ΔS dividido por Δt." },
-    { id: 3, question: "Qual a forma de energia associada ao movimento?", answer: "Energia cinética", justification: "A energia cinética é a energia do movimento de um corpo." },
-    { id: 4, question: "O que é um corpo em queda livre?", answer: "Um corpo sujeito apenas à gravidade", justification: "Em queda livre, a única força atuante é a gravidade." },
-    { id: 5, question: "Como se chama a força que se opõe ao movimento?", answer: "Atrito", justification: "A força de atrito se opõe ao movimento relativo entre superfícies." },
-    { id: 6, question: "Qual a unidade de medida da força no SI?", answer: "Newton (N)", justification: "A unidade de força no SI é o Newton (N), homenagem a Isaac Newton." },
-    { id: 7, question: "Qual a fórmula da 2ª Lei de Newton?", answer: "F = m.a", justification: "A força resultante é o produto da massa pela aceleração." },
-    { id: 8, question: "Qual a 3ª Lei de Newton?", answer: "Ação e Reação", justification: "Para toda ação, há uma reação de mesma intensidade e direção oposta." },
+    {
+      id: 1,
+      question: "O que diz a 1ª Lei de Newton?",
+      answer: "Lei da Inércia",
+      justification:
+        "A 1ª Lei afirma que um corpo em repouso tende a permanecer em repouso...",
+    },
+    {
+      id: 2,
+      question: "Qual a fórmula da velocidade média?",
+      answer: "Vm = ΔS/Δt",
+      justification: "A velocidade média é ΔS dividido por Δt.",
+    },
+    {
+      id: 3,
+      question: "Qual a forma de energia associada ao movimento?",
+      answer: "Energia cinética",
+      justification: "A energia cinética é a energia do movimento de um corpo.",
+    },
+    {
+      id: 4,
+      question: "O que é um corpo em queda livre?",
+      answer: "Um corpo sujeito apenas à gravidade",
+      justification: "Em queda livre, a única força atuante é a gravidade.",
+    },
+    {
+      id: 5,
+      question: "Como se chama a força que se opõe ao movimento?",
+      answer: "Atrito",
+      justification:
+        "A força de atrito se opõe ao movimento relativo entre superfícies.",
+    },
+    {
+      id: 6,
+      question: "Qual a unidade de medida da força no SI?",
+      answer: "Newton (N)",
+      justification:
+        "A unidade de força no SI é o Newton (N), homenagem a Isaac Newton.",
+    },
+    {
+      id: 7,
+      question: "Qual a fórmula da 2ª Lei de Newton?",
+      answer: "F = m.a",
+      justification: "A força resultante é o produto da massa pela aceleração.",
+    },
+    {
+      id: 8,
+      question: "Qual a 3ª Lei de Newton?",
+      answer: "Ação e Reação",
+      justification:
+        "Para toda ação, há uma reação de mesma intensidade e direção oposta.",
+    },
   ];
 
   useEffect(() => {
@@ -66,12 +111,16 @@ export default function Memory() {
   }, [isRunning]);
 
   const formatTime = (seconds) => {
-    const min = Math.floor(seconds / 60).toString().padStart(2, "0");
+    const min = Math.floor(seconds / 60)
+      .toString()
+      .padStart(2, "0");
     const sec = (seconds % 60).toString().padStart(2, "0");
     return `${min}:${sec}`;
   };
 
-  const progressPercent = Math.round((matchedPairs.length / cardPairs.length) * 100);
+  const progressPercent = Math.round(
+    (matchedPairs.length / cardPairs.length) * 100
+  );
 
   useEffect(() => {
     initializeGame();
@@ -82,8 +131,22 @@ export default function Memory() {
     const answers = [];
 
     cardPairs.forEach((pair) => {
-      questions.push({ id: `q-${pair.id}`, content: pair.question, type: "question", pairId: pair.id, isFlipped: false, isMatched: false });
-      answers.push({ id: `a-${pair.id}`, content: pair.answer, type: "answer", pairId: pair.id, isFlipped: false, isMatched: false });
+      questions.push({
+        id: `q-${pair.id}`,
+        content: pair.question,
+        type: "question",
+        pairId: pair.id,
+        isFlipped: false,
+        isMatched: false,
+      });
+      answers.push({
+        id: `a-${pair.id}`,
+        content: pair.answer,
+        type: "answer",
+        pairId: pair.id,
+        isFlipped: false,
+        isMatched: false,
+      });
     });
 
     setQuestionCards(questions.sort(() => Math.random() - 0.5));
@@ -117,10 +180,13 @@ export default function Memory() {
     }
 
     if (card.isFlipped || card.isMatched || selectedCards.length >= 2) return;
-    if (selectedCards.length === 1 && selectedCards[0].type === card.type) return;
+    if (selectedCards.length === 1 && selectedCards[0].type === card.type)
+      return;
 
     const updateFn = isQuestion ? setQuestionCards : setAnswerCards;
-    updateFn((prev) => prev.map((c) => (c.id === cardId ? { ...c, isFlipped: true } : c)));
+    updateFn((prev) =>
+      prev.map((c) => (c.id === cardId ? { ...c, isFlipped: true } : c))
+    );
 
     const newSelected = [...selectedCards, card];
     setSelectedCards(newSelected);
@@ -141,8 +207,16 @@ export default function Memory() {
       setMatchedPairs((prev) => [...prev, c1.pairId]);
       setScore((s) => s + 10);
 
-      setQuestionCards((prev) => prev.map((c) => (c.id === c1.id || c.id === c2.id ? { ...c, isMatched: true } : c)));
-      setAnswerCards((prev) => prev.map((c) => (c.id === c1.id || c.id === c2.id ? { ...c, isMatched: true } : c)));
+      setQuestionCards((prev) =>
+        prev.map((c) =>
+          c.id === c1.id || c.id === c2.id ? { ...c, isMatched: true } : c
+        )
+      );
+      setAnswerCards((prev) =>
+        prev.map((c) =>
+          c.id === c1.id || c.id === c2.id ? { ...c, isMatched: true } : c
+        )
+      );
 
       const correctPair = cardPairs.find((p) => p.id === c1.pairId);
       setJustification(correctPair.justification);
@@ -155,8 +229,16 @@ export default function Memory() {
       setTimeout(() => setShowErrorToast(false), 3000);
 
       setTimeout(() => {
-        setQuestionCards((prev) => prev.map((c) => (c.id === c1.id || c.id === c2.id ? { ...c, isFlipped: false } : c)));
-        setAnswerCards((prev) => prev.map((c) => (c.id === c1.id || c.id === c2.id ? { ...c, isFlipped: false } : c)));
+        setQuestionCards((prev) =>
+          prev.map((c) =>
+            c.id === c1.id || c.id === c2.id ? { ...c, isFlipped: false } : c
+          )
+        );
+        setAnswerCards((prev) =>
+          prev.map((c) =>
+            c.id === c1.id || c.id === c2.id ? { ...c, isFlipped: false } : c
+          )
+        );
         setSelectedCards([]);
         setIsProcessing(false);
       }, 1000);
@@ -173,9 +255,12 @@ export default function Memory() {
   const renderCard = (card) => {
     const isSelected = selectedCards.some((sc) => sc.id === card.id);
     const isDisabled =
-      selectedCards.length === 1 && !isSelected && selectedCards[0].type === card.type;
+      selectedCards.length === 1 &&
+      !isSelected &&
+      selectedCards[0].type === card.type;
 
-    const canClick = !isProcessing && !card.isFlipped && !card.isMatched && !isDisabled;
+    const canClick =
+      !isProcessing && !card.isFlipped && !card.isMatched && !isDisabled;
 
     return (
       <div
@@ -190,7 +275,10 @@ export default function Memory() {
           className="relative w-full h-full transition-transform duration-500 rounded-lg"
           style={{
             transformStyle: "preserve-3d",
-            transform: card.isFlipped || card.isMatched ? "rotateY(180deg)" : "rotateY(0deg)",
+            transform:
+              card.isFlipped || card.isMatched
+                ? "rotateY(180deg)"
+                : "rotateY(0deg)",
           }}
         >
           <div
@@ -223,7 +311,9 @@ export default function Memory() {
         <div className="fixed top-6 right-6 z-50 animate-fadeInOut">
           <div className="flex items-center gap-3 bg-red-600 text-white px-4 py-3 rounded-lg shadow-lg">
             <XErro />
-            <span className="font-semibold">Ops! Esse par não corresponde 😅 Tente novamente!</span>
+            <span className="font-semibold">
+              Ops! Esse par não corresponde 😅 Tente novamente!
+            </span>
           </div>
         </div>
       )}
@@ -243,7 +333,11 @@ export default function Memory() {
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-4 mb-6">
             <div className="w-20 h-20 rounded-full overflow-hidden shadow-md">
-              <img src={ImagemMemoria} alt="MemorIA" className="w-full h-full object-cover" />
+              <img
+                src={ImagemMemoria}
+                alt="MemorIA"
+                className="w-full h-full object-cover"
+              />
             </div>
             <h1 className="text-5xl font-bold">
               <span style={{ color: "#153c4b" }}>Memor</span>
@@ -251,14 +345,20 @@ export default function Memory() {
             </h1>
           </div>
 
-          <p className="text-lg mb-6 text-[#0a5d61]">Jogo da Memória com IA 🤖</p>
+          <p className="text-lg mb-6 text-[#0a5d61]">Jogo da Memória com IA</p>
 
           {selectedContent && (
             <div className="max-w-4xl mx-auto mb-6 p-4 bg-gradient-to-r from-[#153c4b] to-[#0a5d61] rounded-2xl shadow-lg border border-[#edbf21]">
               <div className="text-center text-white">
-                <p className="text-sm text-yellow-300 font-semibold">Conteúdo Selecionado</p>
-                <h2 className="text-2xl font-bold text-[#edbf21] mt-1">{selectedContent.title}</h2>
-                <p className="text-sm text-white/80 mt-1">{selectedContent.subject} • {selectedContent.grade}</p>
+                <p className="text-sm text-yellow-300 font-semibold">
+                  Conteúdo Selecionado
+                </p>
+                <h2 className="text-2xl font-bold text-[#edbf21] mt-1">
+                  {selectedContent.title}
+                </h2>
+                <p className="text-sm text-white/80 mt-1">
+                  {selectedContent.subject} • {selectedContent.grade}
+                </p>
               </div>
             </div>
           )}
@@ -275,7 +375,9 @@ export default function Memory() {
                 </div>
                 <div>
                   <div className="text-sm text-slate-500">Pontuação</div>
-                  <div className="text-2xl font-extrabold text-[#153c4b]">{score}</div>
+                  <div className="text-2xl font-extrabold text-[#153c4b]">
+                    {score}
+                  </div>
                 </div>
               </div>
 
@@ -287,7 +389,9 @@ export default function Memory() {
 
                 <div className="p-3 rounded-xl bg-white/90 border shadow-sm text-sm text-[#0d7377]">
                   <div className="font-medium">Tempo</div>
-                  <div className="text-lg font-semibold">{formatTime(time)}</div>
+                  <div className="text-lg font-semibold">
+                    {formatTime(time)}
+                  </div>
                 </div>
 
                 <div className="p-3 rounded-xl bg-white/90 border shadow-sm text-sm text-[#0d7377]">
@@ -322,9 +426,12 @@ export default function Memory() {
         {isGameComplete && (
           <div className="text-center mb-6">
             <div className="text-white p-6 rounded-lg inline-block shadow-lg bg-[#14a098]">
-              <h2 className="text-3xl font-bold mb-2">🎉 Parabéns! Você completou o jogo!</h2>
+              <h2 className="text-3xl font-bold mb-2">
+                🎉 Parabéns! Você completou o jogo!
+              </h2>
               <p className="text-lg">
-                Pontuação: {score} | Tempo: {formatTime(time)} | Tentativas: {attempts}
+                Pontuação: {score} | Tempo: {formatTime(time)} | Tentativas:{" "}
+                {attempts}
               </p>
             </div>
           </div>
@@ -344,26 +451,31 @@ export default function Memory() {
             <h2 className="text-2xl font-bold bg-[#14a098] text-white text-center p-3 rounded-lg mb-4">
               ❓ PERGUNTAS
             </h2>
-            <div className="grid grid-cols-2 gap-4">{questionCards.map(renderCard)}</div>
+            <div className="grid grid-cols-2 gap-4">
+              {questionCards.map(renderCard)}
+            </div>
           </div>
 
           <div>
             <h2 className="text-2xl font-bold bg-[#f39c12] text-white text-center p-3 rounded-lg mb-4">
               💡 RESPOSTAS
             </h2>
-            <div className="grid grid-cols-2 gap-4">{answerCards.map(renderCard)}</div>
+            <div className="grid grid-cols-2 gap-4">
+              {answerCards.map(renderCard)}
+            </div>
           </div>
         </div>
 
         <div className="text-center space-y-4">
           <div className="flex justify-center gap-8">
             <button
-              onClick={() => 
+              onClick={() =>
                 toast({
                   title: "💾 Salvar Jogo",
                   description:
                     "🚧 Esta funcionalidade ainda não está implementada—mas não se preocupe! Em breve estará disponível! 🚀",
-                  })}
+                })
+              }
               className="px-6 py-3 text-white rounded-full font-semibold flex items-center gap-2 shadow-lg bg-[#14a098] hover:opacity-90 transition-transform duration-300 hover:scale-105"
             >
               💾 Salvar Jogo
