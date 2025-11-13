@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import {
   BookOpen,
   ChevronDown,
@@ -16,8 +17,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/Navigation";
 import { toast } from "@/components/ui/use-toast";
+import { useContent } from "@/context/ContentContext";
 
 const Library = () => {
+  const navigate = useNavigate();
+  const { setSelectedContent } = useContent();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedGrade, setSelectedGrade] = useState("all");
   const [selectedSubject, setSelectedSubject] = useState("all");
@@ -281,16 +285,13 @@ const Library = () => {
                     <Button
                       size="lg"
                       className="w-full rounded-full bg-[#153c4b] text-[#edbf21] font-bold text-lg hover:bg-[#153c4b] hover:scale-105 transition-transform duration-300"
-                      onClick={() =>
-                        toast({
-                          title: "Estudar Conteúdo",
-                          description:
-                            "🚧 Esta funcionalidade ainda não está implementada—mas não se preocupe! Você pode solicitá-la no seu próximo prompt! 🚀",
-                        })
-                      }
+                      onClick={() => {
+                        setSelectedContent(item);
+                        navigate("/memory");
+                      }}
                     >
                       <Play className="w-5 h-5 mr-2" />
-                      Estudar Agora
+                      Jogar Agora
                     </Button>
                   </CardContent>
                 </Card>
