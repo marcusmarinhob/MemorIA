@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Navigation from "../components/Navigation";
 import ImagemMemoria from "../assets/minha_logo.png";
+import { toast } from "@/components/ui/use-toast";
 
 const RotateCcw = () => <span>🔄</span>;
 const Check = () => <span>✓</span>;
@@ -330,13 +331,30 @@ export default function Memory() {
           </div>
         </div>
 
+        {/* Botões e instruções */}
         <div className="text-center space-y-4">
-          <button
-            onClick={resetGame}
-            className="px-6 py-3 text-white rounded-full font-semibold flex items-center gap-2 shadow-lg bg-[#f39c12] hover:opacity-90 transition-transform duration-300 hover:scale-105 mx-auto"
-          >
-            <RotateCcw /> Novo Jogo
-          </button>
+          <div className="flex justify-center gap-8">
+            {/* Botão Salvar Jogo (esquerda) */}
+            <button
+              onClick={() => 
+                toast({
+                  title: "💾 Salvar Jogo",
+                  description:
+                    "🚧 Esta funcionalidade ainda não está implementada—mas não se preocupe! Em breve estará disponível! 🚀",
+                  })}
+              className="px-6 py-3 text-white rounded-full font-semibold flex items-center gap-2 shadow-lg bg-[#14a098] hover:opacity-90 transition-transform duration-300 hover:scale-105"
+            >
+              💾 Salvar Jogo
+            </button>
+
+            {/* Botão Novo Jogo (direita) */}
+            <button
+              onClick={resetGame}
+              className="px-6 py-3 text-white rounded-full font-semibold flex items-center gap-2 shadow-lg bg-[#f39c12] hover:opacity-90 transition-transform duration-300 hover:scale-105"
+            >
+              <RotateCcw /> Novo Jogo
+            </button>
+          </div>
 
           <div className="text-sm max-w-md mx-auto bg-white/60 p-4 rounded-lg shadow-lg text-[#0a5d61]">
             <p className="font-medium mb-2">Como jogar:</p>
