@@ -1,13 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Navigation from "../components/Navigation";
 import ImagemMemoria from "../assets/minha_logo.png";
 import { toast } from "@/components/ui/use-toast";
+import { useContent } from "@/context/ContentContext";
 
 const RotateCcw = () => <span>🔄</span>;
 const Check = () => <span>✓</span>;
 const XErro = () => <span>❌</span>;
 
 export default function Memory() {
+  const navigate = useNavigate();
+  const { selectedContent } = useContent();
   const [questionCards, setQuestionCards] = useState([]);
   const [answerCards, setAnswerCards] = useState([]);
   const [selectedCards, setSelectedCards] = useState([]);
@@ -23,6 +27,16 @@ export default function Memory() {
   const [hasStarted, setHasStarted] = useState(false);
 
   const timerRef = useRef(null);
+
+  useEffect(() => {
+    if (!selectedContent) {
+      toast({
+        title: "Acesso Bloqueado ❌",
+        description: "Por favor, selecione um conteúdo na biblioteca para jogar.",
+      });
+      navigate("/library");
+    }
+  }, [selectedContent, navigate]);
 
   const cardPairs = [
     { id: 1, question: "O que diz a 1ª Lei de Newton?", answer: "Lei da Inércia", justification: "A 1ª Lei afirma que um corpo em repouso tende a permanecer em repouso..." },
@@ -239,6 +253,16 @@ export default function Memory() {
 
           <p className="text-lg mb-6 text-[#0a5d61]">Jogo da Memória com IA 🤖</p>
 
+          {selectedContent && (
+            <div className="max-w-4xl mx-auto mb-6 p-4 bg-gradient-to-r from-[#153c4b] to-[#0a5d61] rounded-2xl shadow-lg border border-[#edbf21]">
+              <div className="text-center text-white">
+                <p className="text-sm text-yellow-300 font-semibold">Conteúdo Selecionado</p>
+                <h2 className="text-2xl font-bold text-[#edbf21] mt-1">{selectedContent.title}</h2>
+                <p className="text-sm text-white/80 mt-1">{selectedContent.subject} • {selectedContent.grade}</p>
+              </div>
+            </div>
+          )}
+
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div
@@ -331,10 +355,8 @@ export default function Memory() {
           </div>
         </div>
 
-        {/* Botões e instruções */}
         <div className="text-center space-y-4">
           <div className="flex justify-center gap-8">
-            {/* Botão Salvar Jogo (esquerda) */}
             <button
               onClick={() => 
                 toast({
@@ -347,7 +369,6 @@ export default function Memory() {
               💾 Salvar Jogo
             </button>
 
-            {/* Botão Novo Jogo (direita) */}
             <button
               onClick={resetGame}
               className="px-6 py-3 text-white rounded-full font-semibold flex items-center gap-2 shadow-lg bg-[#f39c12] hover:opacity-90 transition-transform duration-300 hover:scale-105"
