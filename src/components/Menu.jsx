@@ -57,13 +57,15 @@ export default function Menu({ tipo }) {
             </Link>
           ) : (
             <Link
-              to="/"
+              to="/"   // 🔹 agora o botão “Sair” leva para a Home pública
               className="px-5 py-2 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-all"
             >
               Sair
             </Link>
           )}
         </div>
+
+
       </div>
     </nav>
   );

@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Menu from "./components/Menu";
+import Home from "./pages/Home";
+import ComoFunciona from "./pages/ComoFunciona"; // 🔹 página pública
 
 import ProfessorHome from "./pages/professor/ProfessorHome";
 import ProfessorComoFunciona from "./pages/professor/ProfessorComoFunciona";
@@ -13,13 +15,27 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* --- Rota inicial: Home do Professor --- */}
+        {/* --- Páginas públicas --- */}
         <Route
           path="/"
           element={
             <>
-              <Menu tipo="professor" />
-              <div className="pt-20"><ProfessorHome /></div>
+              <Menu tipo="publico" />
+              <div className="pt-20">
+                <Home />
+              </div>
+            </>
+          }
+        />
+
+        <Route
+          path="/como-funciona"
+          element={
+            <>
+              <Menu tipo="publico" />
+              <div className="pt-20">
+                <ComoFunciona />
+              </div>
             </>
           }
         />
@@ -59,9 +75,7 @@ function App() {
           element={
             <div className="min-h-screen">
               <Menu tipo="aluno" />
-              <div className="pt-20">
-                <AlunoHome />
-              </div>
+              <div className="pt-20"><AlunoHome /></div>
             </div>
           }
         />
@@ -70,9 +84,7 @@ function App() {
           element={
             <div className="min-h-screen">
               <Menu tipo="aluno" />
-              <div className="pt-20">
-                <AlunoComoFunciona />
-              </div>
+              <div className="pt-20"><AlunoComoFunciona /></div>
             </div>
           }
         />
@@ -81,9 +93,7 @@ function App() {
           element={
             <div className="min-h-screen">
               <Menu tipo="aluno" />
-              <div className="pt-20">
-                <AlunoEstatisticas />
-              </div>
+              <div className="pt-20"><AlunoEstatisticas /></div>
             </div>
           }
         />
