@@ -4,18 +4,6 @@ Plataforma educacional por meio de jogo da memória que utiliza IA para oferecer
 
 **Site:** https://memor-ia-jet.vercel.app/
 
-## Fluxo de Execução Detalhado
-
-| Etapa | Descrição                                              | Tecnologia        |
-| ----- | ------------------------------------------------------ | ----------------- |
-| **1** | Professor envia PDF no `FileList.jsx`                  | React             |
-| **2** | PDF é enviado para o backend                           | Express (Node.js) |
-| **3** | Backend envia o arquivo para o serviço Python          | Flask             |
-| **4** | Python converte o PDF em Markdown e retorna o conteúdo | Docling           |
-| **5** | Backend salva os metadados e o conteúdo no banco       | Supabase          |
-| **6** | Frontend exibe o status de sucesso ou resultado        | React             |
-
----
 
 ## Tecnologias Envolvidas
 
@@ -55,6 +43,7 @@ Plataforma educacional por meio de jogo da memória que utiliza IA para oferecer
 ### Backend
 
 - Express.js 5.1.0
+- Supabase (PostgreSQL)
 - Google Gemini AI (gemini-2.0-flash)
 - CORS 2.8.5
 - dotenv 17.2.1
@@ -101,6 +90,9 @@ npm run dev
 ```bash
 node src/server/server.js
 ```
+```bash
+MemorIA\src\python> python docling_service.py
+```
 
 O servidor de desenvolvimento será iniciado em `http://localhost:5173`
 
@@ -118,7 +110,7 @@ src/
 │   ├── ui/             # Componentes de interface
 │   ├── teacher/        # Componentes específicos para professores
 │   └── Navigation.jsx  # Navegação
-|   └── PrivateRoute.jsx # Rotas privadas
+|   └── PrivateRoute.jsx# Rotas privadas
 |   └── Logout.jsx      # Logout automático
 ├── pages/              # Páginas da aplicação
 │   ├── Home.jsx        # Página inicial
@@ -129,6 +121,7 @@ src/
 |   ├── Register.jsx    # Área de cadastro
 │   ├── StudentArea.jsx # Área do estudante
 │   ├── TeacherArea.jsx # Área do professor
+├── context/            # Um contexto global que permite compartilhar o conteúdo selecionado entre qualquer componente da aplicação sem precisar passar props.
 ├── server/             # Backend Express
 │   └── server.js       # Servidor principal
 │   └── service/        # Serviços do Supabase

@@ -21,18 +21,10 @@ export const salvarArquivo = async ({
     );
   }
 
-  console.log("Tentando inserir no Supabase:", {
-    assunto,
-    turma,
-    materia,
-    detalhes,
-    markdown,
-    professor_uid,
-  });
-
   const { data, error } = await supabase
     .from("arquivos")
-    .insert([{ assunto, turma, materia, detalhes, markdown, professor_uid }]);
+    .insert([{ assunto, turma, materia, detalhes, markdown, professor_uid }])
+    .select();
 
   if (error) {
     console.error("Erro ao salvar no Supabase:", error);
@@ -40,5 +32,5 @@ export const salvarArquivo = async ({
   }
 
   console.log("Inserção bem-sucedida:", data);
-  return data;
+  return { data, error: null };
 };

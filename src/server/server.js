@@ -5,18 +5,20 @@ import multer from "multer";
 import fetch from "node-fetch";
 import FormData from "form-data";
 import fileRoutes from "./routes/fileRoutes.js";
+import markdownRoutes from "./routes/markdownRoutes.js";
 
 dotenv.config();
 
 const app = express();
-app.use(express.json());
-app.use("/api/files", fileRoutes);
 app.use(
   cors({
-    origin: "*",
-    //origin: "http://localhost:5173",
+    //origin: "*",
+    origin: "http://localhost:5173",
   })
 );
+app.use(express.json());
+app.use("/api/files", fileRoutes);
+app.use("/api/markdown", markdownRoutes);
 
 const upload = multer();
 

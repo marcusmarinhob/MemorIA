@@ -3,6 +3,7 @@ import fetch from "node-fetch";
 import FormData from "form-data";
 import multer from "multer";
 import { salvarArquivo } from "../service/supabaseService.js";
+import { cleanMarkdownInDatabase } from "../service/markdownCleaner.js";
 
 const router = express.Router();
 const storage = multer.memoryStorage();
@@ -15,7 +16,7 @@ router.post("/upload", upload.single("file"), async (req, res) => {
     if (!req.file) {
       return res.status(400).json({ ok: false, error: "Arquivo não enviado." });
     }
-
+    
     const turmaValue = (turma || "").trim();
 
     const formData = new FormData();
@@ -36,7 +37,7 @@ router.post("/upload", upload.single("file"), async (req, res) => {
 
     const doclingData = await response.json();
     console.log("Valor de turma antes de salvar:", turmaValue);
-    await salvarArquivo({
+    const { data: result, error: insertError } = await salvarArquivo({
       assunto,
       turma: turmaValue || "",
       materia,
@@ -44,6 +45,21 @@ router.post("/upload", upload.single("file"), async (req, res) => {
       markdown: doclingData.markdown,
       professor_uid,
     });
+
+    if (insertError) {
+      throw new Error(`Erro ao salvar no Supabase: ${insertError.message}`);
+    }
+
+    const arquivoSalvo = result?.[0];
+    const id = arquivoSalvo?.id;
+    if(!id) throw new Error("ID do arquivo não retornado após o salvamento.");
+
+    try {
+      await cleanMarkdownInDatabase(id);
+      console.log(`Markdown limpo e atualizado no Supabase (ID: ${id})`);
+    } catch (cleanErr) {
+      console.warn(`Erro ao limpar markdown do arquivo ${id}:`, cleanErr.message);
+    }
 
     res.json({ success: true, markdown: doclingData.markdown });
   } catch (error) {
