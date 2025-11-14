@@ -142,7 +142,7 @@ const HowAIWorks = () => {
               <h1 className="text-4xl md:text-6xl font-bold mb-6 text-[#edbf21]">
                 Como a IA Funciona?
               </h1>
-              <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8 text-[#153c4b]/50">
+              <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8 text-[#ffffff]">
                 Descubra como nossa inteligência artificial torna o aprendizado
                 mais fácil, divertido e personalizado para você!
               </p>
@@ -250,10 +250,10 @@ const HowAIWorks = () => {
                 transition={{ duration: 0.8 }}
                 className="text-center mb-12"
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#153c4b]">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#ffffff]/85">
                   O que torna nossa IA especial?
                 </h2>
-                <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8 text-[#153c4b]/50">
+                <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8 text-[#ffffff]/85">
                   Características que fazem a diferença no seu aprendizado
                 </p>
               </motion.div>
@@ -303,10 +303,10 @@ const HowAIWorks = () => {
                 transition={{ duration: 0.8 }}
                 className="text-center mb-12"
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#153c4b]">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#ffffff]/85">
                   Benefícios para toda a comunidade escolar
                 </h2>
-                <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8 text-[#153c4b]/50">
+                <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8 text-[#ffffff]/85">
                   O MemorIA ajuda estudantes e professores
                 </p>
               </motion.div>
@@ -324,14 +324,14 @@ const HowAIWorks = () => {
           <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-[#153c4b]">
             <span className="text-2xl text-[#edbf21]">{benefit.icon}</span>
           </div>
-          <CardTitle className="text-[#153c4b]">{benefit.title}</CardTitle>
+          <CardTitle className="text-[#edbf21]">{benefit.title}</CardTitle>
         </CardHeader>
         <CardContent>
           <ul className="space-y-3">
             {benefit.points.map((point, pointIndex) => (
               <li
                 key={pointIndex}
-                className="flex items-center text-[#153c4b]/70"
+                className="flex items-center text-[#ffffff]/85"
               >
                 <div className="w-2 h-2 rounded-full mr-3 bg-[#edbf21]" />
                 {point}
@@ -355,7 +355,7 @@ const HowAIWorks = () => {
                 <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#edbf21]">
                   Segurança e Privacidade
                 </h2>
-                <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8 text-white/70">
+                <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8 text-white/85">
                   Seus dados estão protegidos e o conteúdo é sempre apropriado
                 </p>
               </div>
@@ -400,10 +400,10 @@ const HowAIWorks = () => {
               transition={{ duration: 0.8 }}
               className="text-center px-4"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#153c4b]">
-                Pronto para experimentar o SabIA?
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#ffffff]/85">
+                Pronto para experimentar o MemorIA?
               </h2>
-              <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8 text-[#153c4b]/50">
+              <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8 text-[#ffffff]/85">
                 Comece agora e descubra como a inteligência artificial pode
                 transformar seus estudos!
               </p>

@@ -109,7 +109,7 @@ const Register = () => {
         <title>Cadastro - MemorIA</title>
         <meta
           name="description"
-          content="Faça login na plataforma sabIA e acesse sua área personalizada de estudos com inteligência artificial."
+          content="Faça login na plataforma MemorIA e acesse sua área personalizada de estudos com inteligência artificial."
         />
       </Helmet>
 
@@ -122,7 +122,7 @@ const Register = () => {
         >
           <Link
             to="/"
-            className="inline-flex items-center mb-8 text-[#153c4b] hover:underline"
+            className="inline-flex items-center mb-8 text-[#ffffff] hover:underline"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Voltar ao início
@@ -133,15 +133,15 @@ const Register = () => {
               <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-[#153c4b]">
                 <Brain className="w-8 h-8 text-[#edbf21]" />
               </div>
-              <CardTitle className="text-2xl font-bold text-[#153c4b]">
+              <CardTitle className="text-2xl font-bold text-[#ffffff]">
                 Cadastre-se no MemorIA
               </CardTitle>
-              <p className="text-[#153c4b]">Acesse sua área personalizada</p>
+              <p className="text-[#ffffff]">Acesse sua área personalizada</p>
             </CardHeader>
 
             <CardContent className="space-y-6">
               <div>
-                <label className="text-sm font-medium mb-3 block text-[#153c4b]">
+                <label className="text-sm font-medium mb-3 block text-[#ffffff]">
                   Eu sou:
                 </label>
                 <div className="grid grid-cols-2 gap-2">
@@ -164,7 +164,7 @@ const Register = () => {
 
               <form onSubmit={handleRegister} className="space-y-4">
                 <div>
-                  <label className="text-sm font-medium mb-2 block text-[#153c4b]">
+                  <label className="text-sm font-medium mb-2 block text-[#ffffff]">
                     Nome
                   </label>
                   <div className="relative">
@@ -180,7 +180,7 @@ const Register = () => {
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium mb-2 block text-[#153c4b]">
+                  <label className="text-sm font-medium mb-2 block text-[#ffffff]">
                     Email
                   </label>
                   <div className="relative">
@@ -197,7 +197,7 @@ const Register = () => {
 
                 {userType === "teacher" && (
                   <div>
-                    <label className="text-sm font-medium mb-2 block text-[#153c4b]">
+                    <label className="text-sm font-medium mb-2 block text-[#ffffff]">
                       Matéria
                     </label>
                     <div className="relative">
@@ -214,7 +214,7 @@ const Register = () => {
                 )}
 
                 <div>
-                  <label className="text-sm font-medium mb-2 block text-[#153c4b]">
+                  <label className="text-sm font-medium mb-2 block text-[#ffffff]">
                     Senha
                   </label>
                   <div className="relative">
@@ -229,7 +229,7 @@ const Register = () => {
                   </div>
                 </div>
                 <div>
-                  <label className="text-sm font-medium mb-2 block text-[#153c4b]">
+                  <label className="text-sm font-medium mb-2 block text-[#ffffff]">
                     Confirme a Senha
                   </label>
                   <div className="relative">
@@ -252,10 +252,10 @@ const Register = () => {
               </form>
 
               <div className="text-center">
-                <p className="text-sm text-[#153c4b]">
+                <p className="text-sm text-[#ffffff]">
                   Já tem uma conta?{" "}
                   <Link to="/login" className="w-full">
-                    <button className="font-medium text-[#153c4b] hover:underline">
+                    <button className="font-medium text-[#ffffff] hover:underline">
                       Entrar
                     </button>
                   </Link>

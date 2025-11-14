@@ -91,7 +91,7 @@ const Home = () => {
             Aprenda jogando com o <br /> MemorIA
           </h1>
 
-          <p className="text-xl md:text-2xl text-[#153c4b] max-w-2xl mx-auto">
+          <p className="text-xl md:text-2xl text-[#ffffff] max-w-2xl mx-auto">
             A plataforma de jogo da Memória com inteligência artificial <br />
             que transforma o aprendizado dos alunos do 6 ao 9 ano
           </p>
@@ -159,7 +159,7 @@ const Home = () => {
             <h2 className="text-4xl md:text-5xl font-bold text-[#edbf21] mb-4">
               Sobre nós
             </h2>
-            <p className="text-gray-600 max-w-3xl">
+            <p className="text-white max-w-3xl">
               Acreditamos que cada estudante tem um potencial único e, por isso,
               utilizando o poder da inteligência artificial, desenvolvemos
               soluções que se adaptam ao ritmo, às necessidades e aos interesses
@@ -278,10 +278,10 @@ const Home = () => {
             transition={{ duration: 0.8 }}
             className="glass-effect rounded-2xl p-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-[#153c4b] mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#ffffff] mb-6">
               Pronto para revolucionar seus estudos?
             </h2>
-            <p className="text-xl text-[#153c4b] mb-8">
+            <p className="text-xl text-[#ffffff] mb-8">
               Junte-se a milhares de estudantes que já estão aprendendo com o
               MemorIA
             </p>

@@ -419,6 +419,7 @@ export default function Memory() {
                 <span>Progresso</span>
                 <span>{progressPercent}%</span>
               </div>
+
             </div>
           </div>
         </div>
@@ -489,7 +490,7 @@ export default function Memory() {
             </button>
           </div>
 
-          <div className="text-sm max-w-md mx-auto bg-white/60 p-4 rounded-lg shadow-lg text-[#0a5d61]">
+          <div className="text-sm max-w-md mx-auto bg-white/60 p-4 rounded-lg shadow-lg text-[#021d49]">
             <p className="font-medium mb-2">Como jogar:</p>
             <p>• Clique nas cartas para virá-las</p>
             <p>• Encontre os pares de pergunta e resposta</p>
