@@ -43,10 +43,8 @@ const Library = () => {
       subject: "Matemática",
       grade: "6º ano",
       duration: "15 min",
-      difficulty: "Fácil",
       rating: 4.8,
       description: "Aprenda a trabalhar com frações e converter para decimais",
-      image: "https://images.unsplash.com/photo-1740062446976-94a8837e0dde?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
       id: 2,
@@ -54,10 +52,8 @@ const Library = () => {
       subject: "Português",
       grade: "7º ano",
       duration: "20 min",
-      difficulty: "Médio",
       rating: 4.6,
       description: "Entenda os termos essenciais da oração",
-      image: "https://plus.unsplash.com/premium_photo-1666739032615-ecbd14dfb543?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
       id: 3,
@@ -65,10 +61,8 @@ const Library = () => {
       subject: "Ciências",
       grade: "8º ano",
       duration: "25 min",
-      difficulty: "Médio",
       rating: 4.9,
       description: "Como funciona a digestão no corpo humano",
-      image: "https://plus.unsplash.com/premium_photo-1723108858066-66b1bd834675?q=80&w=798&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
       id: 4,
@@ -76,10 +70,8 @@ const Library = () => {
       subject: "História",
       grade: "7º ano",
       duration: "30 min",
-      difficulty: "Médio",
       rating: 4.7,
       description: "A colonização portuguesa no Brasil",
-      image: "https://plus.unsplash.com/premium_photo-1682125784386-d6571f1ac86a?q=80&w=908&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
       id: 5,
@@ -87,10 +79,8 @@ const Library = () => {
       subject: "Matemática",
       grade: "7º ano",
       duration: "18 min",
-      difficulty: "Médio",
       rating: 4.5,
       description: "Resolva equações de primeiro grau passo a passo",
-      image: "https://images.unsplash.com/photo-1509228468518-180dd4864904?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
       id: 6,
@@ -98,10 +88,8 @@ const Library = () => {
       subject: "Geografia",
       grade: "6º ano",
       duration: "22 min",
-      difficulty: "Fácil",
       rating: 4.4,
       description: "Os diferentes tipos de clima e vegetação do Brasil",
-      image: "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
   ];
 
@@ -116,19 +104,6 @@ const Library = () => {
 
     return matchesSearch && matchesGrade && matchesSubject;
   });
-
-  const getDifficultyColor = (difficulty) => {
-    switch (difficulty) {
-      case "Fácil":
-        return "bg-green-500";
-      case "Médio":
-        return "bg-yellow-500";
-      case "Difícil":
-        return "bg-red-500";
-      default:
-        return "bg-gray-500";
-    }
-  };
 
   return (
     <>
@@ -172,7 +147,7 @@ const Library = () => {
                   placeholder="Buscar conteúdo..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-4 h-12 rounded-full bg-[#edbf21] text-white placeholder:text-white border-none shadow-sm focus:ring-2 focus:ring-yellow-400"          
+                  className="w-full pl-12 pr-4 h-12 rounded-full bg-[#edbf21] text-white placeholder:text-white border-none shadow-sm focus:ring-2 focus:ring-yellow-400"
                 />
               </div>
 
@@ -236,27 +211,6 @@ const Library = () => {
                 whileHover={{ scale: 1.02 }}
               >
                 <Card className="h-full flex flex-col overflow-hidden rounded-2xl shadow-lg glass-effect">
-                  <div className="relative">
-                    <img
-                      alt={item.description}
-                      className="w-full h-48 object-cover rounded-t-2xl"
-                      src={item.image}
-                    />
-                    <div className="absolute top-4 left-4">
-                      <Badge
-                        className={`${getDifficultyColor(
-                          item.difficulty
-                        )} text-white hover:bg-[getDifficultyColor]`}
-                      >
-                        {item.difficulty}
-                      </Badge>
-                    </div>
-                    <div className="absolute top-4 right-4">
-                      <Badge className="bg-black/50 text-white hover:bg-white hover:text-black">
-                        {item.grade}
-                      </Badge>
-                    </div>
-                  </div>
 
                   <CardHeader className="flex-1">
                     <div className="flex items-center justify-between mb-2">
@@ -271,10 +225,16 @@ const Library = () => {
                         <span className="text-sm">{item.rating}</span>
                       </div>
                     </div>
+
                     <CardTitle className="text-[#ffffff] text-lg">
                       {item.title}
                     </CardTitle>
+
                     <p className="text-white text-sm">{item.description}</p>
+
+                    <Badge className="bg-black/50 text-white mt-3">
+                      {item.grade}
+                    </Badge>
                   </CardHeader>
 
                   <CardContent>
@@ -282,6 +242,7 @@ const Library = () => {
                       <Clock className="w-4 h-4 mr-1" />
                       {item.duration}
                     </div>
+
                     <Button
                       size="lg"
                       className="w-full rounded-full bg-[#153c4b] text-[#edbf21] font-bold text-lg hover:bg-[#153c4b] hover:scale-105 transition-transform duration-300"
