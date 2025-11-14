@@ -87,6 +87,7 @@ npm run dev
 ```bash
 node src/server/server.js
 ```
+
 ```bash
 MemorIA\src\python> python docling_service.py
 ```
@@ -140,5 +141,3 @@ Marcus Marinho- [GitHub](https://github.com/marcusmarinhob)
 ## Orientador do projeto:
 
 Sergio Natan- [GitHub](https://github.com/sergionatans)
-
-

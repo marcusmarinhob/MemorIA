@@ -49,7 +49,7 @@ const ClassList = ({ classes }) => {
             Nova Turma
           </Button>
         </CardHeader>
-
+        {/*
         <CardContent className="space-y-4">
           {classes.map((classData, index) => (
             <div key={index} className="p-4 bg-white/10 rounded-lg">
@@ -156,10 +156,11 @@ const ClassList = ({ classes }) => {
               </div>
             </div>
           ))}
-        </CardContent>
+        </CardContent> 
+        */}
       </Card>
     </motion.div>
   );
-};
+}; 
 
 export default ClassList;
