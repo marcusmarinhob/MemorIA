@@ -24,11 +24,11 @@ const TeacherArea = () => {
       const fetchUserData = async () => {
         const userDataResult = await buscarDadosUsuario(user.uid);
         let userName = "professor";
-        let userMateria = "matéria";
+        let userMateria = "materia";
 
         if (userDataResult.success) {
           userName = userDataResult.data.nome || "professor";
-          userMateria = userDataResult.data.materia || "matéria";
+          userMateria = userDataResult.data.materia || "materia";
         }
 
         setTeacherData({
@@ -77,7 +77,7 @@ const TeacherArea = () => {
         <title>Área do Professor - MemorIA</title>
         <meta
           name="description"
-          content="Área exclusiva para professores acessarem arquivos e turmas."
+          content="Área exclusiva para professores acompanharem o progresso das turmas, receberem insights da IA e personalizarem o ensino."
         />
       </Helmet>
 
