@@ -103,7 +103,7 @@ const StudentArea = () => {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#edbf21] mx-auto"></div>
-          <p className="mt-4 text-[#153c4b]">Carregando...</p>
+          <p className="mt-4 text-[#ffffff]">Carregando...</p>
         </div>
       </div>
     );
@@ -113,7 +113,7 @@ const StudentArea = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <p className="text-[#153c4b]">Erro ao carregar dados.</p>
+          <p className="text-[#ffffff]">Erro ao carregar dados.</p>
         </div>
       </div>
     );
@@ -122,7 +122,7 @@ const StudentArea = () => {
   return (
     <>
       <Helmet>
-        <title>Área do Estudante - SabIA</title>
+        <title>Área do Estudante - MemorIA</title>
         <meta
           name="description"
           content="Área personalizada do estudante com tutoria por IA, acompanhamento de progresso e conteúdo adaptativo."
@@ -131,8 +131,8 @@ const StudentArea = () => {
 
       <div className="min-h-screen p-4">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-between mb-8 text-[#153c4b]">
-            <Link to="/" className="inline-flex items-center text-[#153c4b]">
+          <div className="flex items-center justify-between mb-8 text-[#ffffff]">
+            <Link to="/" className="inline-flex items-center text-[#ffffff]">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Voltar ao início
             </Link>

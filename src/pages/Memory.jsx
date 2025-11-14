@@ -278,7 +278,7 @@ export default function Memory() {
             </h1>
             <div className="text-2xl text-[#f39c12]"></div>
           </div>
-          <p className="text-lg mb-6 text-[#0a5d61]">
+          <p className="text-lg mb-6 text-[#ffffff]">
             Jogo da Memória com IA 🤖
           </p>
           <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4 inline-block shadow-lg border border-[#0d7377]">
@@ -348,7 +348,7 @@ export default function Memory() {
             </button>
           </div>
 
-          <div className="text-sm max-w-md mx-auto bg-white/60 p-4 rounded-lg shadow-lg text-[#0a5d61]">
+          <div className="text-sm max-w-md mx-auto bg-white/60 p-4 rounded-lg shadow-lg text-[#021d49]">
             <p className="font-medium mb-2">Como jogar:</p>
             <p>• Clique nas cartas para virá-las</p>
             <p>• Encontre os pares de pergunta e resposta</p>

@@ -149,7 +149,7 @@ const TeacherArea = () => {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#edbf21] mx-auto"></div>
-          <p className="mt-4 text-[#153c4b]">Carregando...</p>
+          <p className="mt-4 text-[#ffffff]/85 ">Carregando...</p>
         </div>
       </div>
     );
@@ -159,7 +159,7 @@ const TeacherArea = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <p className="text-[#153c4b]">Erro ao carregar dados.</p>
+          <p className="text-[#ffffff]/85">Erro ao carregar dados.</p>
         </div>
       </div>
     );
@@ -168,7 +168,7 @@ const TeacherArea = () => {
   return (
     <>
       <Helmet>
-        <title>Área do Professor - SabIA</title>
+        <title>Área do Professor - MemorIA</title>
         <meta
           name="description"
           content="Área exclusiva para professores acompanharem o progresso das turmas, receberem insights da IA e personalizarem o ensino."
@@ -194,12 +194,12 @@ const TeacherArea = () => {
               </h1>
               <p
                 className="text-2xl text-center font-bold mt-2"
-                style={{ color: "#153c4b" }}
+                style={{ color: "#ffffff" }}
               >
                 Bem-vindo, {teacherData.teacher.name} -{" "}
                 {teacherData.teacher.subject}
               </p>
-              <p className="text-center text-[#153c4b]">
+              <p className="text-center text-[#ffffff]">
                 {teacherData.teacher.school}
               </p>
             </motion.div>

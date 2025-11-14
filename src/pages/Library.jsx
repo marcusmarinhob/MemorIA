@@ -149,7 +149,7 @@ const Library = () => {
             <h1 className="text-4xl md:text-5xl font-bold text-[#edbf21] mb-6">
               Biblioteca de Conteúdos
             </h1>
-            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-white max-w-2xl mx-auto">
               Explore nosso acervo completo de materiais educacionais
               organizados por série e matéria
             </p>
@@ -168,7 +168,7 @@ const Library = () => {
                   placeholder="Buscar conteúdo..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-4 h-12 rounded-full bg-[#edbf21] text-white border-none shadow-sm focus:ring-2 focus:ring-yellow-400"          
+                  className="w-full pl-12 pr-4 h-12 rounded-full bg-[#edbf21] text-white placeholder:text-white border-none shadow-sm focus:ring-2 focus:ring-yellow-400"          
                 />
               </div>
 
@@ -248,7 +248,7 @@ const Library = () => {
                       </Badge>
                     </div>
                     <div className="absolute top-4 right-4">
-                      <Badge className="bg-black/50 text-white hover:bg-white/50 hover:text-black">
+                      <Badge className="bg-black/50 text-white hover:bg-white hover:text-black">
                         {item.grade}
                       </Badge>
                     </div>
@@ -258,7 +258,7 @@ const Library = () => {
                     <div className="flex items-center justify-between mb-2">
                       <Badge
                         variant="outline"
-                        className="border-[#153c4b] text-[#153c4b]"
+                        className="border-[#edbf21] text-[#ffffff]"
                       >
                         {item.subject}
                       </Badge>
@@ -267,14 +267,14 @@ const Library = () => {
                         <span className="text-sm">{item.rating}</span>
                       </div>
                     </div>
-                    <CardTitle className="text-[#153c4b] text-lg">
+                    <CardTitle className="text-[#ffffff] text-lg">
                       {item.title}
                     </CardTitle>
-                    <p className="text-gray-600 text-sm">{item.description}</p>
+                    <p className="text-white text-sm">{item.description}</p>
                   </CardHeader>
 
                   <CardContent>
-                    <div className="flex items-center text-gray-500 text-sm mb-4">
+                    <div className="flex items-center text-white text-sm mb-4">
                       <Clock className="w-4 h-4 mr-1" />
                       {item.duration}
                     </div>
