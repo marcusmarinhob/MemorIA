@@ -261,17 +261,54 @@ const FileList = () => {
               />
             </div>
 
-            <div>
-              <label className="text-sm font-medium text-white">
-                Arquivo PDF
-              </label>
-              <Input
-                type="file"
-                accept="application/pdf"
-                onChange={(e) => setArquivo(e.target.files[0])}
-                className="h-12 rounded-full bg-white/40 text-[#153c4b]"
-              />
-            </div>
+          <div>
+  <label className="text-sm font-medium mb-2 block text-white">
+    Upload do PDF
+  </label>
+
+  <div className="relative">
+    <label
+      className="
+        flex flex-col items-center justify-center 
+        w-full h-48 cursor-pointer
+        bg-white/10 border-2 border-dashed border-white/40 
+        rounded-xl text-white text-center transition
+        hover:bg-white/20
+      "
+    >
+      <input
+        type="file"
+        accept="application/pdf"
+        onChange={(e) => setArquivo(e.target.files[0])}
+        className="hidden"
+      />
+
+      <FileText className="w-10 h-10 mb-2 text-white/70" />
+
+      <span className="font-medium text-white/80">
+        Clique para fazer upload ou arraste seu arquivo PDF aqui
+      </span>
+
+      <span className="text-xs text-white/50 mt-1">
+        Tamanho máximo: 10MB
+      </span>
+    </label>
+  </div>
+
+  {arquivo && (
+    <div className="mt-3 bg-white/20 text-white px-4 py-2 rounded-lg flex items-center justify-between">
+      <span className="truncate">{arquivo.name}</span>
+      <button
+        type="button"
+        className="text-red-400 font-bold ml-4"
+        onClick={() => setArquivo(null)}
+      >
+        X
+      </button>
+    </div>
+  )}
+</div>
+
 
             {uploading && (
               <div className="flex items-center justify-center space-x-4 px-2">

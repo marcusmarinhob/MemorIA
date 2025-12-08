@@ -267,6 +267,9 @@ export default function Memory() {
     const canClick =
       !isProcessing && !card.isFlipped && !card.isMatched && !isDisabled;
 
+   // Define o emoji baseado no tipo da carta
+   const emoji = card.type === "question" ? "❓" : "💡";
+
     return (
       <div
         key={card.id}
@@ -287,16 +290,14 @@ export default function Memory() {
           }}
         >
           <div
-            className="absolute inset-0 rounded-lg flex items-center justify-center bg-[#0d7377] text-white text-5xl shadow-lg border-2"
+            className="absolute inset-0 rounded-lg flex items-center justify-center bg-[#1C475A] text-white text-5xl shadow-lg border-2"
             style={{ backfaceVisibility: "hidden" }}
           >
-            🧠
+            {emoji}
           </div>
 
           <div
-            className={`absolute inset-0 rounded-lg flex items-center justify-center p-3 text-center text-white text-sm font-medium shadow-lg border-2 ${
-              card.type === "question" ? "bg-[#14a098]" : "bg-[#f39c12]"
-            }`}
+            className="absolute inset-0 rounded-lg flex items-center justify-center p-3 text-center text-white text-sm font-medium shadow-lg border-2 bg-[#2B6D87]"
             style={{
               backfaceVisibility: "hidden",
               transform: "rotateY(180deg)",
@@ -369,75 +370,76 @@ export default function Memory() {
             </div>
           )}
 
-          {isLoadingCards && (
-            <div className="flex flex-col items-center justify-center py-16 text-[#153c4b]">
-              <div className="animate-spin rounded-full h-16 w-16 border-4 border-[#14a098] border-t-transparent"></div>
-              <p className="mt-4 text-xl font-semibold">Carregando cartas...</p>
+           {isLoadingCards && (
+            <div className="flex flex-col items-center justify-center py-16 text-[#003D5C]">
+              <div className="animate-spin rounded-full h-20 w-20 border-4 border-[#1C475A] border-t-[#F5A623]"></div>
+              <p className="mt-6 text-xl font-semibold">🎴 Carregando cartas...</p>
             </div>
           )}
+
 
           {!isLoadingCards && (
             <div className="max-w-4xl mx-auto">
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div
-                  className={`flex items-center gap-4 p-3 rounded-2xl shadow-lg border border-[#0d7377] bg-white/90 transition-transform duration-200 ${
+                  className={`flex items-center gap-4 p-4 rounded-2xl shadow-xl border-2 border-[#1C475A] bg-white transition-transform duration-200 ${
                     scorePulse ? "scale-105" : "scale-100"
                   }`}
                 >
-                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#14a098] text-white text-xl font-bold shadow-inner">
-                    <Check />
+                  <div className="w-14 h-14 flex items-center justify-center rounded-full bg-gradient-to-br from-[#003D5C] to-[#1C475A] text-white text-2xl font-bold shadow-lg">
+                    ⭐
                   </div>
                   <div>
-                    <div className="text-sm text-slate-500">Pontuação</div>
-                    <div className="text-2xl font-extrabold text-[#153c4b]">
+                    <div className="text-sm font-medium" style={{ color: "#1C475A" }}>Pontuação</div>
+                    <div className="text-3xl font-extrabold" style={{ color: "#003D5C" }}>
                       {score}
                     </div>
                   </div>
                 </div>
 
                 <div className="flex gap-4 items-center">
-                  <div className="p-3 rounded-xl bg-white/90 border shadow-sm text-sm text-[#0d7377]">
-                    <div className="font-medium">Tentativas</div>
-                    <div className="text-lg font-semibold">{attempts}</div>
+                  <div className="p-4 rounded-xl bg-white border-2 border-blue-200 shadow-md text-sm" style={{ color: "#1C475A" }}>
+                    <div className="font-semibold">🎯 Tentativas</div>
+                    <div className="text-xl font-bold text-center mt-1">{attempts}</div>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-white/90 border shadow-sm text-sm text-[#0d7377]">
-                    <div className="font-medium">Tempo</div>
-                    <div className="text-lg font-semibold">
+                  <div className="p-4 rounded-xl bg-white border-2 border-blue-200 shadow-md text-sm" style={{ color: "#1C475A" }}>
+                    <div className="font-semibold">⏱️ Tempo</div>
+                    <div className="text-xl font-bold text-center mt-1">
                       {formatTime(time)}
                     </div>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-white/90 border shadow-sm text-sm text-[#0d7377]">
-                    <div className="font-medium">Pares</div>
-                    <div className="text-lg font-semibold">
+                  <div className="p-4 rounded-xl bg-white border-2 border-amber-200 shadow-md text-sm" style={{ color: "#1C475A" }}>
+                    <div className="font-semibold">🎴 Pares</div>
+                    <div className="text-xl font-bold text-center mt-1">
                       {matchedPairs.length}/{cardPairs.length}
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-4">
-                <div className="w-full bg-slate-100 rounded-full h-4 overflow-hidden border border-slate-200">
+              <div className="mt-6">
+                <div className="w-full bg-blue-100 rounded-full h-5 overflow-hidden border-2 border-blue-200 shadow-inner">
                   <div
                     role="progressbar"
                     aria-valuenow={progressPercent}
-                    className="h-full rounded-full transition-all duration-700 ease-out"
+                    className="h-full rounded-full transition-all duration-700 ease-out shadow-lg"
                     style={{
                       width: `${progressPercent}%`,
-                      background: "linear-gradient(90deg,#14a098,#edbf21)",
+                      background: "linear-gradient(90deg, #003D5C 0%, #1C475A 50%, #F5A623 100%)",
                     }}
                   />
                 </div>
-                <div className="flex justify-between text-xs text-slate-500 mt-2">
-                  <span>Progresso</span>
+                <div className="flex justify-between text-sm font-semibold mt-2" style={{ color: "#1C475A" }}>
+                  <span>📊 Progresso</span>
                   <span>{progressPercent}%</span>
                 </div>
               </div>
             </div>
           )}
         </div>
-
+        
         {isLoadingCards ? null : (
           <>
             {isGameComplete && (
@@ -465,8 +467,8 @@ export default function Memory() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-6">
               <div>
-                <h2 className="text-2xl font-bold bg-[#14a098] text-white text-center p-3 rounded-lg mb-4">
-                  ❓ PERGUNTAS
+                <h2 className="text-2xl font-bold bg-[#1C475A] text-white text-center p-3 rounded-lg mb-4">
+                  PERGUNTAS
                 </h2>
                 <div className="grid grid-cols-2 gap-4">
                   {questionCards.map(renderCard)}
@@ -474,8 +476,8 @@ export default function Memory() {
               </div>
 
               <div>
-                <h2 className="text-2xl font-bold bg-[#f39c12] text-white text-center p-3 rounded-lg mb-4">
-                  💡 RESPOSTAS
+                <h2 className="text-2xl font-bold bg-[#1C475A] text-white text-center p-3 rounded-lg mb-4">
+                  RESPOSTAS
                 </h2>
                 <div className="grid grid-cols-2 gap-4">
                   {answerCards.map(renderCard)}
