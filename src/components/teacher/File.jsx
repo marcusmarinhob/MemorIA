@@ -244,43 +244,73 @@ const FileList = () => {
         {/* ... FORM permanece igual ... */}
 
         <CardContent className="space-y-4">
-          {fileList.map((file, index) => (
-            <div key={index} className="p-4 bg-white/10 rounded-lg">
-              <div className="flex items-center justify-between mb-3">
-                <div>
-                  <h3 className="font-semibold text-lg text-white">
-                    {file.contentName}
-                  </h3>
-                  <p className="text-white/70 text-sm">{file.subject}</p>
-                </div>
-              </div>
+  {fileList.map((file, index) => (
+    <div key={index} className="p-4 bg-white/10 rounded-lg">
+      <div className="flex items-center justify-between mb-3">
+        <div>
+          <h3 className="font-semibold text-lg text-white">
+            {file.contentName}
+          </h3>
+          <p className="text-white/70 text-sm">{file.subject}</p>
+        </div>
+      </div>
 
-              <div className="flex gap-2">
-                <Button
-                  variant="outline"
-                  className="bg-[#edbf21] text-[#153c4b] font-bold rounded-full hover:scale-105 transition"
-                  onClick={() =>
-                    toast({
-                      title: "Detalhes do arquivo",
-                      description: file.details,
-                    })
-                  }
-                >
-                  Ver detalhes
-                </Button>
+      <div className="flex gap-2 flex-wrap">
+        {/* VER DETALHES */}
+        <Button
+          variant="outline"
+          className="bg-[#edbf21] text-[#153c4b] font-bold rounded-full hover:scale-105 transition"
+          onClick={() =>
+            toast({
+              title: "Detalhes do arquivo",
+              description: file.details,
+            })
+          }
+        >
+          Ver detalhes
+        </Button>
 
-                {/* 🔥 BOTÃO JOGAR ADICIONADO */}
-                <Button
-                  variant="outline"
-                  className="bg-green-500 text-white font-bold rounded-full hover:scale-105 transition"
-                  onClick={() => handlePlayGame(file)}
-                >
-                  🎮 Jogar
-                </Button>
-              </div>
-            </div>
-          ))}
-        </CardContent>
+        {/* JOGAR */}
+        <Button
+          variant="outline"
+          className="bg-green-500 text-white font-bold rounded-full hover:scale-105 transition"
+          onClick={() => handlePlayGame(file)}
+        >
+          🎮 Jogar
+        </Button>
+
+        {/* EDITAR (placeholder) */}
+        <Button
+          variant="outline"
+          className="bg-blue-500 text-white font-bold rounded-full hover:scale-105 transition"
+          onClick={() =>
+            toast({
+              title: "Função não implementada",
+              description: "A edição do arquivo será adicionada em breve.",
+            })
+          }
+        >
+          ✏️ Editar
+        </Button>
+
+        {/* EXCLUIR (placeholder) */}
+        <Button
+          variant="outline"
+          className="bg-red-600 text-white font-bold rounded-full hover:scale-105 transition"
+          onClick={() =>
+            toast({
+              title: "Função não implementada",
+              description: "A exclusão do arquivo será adicionada em breve.",
+            })
+          }
+        >
+          🗑️ Excluir
+        </Button>
+      </div>
+    </div>
+  ))}
+</CardContent>
+
       </Card>
     </motion.div>
   );
