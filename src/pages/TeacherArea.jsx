@@ -4,13 +4,60 @@ import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import ClassList from "@/components/teacher/ClassList";
 import FileList from "@/components/teacher/File";
+import TeacherPersonalLibrary from "@/components/teacher/TeacherPersonalLibrary";
 import { buscarDadosUsuario } from "../lib/firestore";
 import { onAuthStateChange } from "../lib/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const TeacherArea = () => {
   const [teacherData, setTeacherData] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [fileList, setFileList] = useState([]);
+
+  // Função para carregar arquivos do professor
+  const carregarArquivos = async (uid) => {
+    try {
+      const auth = getAuth();
+      const user = auth.currentUser;
+      const professorUid = uid || (user && user.uid);
+      if (!professorUid) return;
+
+      const res = await fetch(
+        `http://localhost:3001/api/files?professor_uid=${professorUid}`
+      );
+      const json = await res.json().catch(() => ({}));
+
+      if (res.ok && json.success && Array.isArray(json.data)) {
+        const ownerKeys = [
+          "professor_uid",
+          "professorUid",
+          "ownerId",
+          "userId",
+          "uid",
+          "created_by",
+        ];
+
+        const filtered = json.data.filter((a) =>
+          ownerKeys.some((k) => a[k] === professorUid)
+        );
+
+        const mapped = filtered.map((a) => ({
+          id: a.id,
+          contentName: a.assunto || "Sem título",
+          classroom: a.turma || "",
+          subject: a.materia || "",
+          details: a.detalhes || "",
+          markdown: a.markdown || null,
+          created_at: a.created_at,
+        }));
+
+        setFileList(mapped);
+      }
+    } catch (err) {
+      console.error("Erro ao carregar arquivos:", err);
+    }
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChange((user) => {
@@ -48,6 +95,17 @@ const TeacherArea = () => {
     });
 
     return () => unsubscribe();
+  }, []);
+
+  // Carregar arquivos quando o usuário for autenticado
+  useEffect(() => {
+    const auth = getAuth();
+    const unsub = onAuthStateChanged(auth, (user) => {
+      if (user) carregarArquivos(user.uid);
+      else setFileList([]);
+    });
+
+    return () => unsub();
   }, []);
 
   if (loading) {
@@ -99,10 +157,20 @@ const TeacherArea = () => {
           <p className="text-white">{teacherData.teacher.school}</p>
         </motion.div>
 
+        {/* Formulário para adicionar novos assuntos */}
         <div className="w-full max-w-3xl mb-8">
-          <FileList />
+          <FileList onFileAdded={() => carregarArquivos(currentUser?.uid)} />
         </div>
 
+        {/* Biblioteca pessoal do professor */}
+        <div className="w-full max-w-3xl mb-8">
+          <TeacherPersonalLibrary 
+            fileList={fileList}
+            onRefresh={() => carregarArquivos(currentUser?.uid)}
+          />
+        </div>
+
+        {/* Lista de turmas */}
         <div className="w-full max-w-3xl">
           <ClassList classes={teacherData.classes} />
         </div>
