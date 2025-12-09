@@ -34,7 +34,7 @@ app.post("/api/files/upload", upload.single("file"), async (req, res) => {
       contentType: "application/pdf",
     });
 
-    const response = await fetch("http://localhost:5001/analisar", {
+    const response = await fetch("http://localhost:5000/analisar", {
       method: "POST",
       body: form,
     });

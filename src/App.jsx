@@ -17,7 +17,8 @@ import Login from "@/pages/Login.jsx";
 import Register from "@/pages/Register";
 import PrivateRoute from "@/components/PrivateRoute";
 import Logout from "@/components/Logout";
-import Memory from "@/pages/Memory.jsx";
+import StudentMemory from "@/pages/StudentMemory.jsx";
+import TeacherMemory from "@/pages/TeacherMemory.jsx";
 
 function App() {
   return (
@@ -31,6 +32,8 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/how-ai-works" element={<HowAIWorks />} />
             <Route path="/library" element={<Library />} />
+            
+            {/* Rota da área do aluno */}
             <Route
               path="/student"
               element={
@@ -39,14 +42,18 @@ function App() {
                 </PrivateRoute>
               }
             />
+            
+            {/* Rota do jogo para ALUNO */}
             <Route
-              path="/memory"
+              path="/student/memory"
               element={
-                <PrivateRoute allowedRoles={["aluno", "professor"]}>
-                  <Memory />
+                <PrivateRoute allowedRoles={["aluno"]}>
+                  <StudentMemory />
                 </PrivateRoute>
               }
             />
+            
+            {/* Rota da área do professor */}
             <Route
               path="/teacher"
               element={
@@ -55,6 +62,17 @@ function App() {
                 </PrivateRoute>
               }
             />
+            
+            {/* Rota do jogo para PROFESSOR */}
+            <Route
+              path="/teacher/memory"
+              element={
+                <PrivateRoute allowedRoles={["professor"]}>
+                  <TeacherMemory />
+                </PrivateRoute>
+              }
+            />
+            
             <Route
               path="/dashboard"
               element={
@@ -63,6 +81,10 @@ function App() {
                 </PrivateRoute>
               }
             />
+            
+            {/* Rota antiga /memory - redireciona baseado no papel do usuário */}
+            <Route path="/memory" element={<Navigate to="/" replace />} />
+            
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
           <Toaster />

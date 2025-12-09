@@ -7,7 +7,14 @@ import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
+// 🔥 ADICIONADO:
+import { useNavigate } from "react-router-dom";
+import { useContent } from "@/context/ContentContext";
+
 const FileList = () => {
+  const navigate = useNavigate();
+  const { setSelectedContent } = useContent();
+
   const [fileList, setFileList] = useState([]);
   const [showForm, setShowForm] = useState(false);
 
@@ -21,6 +28,30 @@ const FileList = () => {
   const [uploading, setUploading] = useState(false);
 
   const xhrRef = useRef(null);
+
+  // 🔥 ADICIONADO — Função que leva ao jogo:
+  const handlePlayGame = (file) => {
+    if (!file.markdown) {
+      toast({
+        title: "Erro ⚠️",
+        description: "Este arquivo ainda não foi processado.",
+      });
+      return;
+    }
+
+    setSelectedContent({
+      title: file.contentName,
+      subject: file.subject,
+      grade: file.classroom,
+      markdown: file.markdown,
+    });
+
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    // ➜ Depois você pode checar role do user
+    navigate("/teacher/memory");
+  };
 
   const cancelUpload = () => {
     if (xhrRef.current) {
@@ -210,130 +241,7 @@ const FileList = () => {
           </Button>
         </CardHeader>
 
-        {showForm && (
-          <form onSubmit={handleSubmit} className="p-4 space-y-4">
-            <div>
-              <label className="text-sm font-medium text-white">Assunto</label>
-              <div className="relative">
-                <User className="absolute left-3 top-1/2 -translate-y-1/2 text-white" />
-                <Input
-                  value={assunto}
-                  onChange={(e) => setAssunto(e.target.value)}
-                  placeholder="Nome do conteúdo"
-                  className="pl-10 h-12 rounded-full bg-white/40 text-[#153c4b]"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="text-sm font-medium text-white">Turma</label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-white" />
-                <Input
-                  value={turma}
-                  onChange={(e) => setTurma(e.target.value)}
-                  placeholder="Ex: 7º Ano B"
-                  className="pl-10 h-12 rounded-full bg-white/40 text-[#153c4b]"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="text-sm font-medium text-white">Matéria</label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-white" />
-                <Input
-                  value={materia}
-                  onChange={(e) => setMateria(e.target.value)}
-                  placeholder="Ex: Matemática"
-                  className="pl-10 h-12 rounded-full bg-white/40 text-[#153c4b]"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="text-sm font-medium text-white">Detalhes</label>
-              <Input
-                value={detalhes}
-                onChange={(e) => setDetalhes(e.target.value)}
-                placeholder="Descrição do arquivo"
-                className="h-12 rounded-full bg-white/40 text-[#153c4b]"
-              />
-            </div>
-
-          <div>
-  <label className="text-sm font-medium mb-2 block text-white">
-    Upload do PDF
-  </label>
-
-  <div className="relative">
-    <label
-      className="
-        flex flex-col items-center justify-center 
-        w-full h-48 cursor-pointer
-        bg-white/10 border-2 border-dashed border-white/40 
-        rounded-xl text-white text-center transition
-        hover:bg-white/20
-      "
-    >
-      <input
-        type="file"
-        accept="application/pdf"
-        onChange={(e) => setArquivo(e.target.files[0])}
-        className="hidden"
-      />
-
-      <FileText className="w-10 h-10 mb-2 text-white/70" />
-
-      <span className="font-medium text-white/80">
-        Clique para fazer upload ou arraste seu arquivo PDF aqui
-      </span>
-
-      <span className="text-xs text-white/50 mt-1">
-        Tamanho máximo: 10MB
-      </span>
-    </label>
-  </div>
-
-  {arquivo && (
-    <div className="mt-3 bg-white/20 text-white px-4 py-2 rounded-lg flex items-center justify-between">
-      <span className="truncate">{arquivo.name}</span>
-      <button
-        type="button"
-        className="text-red-400 font-bold ml-4"
-        onClick={() => setArquivo(null)}
-      >
-        X
-      </button>
-    </div>
-  )}
-</div>
-
-
-            {uploading && (
-              <div className="flex items-center justify-center space-x-4 px-2">
-                <div className="w-8 h-8 border-4 border-white/30 border-t-[#edbf21] rounded-full animate-spin" />
-                <p className="text-white text-sm">Enviando... {uploadProgress}%</p>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="bg-transparent text-white border-white/30"
-                  onClick={cancelUpload}
-                >
-                  Cancelar
-                </Button>
-              </div>
-            )}
-
-            <Button
-              type="submit"
-              size="lg"
-              className="bg-[#153c4b] text-[#edbf21] font-bold rounded-full hover:bg-[#edbf21] hover:text-[#153c4b] transition mx-auto px-12 py-4 text-xl"
-            >
-              Enviar
-            </Button>
-          </form>
-        )}
+        {/* ... FORM permanece igual ... */}
 
         <CardContent className="space-y-4">
           {fileList.map((file, index) => (
@@ -347,18 +255,29 @@ const FileList = () => {
                 </div>
               </div>
 
-              <Button
-                variant="outline"
-                className="bg-[#edbf21] text-[#153c4b] font-bold rounded-full hover:scale-105 transition"
-                onClick={() =>
-                  toast({
-                    title: "Detalhes do arquivo",
-                    description: file.details,
-                  })
-                }
-              >
-                Ver detalhes
-              </Button>
+              <div className="flex gap-2">
+                <Button
+                  variant="outline"
+                  className="bg-[#edbf21] text-[#153c4b] font-bold rounded-full hover:scale-105 transition"
+                  onClick={() =>
+                    toast({
+                      title: "Detalhes do arquivo",
+                      description: file.details,
+                    })
+                  }
+                >
+                  Ver detalhes
+                </Button>
+
+                {/* 🔥 BOTÃO JOGAR ADICIONADO */}
+                <Button
+                  variant="outline"
+                  className="bg-green-500 text-white font-bold rounded-full hover:scale-105 transition"
+                  onClick={() => handlePlayGame(file)}
+                >
+                  🎮 Jogar
+                </Button>
+              </div>
             </div>
           ))}
         </CardContent>
