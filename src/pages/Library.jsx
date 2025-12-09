@@ -259,9 +259,24 @@ const Library = () => {
                       size="lg"
                       className="w-full rounded-full bg-[#153c4b] text-[#edbf21] font-bold text-lg hover:bg-[#153c4b] hover:scale-105 transition-transform duration-300"
                       onClick={() => {
-                        setSelectedContent(item);
-                        navigate("/memory");
+                        if (!item.markdown) {
+                          toast({
+                            title: "Erro ⚠️",
+                            description: "Este arquivo ainda não foi processado.",
+                          });
+                          return;
+                        }
+
+                        setSelectedContent({
+                          title: item.title,
+                          subject: item.subject,
+                          grade: item.grade,
+                          markdown: item.markdown,
+                        });
+
+                        navigate("/teacher/memory");
                       }}
+
                     >
                       <Play className="w-5 h-5 mr-2" />
                       Jogar Agora
