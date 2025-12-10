@@ -5,6 +5,8 @@ import ImagemMemoria from "../assets/minha_logo.png";
 import { toast } from "@/components/ui/use-toast";
 import { useContent } from "@/context/ContentContext";
 import { generateWithContext } from "../server/service/geminiApi";
+import confetti from "canvas-confetti";
+
 
 const RotateCcw = () => <span>🔄</span>;
 const Check = () => <span>✓</span>;
@@ -104,7 +106,7 @@ export default function Memory() {
 
   useEffect(() => {
     if (isRunning) {
-      timerRef.current = setInterval(() => setTime((t) => t + 1), 1000);
+      timerRef.current = setInterval(() => setTime((t) => t + 1), 2500);
     } else {
       clearInterval(timerRef.current);
     }
@@ -122,6 +124,20 @@ export default function Memory() {
   const progressPercent = Math.round(
     (matchedPairs.length / cardPairs.length) * 100
   );
+
+  const parabensStyle = `
+  @keyframes pop {
+    0% { transform: scale(0.2); opacity: 0; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .parabens-anim {
+    animation: pop 0.8s ease-out forwards;
+  }
+  `;
+
+  <style>{parabensStyle}</style>
+
 
   useEffect(() => {
     if (cardPairs.length > 0) {
@@ -198,7 +214,7 @@ export default function Memory() {
 
     if (newSelected.length === 2) {
       setIsProcessing(true);
-      setTimeout(() => handleConfirm(newSelected), 1000);
+      setTimeout(() => handleConfirm(newSelected), 2500);
     }
   };
 
@@ -225,7 +241,7 @@ export default function Memory() {
 
       const correctPair = cardPairs.find((p) => p.id === c1.pairId);
       setJustification(correctPair.justification);
-      setTimeout(() => setJustification(""), 10000);
+      setTimeout(() => setJustification(""), 15000);
 
       setSelectedCards([]);
       setIsProcessing(false);
@@ -246,7 +262,7 @@ export default function Memory() {
         );
         setSelectedCards([]);
         setIsProcessing(false);
-      }, 1000);
+      }, 2500);
     }
   };
 
@@ -254,8 +270,29 @@ export default function Memory() {
   const isGameComplete = matchedPairs.length === cardPairs.length;
 
   useEffect(() => {
-    if (isGameComplete) setIsRunning(false);
-  }, [isGameComplete]);
+  if (isGameComplete) {
+    // Solta confetes por 1 segundo
+    const duration = 1000;
+    const end = Date.now() + duration;
+
+    (function frame() {
+      confetti({
+        particleCount: 10,
+        spread: 70,
+        startVelocity: 30,
+        origin: {
+          x: Math.random(),
+          y: Math.random() - 0.2
+        }
+      });
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    })();
+  }
+}, [isGameComplete]);
+
 
   const renderCard = (card) => {
     const isSelected = selectedCards.some((sc) => sc.id === card.id);
@@ -312,7 +349,7 @@ export default function Memory() {
 
   return (
     <div className="min-h-screen relative">
-      <Navigation />
+      
 
       {showErrorToast && (
         <div className="fixed top-6 right-6 z-50 animate-fadeInOut">
@@ -339,36 +376,67 @@ export default function Memory() {
       <div className="max-w-7xl mx-auto p-6 pt-32">
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="w-20 h-20 rounded-full overflow-hidden shadow-md">
-              <img
-                src={ImagemMemoria}
-                alt="MemorIA"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <h1 className="text-5xl font-bold">
-              <span style={{ color: "#153c4b" }}>Memor</span>
-              <span style={{ color: "#edbf21" }}>IA</span>
-            </h1>
           </div>
 
-          <p className="text-lg mb-6 text-[#0a5d61]">Jogo da Memória com IA</p>
-
           {selectedContent && (
-            <div className="max-w-4xl mx-auto mb-6 p-4 bg-gradient-to-r from-[#153c4b] to-[#0a5d61] rounded-2xl shadow-lg border border-[#edbf21]">
-              <div className="text-center text-white">
-                <p className="text-sm text-yellow-300 font-semibold">
-                  Conteúdo Selecionado
-                </p>
-                <h2 className="text-2xl font-bold text-[#edbf21] mt-1">
-                  {selectedContent.title}
-                </h2>
-                <p className="text-sm text-white/80 mt-1">
-                  {selectedContent.subject} • {selectedContent.grade}
-                </p>
-              </div>
-            </div>
-          )}
+  <div className="max-w-7xl mx-auto mt-6">
+
+      {/* Botão de voltar */}
+    <div className="relative flex items-center gap-4 mb-6 mt-4">
+      <button
+        onClick={() => navigate("/library")}
+        className="flex items-center gap-2 text-[#153c4b] hover:opacity-70 transition font-semibold"
+      >
+        ← Voltar
+      </button>
+    </div>
+
+
+
+    {/* Cabeçalho do conteúdo */}
+    <div className="text-center mb-6">
+      <h2 className="text-3xl font-bold text-[#153c4b] mt-1">
+        {selectedContent.title}
+      </h2>
+    </div>
+
+    {/* Estatísticas */}
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+
+      {/* Pontuação */}
+      <div className="p-4 rounded-xl bg-[#f7fafc] border border-[#1C475A]/30 shadow-sm">
+        <div className="text-2xl">⭐</div>
+        <p className="text-sm font-semibold text-[#1C475A]">Pontuação</p>
+        <p className="text-xl font-bold text-[#003D5C]">{score}</p>
+      </div>
+
+      {/* Tentativas */}
+      <div className="p-4 rounded-xl bg-[#f7fafc] border border-[#1C475A]/30 shadow-sm">
+        <div className="text-2xl">🎯</div>
+        <p className="text-sm font-semibold text-[#1C475A]">Tentativas</p>
+        <p className="text-xl font-bold text-[#003D5C]">{attempts}</p>
+      </div>
+
+      {/* Tempo */}
+      <div className="p-4 rounded-xl bg-[#f7fafc] border border-[#1C475A]/30 shadow-sm">
+        <div className="text-2xl">⏱️</div>
+        <p className="text-sm font-semibold text-[#1C475A]">Tempo</p>
+        <p className="text-xl font-bold text-[#003D5C]">{formatTime(time)}</p>
+      </div>
+
+      {/* Pares */}
+      <div className="p-4 rounded-xl bg-[#f7fafc] border border-[#1C475A]/30 shadow-sm">
+        <div className="text-2xl">🎴</div>
+        <p className="text-sm font-semibold text-[#1C475A]">Pares</p>
+        <p className="text-xl font-bold text-[#003D5C]">
+          {matchedPairs.length}/{cardPairs.length}
+        </p>
+      </div>
+
+    </div>
+  </div>
+)}
+
 
            {isLoadingCards && (
             <div className="flex flex-col items-center justify-center py-16 text-[#003D5C]">
@@ -379,45 +447,8 @@ export default function Memory() {
 
 
           {!isLoadingCards && (
-            <div className="max-w-4xl mx-auto">
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div
-                  className={`flex items-center gap-4 p-4 rounded-2xl shadow-xl border-2 border-[#1C475A] bg-white transition-transform duration-200 ${
-                    scorePulse ? "scale-105" : "scale-100"
-                  }`}
-                >
-                  <div className="w-14 h-14 flex items-center justify-center rounded-full bg-gradient-to-br from-[#003D5C] to-[#1C475A] text-white text-2xl font-bold shadow-lg">
-                    ⭐
-                  </div>
-                  <div>
-                    <div className="text-sm font-medium" style={{ color: "#1C475A" }}>Pontuação</div>
-                    <div className="text-3xl font-extrabold" style={{ color: "#003D5C" }}>
-                      {score}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex gap-4 items-center">
-                  <div className="p-4 rounded-xl bg-white border-2 border-blue-200 shadow-md text-sm" style={{ color: "#1C475A" }}>
-                    <div className="font-semibold">🎯 Tentativas</div>
-                    <div className="text-xl font-bold text-center mt-1">{attempts}</div>
-                  </div>
-
-                  <div className="p-4 rounded-xl bg-white border-2 border-blue-200 shadow-md text-sm" style={{ color: "#1C475A" }}>
-                    <div className="font-semibold">⏱️ Tempo</div>
-                    <div className="text-xl font-bold text-center mt-1">
-                      {formatTime(time)}
-                    </div>
-                  </div>
-
-                  <div className="p-4 rounded-xl bg-white border-2 border-amber-200 shadow-md text-sm" style={{ color: "#1C475A" }}>
-                    <div className="font-semibold">🎴 Pares</div>
-                    <div className="text-xl font-bold text-center mt-1">
-                      {matchedPairs.length}/{cardPairs.length}
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className="max-w-7xl mx-auto">
+              
 
               <div className="mt-6">
                 <div className="w-full bg-blue-100 rounded-full h-5 overflow-hidden border-2 border-blue-200 shadow-inner">
@@ -442,28 +473,6 @@ export default function Memory() {
         
         {isLoadingCards ? null : (
           <>
-            {isGameComplete && (
-              <div className="text-center mb-6">
-                <div className="text-white p-6 rounded-lg inline-block shadow-lg bg-[#14a098]">
-                  <h2 className="text-3xl font-bold mb-2">
-                    🎉 Parabéns! Você completou o jogo!
-                  </h2>
-                  <p className="text-lg">
-                    Pontuação: {score} | Tempo: {formatTime(time)} |
-                    Tentativas: {attempts}
-                  </p>
-                </div>
-              </div>
-            )}
-
-            {justification && (
-              <div className="text-center mb-6">
-                <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-md relative max-w-4xl mx-auto">
-                  <strong className="font-bold">Curiosidade: </strong>
-                  <span>{justification}</span>
-                </div>
-              </div>
-            )}
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-6">
               <div>
@@ -485,27 +494,18 @@ export default function Memory() {
               </div>
             </div>
 
+            {justification && (
+            <div className="max-w-7xl mx-auto mb-6">
+              <div className="bg-green-100 border border-green-400 text-green-700 px-6 py-4 rounded-lg shadow">
+                <p className="font-bold mb-1">Curiosidade:</p>
+                <p>{justification}</p>
+              </div>
+            </div>
+          )}
+
             <div className="text-center space-y-4">
               <div className="flex justify-center gap-8">
-                <button
-                  onClick={() =>
-                    toast({
-                      title: "💾 Salvar Jogo",
-                      description:
-                        "🚧 Esta funcionalidade ainda não está implementada — mas em breve estará disponível! 🚀",
-                    })
-                  }
-                  className="px-6 py-3 text-white rounded-full font-semibold flex items-center gap-2 shadow-lg bg-[#14a098] hover:opacity-90 transition-transform duration-300 hover:scale-105"
-                >
-                  💾 Salvar Jogo
-                </button>
-
-                <button
-                  onClick={resetGame}
-                  className="px-6 py-3 text-white rounded-full font-semibold flex items-center gap-2 shadow-lg bg-[#f39c12] hover:opacity-90 transition-transform duration-300 hover:scale-105"
-                >
-                  <RotateCcw /> Novo Jogo
-                </button>
+                
               </div>
 
               <div className="text-sm max-w-md mx-auto bg-white/60 p-4 rounded-lg shadow-lg text-[#021d49]">

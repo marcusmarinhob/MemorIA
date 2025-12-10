@@ -23,6 +23,7 @@
     "@radix-ui/react-tabs": "^1.0.4",
     "@radix-ui/react-toast": "^1.1.5",
     "@supabase/supabase-js": "^2.78.0",
+    "canvas-confetti": "^1.9.4",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "cors": "^2.8.5",

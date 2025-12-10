@@ -158,22 +158,19 @@ const TeacherArea = () => {
         </motion.div>
 
         {/* Formulário para adicionar novos assuntos */}
-        <div className="w-full max-w-3xl mb-8">
+        <div className="w-full max-w-6xl mb-8">
           <FileList onFileAdded={() => carregarArquivos(currentUser?.uid)} />
         </div>
 
         {/* Biblioteca pessoal do professor */}
-        <div className="w-full max-w-3xl mb-8">
+        <div className="w-full max-w-6xl mb-8">
           <TeacherPersonalLibrary 
             fileList={fileList}
             onRefresh={() => carregarArquivos(currentUser?.uid)}
           />
         </div>
 
-        {/* Lista de turmas */}
-        <div className="w-full max-w-3xl">
-          <ClassList classes={teacherData.classes} />
-        </div>
+        
       </div>
     </>
   );

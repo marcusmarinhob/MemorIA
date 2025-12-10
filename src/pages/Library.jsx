@@ -103,6 +103,59 @@ const Library = () => {
     }
   };
 
+  const handlePlayClick = (item) => {
+    // Verifica se o conteúdo tem markdown
+    if (!item.markdown) {
+      toast({
+        title: "Erro ⚠️",
+        description: "Este arquivo ainda não foi processado.",
+      });
+      return;
+    }
+
+    // Salva o conteúdo selecionado no contexto
+    setSelectedContent({
+      title: item.title,
+      subject: item.subject,
+      grade: item.grade,
+      markdown: item.markdown,
+    });
+
+    // Obtém o tipo de usuário do localStorage (a chave correta é userType)
+    const userType = localStorage.getItem("userType");
+    
+    console.log("UserType encontrado:", userType);
+    
+    if (!userType) {
+      toast({
+        title: "Acesso Negado ❌",
+        description: "Tipo de usuário não encontrado. Por favor, faça login novamente.",
+      });
+      navigate("/login");
+      return;
+    }
+
+    // Normaliza o userType
+    const normalizedType = userType.trim().toLowerCase();
+    
+    console.log("UserType normalizado:", normalizedType);
+    
+    // Verifica e redireciona baseado no tipo do usuário
+    if (normalizedType === "professor") {
+      console.log("✅ Redirecionando professor para /teacher/memory");
+      navigate("/teacher/memory");
+    } else if (normalizedType === "aluno") {
+      console.log("✅ Redirecionando aluno para /student/memory");
+      navigate("/student/memory");
+    } else {
+      console.error("❌ Tipo de usuário inválido:", userType);
+      toast({
+        title: "Acesso Negado ❌",
+        description: `Tipo de usuário "${userType}" não reconhecido. Por favor, contate o suporte.`,
+      });
+    }
+  };
+
   return (
     <>
       <Helmet>
@@ -252,31 +305,13 @@ const Library = () => {
 
                   <CardContent>
                     <div className="flex items-center text-white text-sm mb-4">
-           <Clock className="w-4 h-4 mr-1" />
+                      <Clock className="w-4 h-4 mr-1" />
                       {item.duration}
                     </div>
                     <Button
                       size="lg"
                       className="w-full rounded-full bg-[#153c4b] text-[#edbf21] font-bold text-lg hover:bg-[#153c4b] hover:scale-105 transition-transform duration-300"
-                      onClick={() => {
-                        if (!item.markdown) {
-                          toast({
-                            title: "Erro ⚠️",
-                            description: "Este arquivo ainda não foi processado.",
-                          });
-                          return;
-                        }
-
-                        setSelectedContent({
-                          title: item.title,
-                          subject: item.subject,
-                          grade: item.grade,
-                          markdown: item.markdown,
-                        });
-
-                        navigate("/teacher/memory");
-                      }}
-
+                      onClick={() => handlePlayClick(item)}
                     >
                       <Play className="w-5 h-5 mr-2" />
                       Jogar Agora
